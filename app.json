@@ -1,0 +1,11 @@
+{
+  "name": "PlayaPal",
+  "displayName": "Playa Pal",
+  "slug": "playapal",
+  "owner": "ryal",
+  "extra": {
+    "eas": {
+      "projectId": "244947f7-fa45-4aed-99cb-80c7bb426b46"
+    }
+  }
+}

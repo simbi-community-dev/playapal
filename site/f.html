@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%A6%9B%3C/text%3E%3C/svg%3E">
+<title>A friend card — Playa Pal</title>
+<meta name="description" content="Someone shared their Black Rock City camp location with you. It decodes on your device — no server ever sees it.">
+<style>
+  :root{--bg:#0c0912;--dust:#ece3d1;--dust-dim:#b6aa96;--card:#171020;--line:#2d2436;--el:#ff5fa2;--gld:#ffb84d}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--dust);font:17px/1.6 ui-rounded,system-ui,sans-serif;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+  h1{font-size:1.4rem;margin-bottom:4px}
+  .dim{color:var(--dust-dim);font-size:.95rem}
+  .cards{margin:20px 0;display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;text-align:left}
+  .fname{font-weight:700;font-size:1.1rem}
+  .fwhere{color:var(--gld)}
+  .fnote{color:var(--dust-dim);font-size:.92rem}
+  a.open{display:inline-block;background:var(--el);color:#1a0812;font-weight:700;border-radius:999px;padding:12px 26px;text-decoration:none;margin:8px 0}
+  a.plain{color:var(--gld)}
+  .fine{color:var(--dust-dim);font-size:.85rem;max-width:420px;margin-top:18px}
+</style>
+</head>
+<body>
+<p style="font-size:2.2rem" aria-hidden="true">🦛</p>
+<h1 id="title">A friend card for the playa</h1>
+<p class="dim" id="sub">Decoding on your device…</p>
+<div class="cards" id="cards"></div>
+<p><a class="open" id="openapp" href="#">Open in Playa Pal</a></p>
+<p class="dim">Don't have it? Playa Pal is a free, offline, open-source
+Black Rock City guide — <a class="plain" href="https://playapal.lol">playapal.lol</a></p>
+<p class="fine">This card decoded entirely in your browser: the part of the
+link after <b>#</b> is never sent to any server. Playa Pal has no accounts
+and no backend — friends share camp locations phone-to-phone only.</p>
+<script>
+(function(){
+  var B='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  function dec(s){var by=[],buf=0,bits=0;for(var i=0;i<s.length;i++){var v=B.indexOf(s[i]);if(v<0)return null;buf=(buf<<6)|v;bits+=6;if(bits>=8){bits-=8;by.push((buf>>bits)&255)}}try{return new TextDecoder().decode(new Uint8Array(by))}catch(e){return null}}
+  var h=location.hash.slice(1), sub=document.getElementById('sub'),
+      cards=document.getElementById('cards'), open=document.getElementById('openapp');
+  open.style.display='none';
+  if(!h){sub.textContent='This link is missing its card — ask your friend to share it again.';return}
+  if(h.length>368640){sub.textContent='This link is too large to be a friend card.';return}
+  var json=dec(h), data=null;
+  try{data=JSON.parse(json)}catch(e){}
+  if(!data||data.kind!=='playapal-friend-card'||!Array.isArray(data.cards)){
+    sub.textContent='This link did not decode as a friend card.';return}
+  open.href='playapal://friend#'+h;
+  open.style.display='';
+  sub.textContent=data.cards.length===1?'Someone shared where they camp:':data.cards.length+' campers shared where they camp:';
+  data.cards.slice(0,64).forEach(function(c){
+    var d=document.createElement('div');d.className='fcard';
+    function line(cls,text){if(!text)return;var p=document.createElement('p');p.className=cls;p.textContent=text;d.appendChild(p)}
+    line('fname',c.name);line('fwhere',[c.address,c.camp].filter(Boolean).join(' — '));line('fnote',c.note);
+    cards.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

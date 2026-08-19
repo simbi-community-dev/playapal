@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["Z8F92XD9DA.com.playapal"],
+        "components": [{ "/": "/f", "comment": "friend-card links; payload rides the fragment" }]
+      }
+    ]
+  }
+}
