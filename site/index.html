@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0c0912">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#cfe6f3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%A6%9B%3C/text%3E%3C/svg%3E">
+<title>Playa Pal — an offline AI companion for Black Rock City</title>
+<meta name="description" content="A free, open-source AI companion that runs entirely on your phone — no cloud, no account, no signal. Built for Burning Man 2026.">
+<style>
+  :root{
+    interpolate-size:allow-keywords;
+    --mode:night;
+    /* ground + ink */
+    --bg:#0c0912; --dust:#ece3d1; --dust-dim:#b6aa96; --ink-hi:#ffffff;
+    --line:#2d2436; --line-dash:#372c42; --card:#171020; --card-hi:#1d1528;
+    /* the rainbow city — jewel accents (theme-flipped, text-safe) */
+    --el:#ff5fa2; --el-soft:#ff5fa21f;
+    --a-mag:#ff5fa2; --a-cyn:#7de0d6; --a-grn:#7ce87c;
+    --a-vio:#a98cff; --a-org:#ff9d5c; --a-gld:#ffb84d;
+    --glow:#ffb84d;
+    /* glows + shadows */
+    --el-glow:0 0 18px #ff5fa27a, 0 0 64px #ff5fa236;
+    --mark-glow:0 0 12px #ff5fa27a;
+    --lift-shadow:0 14px 34px -18px #ff5fa245;
+    --plate-glow:0 0 34px -10px #ff5fa245;
+    /* scene */
+    --scene-bg:
+      radial-gradient(130% 90% at 70% -20%, #1c1426 0%, transparent 55%),
+      radial-gradient(120% 70% at 15% 115%, #191024 0%, transparent 60%),
+      linear-gradient(to bottom, #0b0811 0%, #100c16 55%, #150e1d 100%);
+    --horizon-bg:
+      radial-gradient(28% 90% at 28% 100%, #ff5fa216 0%, transparent 70%),
+      radial-gradient(30% 100% at 50% 100%, #ffb84d1a 0%, transparent 75%),
+      radial-gradient(26% 90% at 72% 100%, #4fd8e814 0%, transparent 70%),
+      radial-gradient(22% 80% at 90% 100%, #9f7dff12 0%, transparent 70%);
+    --dune1-bg:linear-gradient(to bottom,#241a2f,#1a1226 70%);
+    --dune2-bg:#151021; --dune3-bg:#0a070f;
+    --grain-op:.07; --grain-blend:screen;
+    --night-d:block; --day-d:none;
+    --ic-sun:inline; --ic-moon:none;
+    --disp:"Futura","Avenir Next","Century Gothic","URW Gothic",Verdana,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  /* ============ DAYTIME: the playa at 2pm ============ */
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="night"]){
+      --mode:day;
+      --bg:#efe9da; --dust:#2a2318; --dust-dim:#6d6252; --ink-hi:#1a140b;
+      --line:#d9cdb6; --line-dash:#cdbfa4; --card:#f7f2e6; --card-hi:#fcf8ef;
+      --el:#c2185b; --el-soft:#c2185b12;
+      --a-mag:#c2185b; --a-cyn:#0c7d92; --a-grn:#2e7d32;
+      --a-vio:#6741c6; --a-org:#b45309; --a-gld:#926c00;
+      --glow:#926c00;
+      --el-glow:none; --mark-glow:none;
+      --lift-shadow:0 14px 30px -18px rgba(90,70,40,.35);
+      --plate-glow:0 0 30px -12px rgba(194,24,91,.35);
+      --scene-bg:linear-gradient(to bottom,#8ec8e8 0%,#c3e0f0 42%,#e6e2d2 74%,#efe9da 100%);
+      --horizon-bg:linear-gradient(to top,#efe9dacc,#efe9da00);
+      --dune1-bg:#b9b6c9; --dune2-bg:#b3a58e; --dune3-bg:#998871;
+      --grain-op:.06; --grain-blend:multiply;
+      --night-d:none; --day-d:block;
+      --ic-sun:none; --ic-moon:inline;
+    }
+  }
+  :root[data-theme="day"]{
+    --mode:day;
+    --bg:#efe9da; --dust:#2a2318; --dust-dim:#6d6252; --ink-hi:#1a140b;
+    --line:#d9cdb6; --line-dash:#cdbfa4; --card:#f7f2e6; --card-hi:#fcf8ef;
+    --el:#c2185b; --el-soft:#c2185b12;
+    --a-mag:#c2185b; --a-cyn:#0c7d92; --a-grn:#2e7d32;
+    --a-vio:#6741c6; --a-org:#b45309; --a-gld:#926c00;
+    --glow:#926c00;
+    --el-glow:none; --mark-glow:none;
+    --lift-shadow:0 14px 30px -18px rgba(90,70,40,.35);
+    --plate-glow:0 0 30px -12px rgba(194,24,91,.35);
+    --scene-bg:linear-gradient(to bottom,#8ec8e8 0%,#c3e0f0 42%,#e6e2d2 74%,#efe9da 100%);
+    --horizon-bg:linear-gradient(to top,#efe9dacc,#efe9da00);
+    --dune1-bg:#b9b6c9; --dune2-bg:#b3a58e; --dune3-bg:#998871;
+    --grain-op:.06; --grain-blend:multiply;
+    --night-d:none; --day-d:block;
+    --ic-sun:none; --ic-moon:inline;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--dust);
+    font-family:var(--mono); line-height:1.7; font-size:16px; overflow-x:hidden;
+  }
+  a{color:var(--el)}
+  ::selection{background:var(--el); color:var(--bg)}
+  .disp{font-family:var(--disp)}
+
+  /* ============ THE SCENE ============ */
+  .scene{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; background:var(--scene-bg)}
+  .stars{position:absolute; top:0; left:0; border-radius:50%; background:transparent; display:var(--night-d)}
+  .s1{width:1px; height:1px; animation:tw 9s ease-in-out infinite;
+    box-shadow:243px 327px rgba(236,226,206,0.43),1048px 662px rgba(236,226,206,0.55),210px 228px rgba(236,226,206,0.56),1272px 569px rgba(236,226,206,0.4),1172px 560px rgba(236,226,206,0.54),1590px 502px rgba(236,226,206,0.51),1201px 451px rgba(236,226,206,0.33),1257px 82px rgba(236,226,206,0.29),1672px 100px rgba(236,226,206,0.41),1668px 701px rgba(236,226,206,0.42),643px 215px rgba(236,226,206,0.39),712px 365px rgba(236,226,206,0.53),1527px 525px rgba(236,226,206,0.47),1480px 348px rgba(236,226,206,0.28),1101px 299px rgba(236,226,206,0.35),288px 660px rgba(236,226,206,0.5),1182px 316px rgba(236,226,206,0.26),1455px 377px rgba(236,226,206,0.38),864px 92px rgba(236,226,206,0.39),1199px 567px rgba(236,226,206,0.42),238px 435px rgba(236,226,206,0.43),1536px 614px rgba(236,226,206,0.56),815px 537px rgba(236,226,206,0.34),860px 577px rgba(236,226,206,0.57),981px 525px rgba(236,226,206,0.43),51px 589px rgba(236,226,206,0.33),264px 50px rgba(236,226,206,0.59),1071px 686px rgba(236,226,206,0.29),1274px 439px rgba(236,226,206,0.41),987px 234px rgba(236,226,206,0.55),249px 641px rgba(236,226,206,0.5),1380px 480px rgba(236,226,206,0.5),1117px 257px rgba(236,226,206,0.45),1371px 315px rgba(236,226,206,0.44),1324px 513px rgba(236,226,206,0.49),1648px 411px rgba(236,226,206,0.4),602px 275px rgba(236,226,206,0.25),306px 671px rgba(236,226,206,0.56),938px 535px rgba(236,226,206,0.57),737px 204px rgba(236,226,206,0.34),994px 477px rgba(236,226,206,0.43),1692px 509px rgba(236,226,206,0.53),1142px 679px rgba(236,226,206,0.57),594px 324px rgba(236,226,206,0.41),1662px 100px rgba(236,226,206,0.4),1467px 527px rgba(236,226,206,0.34),374px 435px rgba(236,226,206,0.54),981px 65px rgba(236,226,206,0.48),1020px 379px rgba(236,226,206,0.28),1530px 421px rgba(236,226,206,0.3),28px 94px rgba(236,226,206,0.25),1189px 559px rgba(236,226,206,0.58),170px 624px rgba(236,226,206,0.53),507px 123px rgba(236,226,206,0.47),1539px 559px rgba(236,226,206,0.58),1369px 650px rgba(236,226,206,0.38),10px 320px rgba(236,226,206,0.48),1176px 503px rgba(236,226,206,0.49),276px 558px rgba(236,226,206,0.33),1204px 134px rgba(236,226,206,0.59),1418px 516px rgba(236,226,206,0.35),855px 684px rgba(236,226,206,0.31),277px 600px rgba(236,226,206,0.36),843px 399px rgba(236,226,206,0.53),1065px 201px rgba(236,226,206,0.38),217px 398px rgba(236,226,206,0.56),105px 355px rgba(236,226,206,0.48),1576px 26px rgba(236,226,206,0.26),974px 335px rgba(236,226,206,0.49),921px 333px rgba(236,226,206,0.57),1019px 477px rgba(236,226,206,0.45),1648px 174px rgba(236,226,206,0.3),1064px 211px rgba(236,226,206,0.4),688px 469px rgba(236,226,206,0.46),1389px 727px rgba(236,226,206,0.27),817px 34px rgba(236,226,206,0.32),355px 46px rgba(236,226,206,0.48),98px 462px rgba(236,226,206,0.55),1312px 193px rgba(236,226,206,0.42),1389px 20px rgba(236,226,206,0.3)}
+  .s2{width:2px; height:2px; animation:tw 6.5s ease-in-out -2.4s infinite;
+    box-shadow:1085px 223px rgba(236,226,206,0.76),1058px 141px rgba(236,226,206,0.51),380px 399px rgba(236,226,206,0.56),1091px 424px rgba(236,226,206,0.8),784px 312px rgba(236,226,206,0.52),357px 269px rgba(236,226,206,0.64),1597px 425px rgba(236,226,206,0.57),362px 333px rgba(236,226,206,0.66),910px 122px rgba(236,226,206,0.66),1074px 280px rgba(236,226,206,0.78),438px 236px rgba(236,226,206,0.45),190px 465px rgba(236,226,206,0.71),835px 558px rgba(236,226,206,0.76),1372px 186px rgba(236,226,206,0.83),720px 160px rgba(236,226,206,0.59),1407px 586px rgba(236,226,206,0.77),443px 112px rgba(236,226,206,0.7),574px 569px rgba(236,226,206,0.75),1497px 219px rgba(236,226,206,0.68),1152px 274px rgba(236,226,206,0.72),271px 103px rgba(236,226,206,0.76),197px 446px rgba(236,226,206,0.52),1401px 61px rgba(236,226,206,0.75),1479px 189px rgba(236,226,206,0.71),217px 518px rgba(236,226,206,0.58),1204px 65px rgba(236,226,206,0.57),644px 165px rgba(236,226,206,0.55),128px 14px rgba(236,226,206,0.61),1590px 263px rgba(236,226,206,0.62),31px 58px rgba(236,226,206,0.49),47px 317px rgba(236,226,206,0.5),1404px 574px rgba(236,226,206,0.68),717px 322px rgba(236,226,206,0.76),1243px 640px rgba(236,226,206,0.71),1259px 38px rgba(236,226,206,0.82),647px 622px rgba(236,226,206,0.54),947px 436px rgba(236,226,206,0.84),244px 702px rgba(236,226,206,0.6)}
+  .s3{width:2px; height:2px; animation:tw3 4.6s ease-in-out -1.3s infinite;
+    box-shadow:847px 399px 1px rgba(244,236,220,0.8),386px 245px 1px rgba(244,236,220,0.81),1576px 98px 1px rgba(244,236,220,0.81),804px 553px 1px rgba(244,236,220,0.92),1123px 101px 1px rgba(244,236,220,0.98),1022px 214px 1px rgba(244,236,220,0.86),1275px 612px 1px rgba(244,236,220,0.8),1634px 392px 1px rgba(244,236,220,0.96),1417px 227px 1px rgba(244,236,220,0.79),1372px 193px 1px rgba(244,236,220,0.96),713px 94px 1px rgba(244,236,220,0.99),1102px 99px 1px rgba(244,236,220,0.87),844px 53px 1px rgba(244,236,220,0.82),35px 445px 1px rgba(244,236,220,0.8),320px 178px 1px #ff5fa2b8,1212px 332px 1px #7de0d6b0,762px 252px 1px #ffb84db8,1502px 458px 1px #9f7dff99}
+  @keyframes tw{0%,100%{opacity:1}50%{opacity:.55}}
+  @keyframes tw3{0%,100%{opacity:1}40%{opacity:.35}70%{opacity:.8}}
+
+  .horizon{position:absolute; left:-10%; right:-10%; bottom:6vh; height:34vh; background:var(--horizon-bg)}
+  .manglow{position:absolute; left:36%; bottom:13vh; width:24vw; height:11vh; display:var(--night-d);
+    background:radial-gradient(closest-side, #ffb84d30, transparent 70%)}
+
+  /* the Man's beams */
+  .beam{position:absolute; bottom:12vh; left:43%; width:2px; height:38vh;
+    transform-origin:bottom center; display:var(--night-d)}
+  .b1{background:linear-gradient(to top,#ff5fa236,transparent);
+    transform:rotate(-16deg); animation:sw1 17s ease-in-out infinite alternate}
+  .b2{background:linear-gradient(to top,#4fd8e832,transparent);
+    transform:rotate(3deg); animation:sw2 23s ease-in-out infinite alternate}
+  .b3{background:linear-gradient(to top,#ffb84d2e,transparent);
+    transform:rotate(21deg); animation:sw3 19s ease-in-out infinite alternate}
+  @keyframes sw1{from{transform:rotate(-16deg)}to{transform:rotate(-9deg)}}
+  @keyframes sw2{from{transform:rotate(3deg)}to{transform:rotate(-4deg)}}
+  @keyframes sw3{from{transform:rotate(21deg)}to{transform:rotate(13deg)}}
+
+  .dune{position:absolute; left:0; right:0; bottom:0}
+  .d-far{height:24vh; background:var(--dune1-bg);
+    clip-path:polygon(0 68%,6% 55%,11% 62%,17% 48%,24% 60%,31% 44%,38% 58%,45% 50%,52% 63%,60% 42%,66% 56%,73% 47%,80% 60%,87% 50%,93% 58%,100% 46%,100% 100%,0 100%)}
+  .d-mid{height:15vh; background:var(--dune2-bg);
+    clip-path:polygon(0 55%,8% 68%,15% 52%,23% 66%,30% 58%,39% 70%,47% 54%,56% 68%,64% 58%,72% 70%,79% 60%,87% 72%,94% 62%,100% 70%,100% 100%,0 100%)}
+  .d-near{height:9vh; background:var(--dune3-bg);
+    clip-path:polygon(0 60%,10% 72%,22% 58%,35% 74%,48% 62%,62% 76%,75% 64%,88% 76%,100% 66%,100% 100%,0 100%)}
+
+  /* the rainbow city, strung along the far basin */
+  .citylights{position:absolute; bottom:12.6vh; left:0; width:2px; height:2px; border-radius:50%;
+    display:var(--night-d); animation:tw 7s ease-in-out -3s infinite;
+    box-shadow:1636px 2px 1px #4fc3f7,492px 1px 1px #ffb84dcc,975px 4px 1px #9f7dff,1138px 5px 1px #ff5fa2cc,58px 3px 1px #7de0d6,1038px 3px 1px #7de0d6cc,658px 0px 1px #ffb84dcc,1093px 3px 1px #9f7dff,392px 0px 1px #ffb84d,1427px 4px 1px #ffe066,204px 5px 1px #9f7dffcc,179px 0px 1px #ffe066,1600px 4px 1px #ffb84dcc,910px 5px 1px #ffb84dcc,1084px 0px 1px #ff7a5c,448px 4px 1px #ffe066aa,1511px 1px 1px #ff7a5c,71px 0px 1px #ffe066,1527px 2px 1px #ff7a5c,524px 4px 1px #ffe066,1332px 3px 1px #ffb84d,610px 4px 1px #ffb84d,994px 2px 1px #ff7a5c,127px 3px 1px #7de0d6,1435px 0px 1px #9f7dff,1365px 3px 1px #ffb84daa,974px 0px 1px #7de0d6,535px 1px 1px #ffb84d,336px 1px 1px #ff5fa2,477px 5px 1px #ff7a5caa,1002px 4px 1px #7ce87c,965px 4px 1px #ff7a5ccc,1107px 2px 1px #7ce87caa,387px 0px 1px #ffe066,73px 0px 1px #7de0d6,184px 5px 1px #ffb84d,1390px 0px 1px #ff7a5c,222px 5px 1px #ff7a5ccc,942px 3px 1px #ff7a5c,1696px 5px 1px #ff7a5ccc,580px 0px 1px #4fc3f7cc,396px 2px 1px #4fc3f7aa,1534px 5px 1px #ff7a5caa,522px 3px 1px #7ce87c,561px 5px 1px #ffb84d,281px 2px 1px #ff5fa2,1688px 4px 1px #ff5fa2,1475px 4px 1px #ffb84d,554px 1px 1px #4fc3f7,1388px 4px 1px #ff7a5c,1438px 2px 1px #ffb84dcc,929px 5px 1px #ff5fa2}
+
+  .artcar{position:absolute; height:14px; width:90px; border-radius:50%; will-change:transform; left:0; display:var(--night-d)}
+  .ac1{bottom:12.5vh; background:radial-gradient(closest-side,#ff5fa2aa,transparent 70%);
+    animation:drift 110s linear infinite, acglow 3.1s ease-in-out infinite alternate}
+  .ac2{bottom:10.5vh; width:64px; background:radial-gradient(closest-side,#7de0d699,transparent 70%);
+    animation:driftback 150s linear -70s infinite, acglow 4.3s ease-in-out -1s infinite alternate}
+  .ac3{bottom:11.6vh; width:76px; background:radial-gradient(closest-side,#9f7dff90,transparent 70%);
+    animation:drift 190s linear -120s infinite, acglow 3.7s ease-in-out -2s infinite alternate}
+  @keyframes drift{from{transform:translateX(-12vw)}to{transform:translateX(112vw)}}
+  @keyframes driftback{from{transform:translateX(112vw)}to{transform:translateX(-12vw)}}
+  @keyframes acglow{from{opacity:.35}to{opacity:.8}}
+
+  /* 2pm: sun + dust haze */
+  .sun{position:absolute; top:7vh; right:14vw; width:110px; height:110px; border-radius:50%; display:var(--day-d);
+    background:radial-gradient(circle,#fffbe8 0%,#ffe89a 40%,#ffd45c00 72%);
+    box-shadow:0 0 90px 40px #ffdf7a55, 0 0 220px 90px #fff3c22e}
+  /* 2pm delight: heat mirage + a wandering dust devil */
+  .mirage{position:absolute; left:0; right:0; bottom:12.4vh; height:1.7vh; display:var(--day-d);
+    background:linear-gradient(to bottom,transparent,#ffffff70,transparent);
+    filter:blur(2px); opacity:.32; animation:mirage 7s ease-in-out infinite}
+  @keyframes mirage{0%,100%{transform:translateY(0) scaleY(1); opacity:.24}
+    35%{transform:translateY(-2px) scaleY(1.35); opacity:.44}
+    65%{transform:translateY(1px) scaleY(.8); opacity:.3}}
+  .devil{position:absolute; left:-30vw; bottom:8.5vh; width:24px; height:15vh; display:var(--day-d);
+    border-radius:48% 52% 40% 40%; filter:blur(3px); opacity:.5; transform-origin:bottom center;
+    background:linear-gradient(to top,#c9bba000 0%,#c9bba0d0 28%,#d6cab473 68%,transparent 100%);
+    animation:devilmove 80s linear -18s infinite}
+  .devil::after{content:""; position:absolute; bottom:-1vh; left:-26px; width:76px; height:3.2vh;
+    border-radius:50%; background:radial-gradient(closest-side,#c9bba09e,transparent 70%); filter:blur(2px)}
+  @keyframes devilmove{0%{transform:translateX(0) skewX(-5deg)}
+    25%{transform:translateX(40vw) skewX(4deg)}
+    50%{transform:translateX(80vw) skewX(-6deg)}
+    75%{transform:translateX(120vw) skewX(3deg)}
+    100%{transform:translateX(160vw) skewX(-5deg)}}
+  .haze{position:absolute; left:0; right:0; bottom:7vh; height:15vh; display:var(--day-d);
+    background:linear-gradient(to top,#efe9dae8 0%,#ece5d466 55%,transparent 100%)}
+
+  .grain{position:absolute; inset:0; opacity:var(--grain-op); mix-blend-mode:var(--grain-blend);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
+
+  /* ============ THEME TOGGLE ============ */
+  .ghbar{position:fixed; top:1.1rem; left:1.1rem; z-index:10; display:flex; align-items:center; gap:.7rem}
+  .ghbar a{color:var(--dust); opacity:.85} .ghbar a:hover{opacity:1}
+  .ghstar{border:0; margin-top:2px}
+  @media(max-width:600px){.ghstar{display:none}}
+  .tbtn{position:fixed; top:1rem; right:1rem; z-index:10; width:2.7rem; height:2.7rem; border-radius:50%;
+    border:1px solid var(--line); background:var(--card); color:var(--dust); font-size:1.1rem;
+    cursor:pointer; line-height:1; transition:border-color .25s, box-shadow .25s}
+  .tbtn:hover{border-color:var(--el); box-shadow:0 0 18px -6px var(--el)}
+  .tbtn .ic-sun{display:var(--ic-sun)}
+  .tbtn .ic-moon{display:var(--ic-moon)}
+  html:not(.js) .tbtn{display:none}
+
+  /* ============ CONTENT ============ */
+  main{position:relative; z-index:1; padding:0 1.25rem 6rem}
+  main>section, main>hr, main>footer{max-width:46rem; margin-left:auto; margin-right:auto}
+  .hero{max-width:46rem; margin:0 auto}
+  @media(min-width:1100px){
+    .hero{max-width:72rem; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0, 30rem);
+      gap:4rem; align-items:center; min-height:88vh}
+    .hero header{padding:3rem 0}
+    .hero .demo{margin-top:0}
+  }
+
+  header{padding:6rem 0 3.2rem}
+  .kicker{margin:0 0 1.1rem; font-size:.72rem; letter-spacing:.34em; text-transform:uppercase;
+    color:var(--dust-dim); font-family:var(--disp)}
+  .kicker b{color:var(--glow); font-weight:600}
+  .k-cyn{color:var(--a-cyn)} .k-grn{color:var(--a-grn)}
+  .mark{font-size:clamp(3.4rem,13vw,6.4rem); font-weight:800; letter-spacing:.015em;
+    line-height:.92; margin:0; text-transform:uppercase; color:var(--dust)}
+  .mark .l1,.mark .l2{display:block}
+  .mark em{font-style:normal; color:var(--el); text-shadow:var(--el-glow)}
+  .mark-wire{height:2px; width:11rem; margin-top:1.2rem; border-radius:2px;
+    background:linear-gradient(90deg,#ff5fa2,#ffb84d 32%,#7de0d6 62%,#9f7dff 88%,transparent);
+    box-shadow:var(--mark-glow); transform-origin:left}
+  .tag{font-size:1.04rem; color:var(--dust-dim); max-width:34rem; margin:1.5rem 0 0}
+  .tag b{color:var(--dust)}
+  .status{display:inline-flex; align-items:center; gap:.55em; margin-top:1.7rem;
+    border:1px solid var(--line); border-radius:999px; padding:.4em 1.1em; font-size:.76rem;
+    letter-spacing:.13em; text-transform:uppercase; color:var(--glow); background:var(--card)}
+  .status::before{content:""; width:.55em; height:.55em; border-radius:50%; background:var(--glow);
+    box-shadow:0 0 10px var(--glow); animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.35}}
+
+  html.js .h-in{opacity:0; transform:translateY(16px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+  html.js .mark .l1{animation-delay:.05s}
+  html.js .mark .l2{animation-delay:.18s}
+  html.js .kicker.h-in{animation-delay:0s}
+  html.js .mark-wire.h-in{transform:scaleX(0); animation:wire .9s .55s cubic-bezier(.2,.7,.2,1) forwards}
+  html.js .tag.h-in{animation-delay:.42s}
+  html.js .status.h-in{animation-delay:.6s}
+  @keyframes rise{to{opacity:1; transform:none}}
+  @keyframes wire{to{opacity:1; transform:scaleX(1)}}
+  html.js .mark em{animation:elflick 1.7s .35s both, elbreathe 5s 2.6s ease-in-out infinite}
+  @keyframes elflick{0%{opacity:0}7%{opacity:.6}9%{opacity:.08}13%{opacity:.75}16%{opacity:.15}
+    23%{opacity:.9}27%{opacity:.3}38%{opacity:1}44%{opacity:.55}52%{opacity:1}61%{opacity:.85}70%,100%{opacity:1}}
+  @keyframes elbreathe{50%{opacity:.9}}
+
+  .rule{border:0; border-top:1px dashed var(--line-dash); margin:3.4rem 0}
+
+  section{--sec:var(--el)}
+  .sec-cyn{--sec:var(--a-cyn)} .sec-grn{--sec:var(--a-grn)}
+  .sec-vio{--sec:var(--a-vio)} .sec-org{--sec:var(--a-org)}
+  h2{display:flex; align-items:baseline; gap:.8em; font-size:.8rem; letter-spacing:.3em;
+    text-transform:uppercase; color:var(--sec); margin:0 0 1.3rem; font-weight:600}
+  h2::before{content:attr(data-n); color:var(--dust-dim); letter-spacing:.1em; font-weight:400}
+  .lead{font-size:1.16rem; line-height:1.72}
+  .lead b{color:var(--ink-hi)}
+  p{margin:.8rem 0}
+  .dim{color:var(--dust-dim)}
+
+  html.js .reveal{opacity:0; transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+  html.js .reveal.in{opacity:1; transform:none}
+  html.js .reveal .stag{transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1);
+    opacity:0; transform:translateY(14px)}
+  html.js .reveal.in .stag{opacity:1; transform:none}
+  html.js .reveal.in .stag:nth-child(2){transition-delay:.12s}
+  html.js .reveal.in .stag:nth-child(3){transition-delay:.24s}
+  html.js .reveal.in aside.stag{transition-delay:.3s}
+
+  /* ============ CHAT VIGNETTE (always night inside the phone) ============ */
+  .demo{margin-top:1.5rem}
+  .phone{--dust:#ece3d1; --dust-dim:#b6aa96; --line:#2d2436; --line-dash:#372c42;
+    --card:#171020; --card-hi:#1d1528; --glow:#ffb84d; --el:#ff5fa2; --ink-hi:#fff;
+    border:1px solid #2d2436; border-radius:18px; background:#120c1b; color:#ece3d1;
+    box-shadow:0 24px 60px -24px #000000cc, 0 0 0 4px #ffffff05, 0 0 44px -18px #ff5fa22e;
+    overflow:hidden; max-width:30rem}
+  .ptop{display:flex; justify-content:space-between; align-items:center; gap:1em;
+    padding:.6rem .95rem; font-size:.68rem; letter-spacing:.08em; color:#b6aa96;
+    border-bottom:1px solid #2d2436; background:#0e0a15}
+  .ptop .mode{color:#ffb84d}
+  .chat{padding:1rem .95rem 1.15rem; display:flex; flex-direction:column; gap:.7rem; min-height:16.5rem}
+  .msg{max-width:88%; padding:.55rem .8rem; border-radius:14px; font-size:.87rem; line-height:1.55}
+  .msg.user{align-self:flex-end; background:#2b2138; color:#ece3d1; border-bottom-right-radius:4px}
+  .msg.pal{align-self:flex-start; background:#1d1528; border:1px solid #2d2436;
+    border-bottom-left-radius:4px; display:flex; gap:.6em; align-items:flex-start}
+  .msg.pal .av{font-size:1.05rem; line-height:1.4; filter:drop-shadow(0 0 6px #ff5fa25c)}
+  .msg.tool{align-self:flex-start; background:none; border:1px dashed #372c42; border-radius:999px;
+    font-size:.72rem; color:#b6aa96; padding:.32rem .85rem; letter-spacing:.04em}
+  .msg.tool .ok{color:#7de0d6}
+  .caret{display:inline-block; width:.55em; margin-left:1px; border-bottom:2px solid #ff5fa2;
+    transform:translateY(-2px); animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .evt{align-self:flex-start; width:88%; border:1px solid #2d2436; border-left:3px solid #ffb84d;
+    border-radius:10px; background:#171020; padding:.7rem .85rem}
+  .evt .etag{font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:#ffb84d; font-family:var(--disp)}
+  .evt .ename{color:#fff; font-size:.92rem; margin:.25rem 0 .15rem; font-family:var(--disp); letter-spacing:.03em}
+  .evt .emeta{font-size:.76rem; color:#b6aa96; margin:0}
+  html.js .chat .step{opacity:0; transform:translateY(10px);
+    transition:opacity .45s ease, transform .45s cubic-bezier(.2,.7,.2,1)}
+  html.js .chat .step.on{opacity:1; transform:none}
+  .dots::after{content:"…"; animation:dots 1.2s steps(4) infinite}
+  @keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"…"}}
+  .demo-cap{font-size:.76rem; color:var(--dust-dim); max-width:30rem; margin:.9rem 0 0; padding-left:.2rem}
+  .demo-cap b{color:var(--dust)}
+
+  /* ============ CARDS ============ */
+  .cards{display:grid; gap:1rem; margin-top:1.4rem}
+  @media(min-width:640px){.cards{grid-template-columns:1fr 1fr 1fr}}
+  .card{--cc:var(--a-mag); background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:1.15rem 1.2rem; position:relative; overflow:hidden;
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), border-color .25s, box-shadow .25s}
+  .card:nth-child(2){--cc:var(--a-cyn)}
+  .card:nth-child(3){--cc:var(--a-org)}
+  .card::after{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--cc);
+    opacity:.7; transition:opacity .25s, box-shadow .25s}
+  .card:hover{transform:translateY(-3px); border-color:var(--cc); box-shadow:var(--lift-shadow)}
+  .card:hover::after{opacity:1; box-shadow:0 0 14px var(--cc)}
+  .card h3{margin:.15rem 0 .5rem; font-size:.96rem; color:var(--ink-hi); letter-spacing:.04em}
+  .card p{font-size:.86rem; color:var(--dust-dim); margin:0}
+  .card .n{font-size:.7rem; color:var(--cc); letter-spacing:.2em}
+
+  .creed{border:1px solid var(--line); border-left:4px solid var(--el); background:var(--el-soft);
+    border-radius:0 12px 12px 0; padding:1.25rem 1.35rem; margin:1.4rem 0}
+  .creed p{margin:.38rem 0; font-size:.98rem}
+  .creed .no{color:var(--el); font-weight:700}
+  .creed p:nth-child(1) .no{color:var(--a-mag)}
+  .creed p:nth-child(2) .no{color:var(--a-cyn)}
+  .creed p:nth-child(3) .no{color:var(--a-grn)}
+  .creed p:nth-child(4) .no{color:var(--a-gld)}
+  .flip{font-size:1rem; margin:1.6rem 0 1.2rem}
+  .flip b{color:var(--ink-hi)}
+
+  /* ============ FAQ (CSS-only collapse) ============ */
+  .faq{--fc:var(--a-mag); border:1px solid var(--line); border-left:3px solid var(--fc);
+    border-radius:12px; background:var(--card); margin:.85rem 0; overflow:hidden;
+    transition:border-color .25s, box-shadow .25s}
+  .c-mag{--fc:var(--a-mag)} .c-vio{--fc:var(--a-vio)} .c-grn{--fc:var(--a-grn)}
+  .c-cyn{--fc:var(--a-cyn)} .c-gld{--fc:var(--a-gld)} .c-org{--fc:var(--a-org)}
+  .faq > summary{cursor:pointer; list-style:none; display:flex; gap:.7em; align-items:baseline;
+    padding:.95rem 1.15rem; font-size:.93rem; color:var(--fc); font-weight:600; line-height:1.5}
+  .faq > summary::-webkit-details-marker{display:none}
+  .faq > summary::before{content:"?"; font-family:var(--disp); font-weight:700; opacity:.85}
+  .faq .chev{margin-left:auto; color:var(--fc); transition:transform .3s; flex-shrink:0}
+  .faq[open] .chev{transform:rotate(180deg)}
+  .faq[open]{box-shadow:0 0 30px -14px var(--fc)}
+  .faq > summary:hover{filter:brightness(1.12)}
+  .faq .fa{padding:.1rem 1.15rem 1.05rem; font-size:.89rem; color:var(--dust-dim)}
+  .faq .fa p{margin:.55rem 0}
+  .faq .fa b{color:var(--dust)}
+  .faq .fa .pr{color:var(--fc); font-style:italic}
+  .faq::details-content,.receipts::details-content{block-size:0; overflow:clip;
+    transition:block-size .4s ease, content-visibility .4s allow-discrete}
+  .faq[open]::details-content,.receipts[open]::details-content{block-size:auto}
+  .receipts{margin:.7rem 0 .2rem; border-top:1px dashed var(--line-dash); padding-top:.55rem}
+  .receipts summary{cursor:pointer; list-style:none; font-size:.7rem; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--a-grn)}
+  .receipts summary::-webkit-details-marker{display:none}
+  .receipts[open] summary{opacity:.75}
+  .ledger{list-style:none; margin:.55rem 0 0; padding:0; font-size:.79rem}
+  .ledger li{display:flex; justify-content:space-between; gap:1em; padding:.2rem 0;
+    border-bottom:1px dotted var(--line)}
+  .ledger li:last-child{border-bottom:0}
+  .ledger span{color:var(--dust-dim)}
+  .ledger b{color:var(--dust); text-align:right; font-weight:600}
+
+  .pals{display:grid; gap:.9rem; margin-top:1.2rem}
+  .pal{--pc:var(--a-gld); display:grid; grid-template-columns:3.2rem 1fr; gap:1rem; align-items:start;
+    border:1px solid var(--line); border-radius:12px; padding:1.05rem 1.15rem; background:var(--card);
+    transition:transform .25s cubic-bezier(.2,.7,.2,1), border-color .25s}
+  .pal:nth-child(2){--pc:var(--a-vio)}
+  .pal:nth-child(3){--pc:var(--a-grn)}
+  .pal:hover{transform:translateY(-2px); border-color:var(--pc)}
+  .pal .glyph{font-size:1.9rem; line-height:1.15; filter:drop-shadow(0 0 8px var(--pc));
+    transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .pal:hover .glyph{transform:scale(1.12) rotate(-4deg)}
+  .pal h3{margin:0 0 .25rem; font-size:1rem; color:var(--ink-hi)}
+  .pal p{margin:0; font-size:.86rem; color:var(--dust-dim)}
+  .pal .soon{font-size:.68rem; letter-spacing:.18em; color:var(--pc); text-transform:uppercase}
+
+  .origin{margin-top:1.1rem; border:1px dashed var(--line-dash); border-radius:12px;
+    padding:1.05rem 1.2rem; background:var(--card)}
+  .origin .otag{font-size:.62rem; letter-spacing:.26em; text-transform:uppercase; color:var(--a-gld)}
+  .origin p{font-size:.88rem; color:var(--dust-dim); margin:.5rem 0 0}
+  .origin b{color:var(--dust)}
+
+  .qa{margin:1.25rem 0}
+  .qa .q{color:var(--glow); margin:0 0 .25rem; font-size:.95rem}
+  .qa:nth-of-type(5n+1) .q{color:var(--a-org)}
+  .qa:nth-of-type(5n+2) .q{color:var(--a-cyn)}
+  .qa:nth-of-type(5n+3) .q{color:var(--a-grn)}
+  .qa:nth-of-type(5n+4) .q{color:var(--a-vio)}
+  .qa:nth-of-type(5n) .q{color:var(--a-gld)}
+  .qa .a{margin:0; color:var(--dust-dim); font-size:.93rem}
+  .qa .a b{color:var(--dust)}
+
+  footer{margin-top:4.5rem; padding-top:1.8rem; border-top:1px solid var(--line);
+    font-size:.78rem; color:var(--dust-dim)}
+  footer p{margin:.5rem 0}
+  .fine{font-size:.72rem; opacity:.85}
+  .plate{display:block; position:relative; text-decoration:none; margin:0 0 2rem;
+    border:1px solid var(--line); border-radius:6px; padding:1.35rem 1.4rem 1.25rem;
+    background:var(--card); transition:border-color .3s, box-shadow .3s}
+  .plate::before,.plate::after{content:""; position:absolute; width:.85rem; height:.85rem;
+    border:2px solid var(--a-mag); opacity:.85}
+  .plate::before{top:-2px; left:-2px; border-right:0; border-bottom:0; border-radius:6px 0 0 0}
+  .plate::after{bottom:-2px; right:-2px; border-left:0; border-top:0; border-radius:0 0 6px 0;
+    border-color:var(--a-cyn)}
+  .plate:hover{border-color:var(--el); box-shadow:var(--plate-glow)}
+  .plate .plabel{display:block; font-size:.64rem; letter-spacing:.34em; text-transform:uppercase;
+    color:var(--dust-dim); font-family:var(--disp); margin-bottom:.45rem}
+  .plate .purl{display:block; font-size:clamp(1.25rem,5.4vw,1.85rem); letter-spacing:.02em;
+    color:var(--ink-hi); word-break:break-all}
+  .plate .purl b{color:var(--el); font-weight:400; text-shadow:var(--mark-glow)}
+
+  @media(max-width:600px){
+    header{padding:4.6rem 0 2.6rem}
+    main{padding:0 1.1rem 4.5rem}
+    .rule{margin:2.6rem 0}
+    .lead{font-size:1.08rem}
+    .pal{grid-template-columns:2.6rem 1fr; gap:.8rem}
+    .chat{min-height:15rem}
+    .tbtn{top:.75rem; right:.75rem}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none !important; transition:none !important}
+    html.js .reveal,html.js .reveal .stag,html.js .h-in{opacity:1; transform:none}
+    html.js .mark-wire.h-in{transform:none}
+    html.js .chat .step{opacity:1; transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="ghbar">
+  <a href="https://github.com/simbi-community-dev/playapal" aria-label="Playa Pal on GitHub" title="Source on GitHub">
+    <svg viewBox="0 0 16 16" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+  </a>
+  <iframe class="ghstar" src="https://ghbtns.com/github-btn.html?user=simbi-community-dev&repo=playapal&type=star&count=true&size=large" frameborder="0" scrolling="0" width="140" height="30" title="Star Playa Pal on GitHub" loading="lazy"></iframe>
+</div>
+<div class="scene" aria-hidden="true">
+  <div class="stars s1"></div><div class="stars s2"></div><div class="stars s3"></div>
+  <div class="horizon"></div><div class="manglow"></div>
+  <div class="beam b1"></div><div class="beam b2"></div><div class="beam b3"></div>
+  <div class="dune d-far"></div>
+  <div class="citylights"></div>
+  <div class="artcar ac1"></div><div class="artcar ac2"></div><div class="artcar ac3"></div>
+  <div class="dune d-mid"></div><div class="dune d-near"></div>
+  <div class="sun"></div><div class="mirage"></div><div class="haze"></div><div class="devil"></div>
+  <div class="grain"></div>
+</div>
+<button id="tbtn" class="tbtn" aria-label="Toggle day / night theme" title="Day / night">
+  <span class="ic-sun">☀️</span><span class="ic-moon">🌙</span>
+</button>
+<main>
+  <div class="hero">
+  <header>
+    <p class="kicker h-in"><span class="k-cyn">Offline</span> · <span class="k-grn">on-device</span> · <b>open source</b></p>
+    <h1 class="mark disp"><span class="l1 h-in">Playa</span><span class="l2 h-in"><em>Pal</em></span></h1>
+    <div class="mark-wire h-in" aria-hidden="true"></div>
+    <p class="tag h-in"><b>An AI companion that works where nothing else does.</b><br>
+    On your phone. In airplane mode. In a whiteout at 3am on the open playa.
+    No cloud, no account, no signal — none needed, ever.</p>
+    <span class="status disp h-in">In development · riding to the playa · Burning&nbsp;Man 2026</span>
+  </header>
+
+  <section class="demo reveal" id="demo">
+    <div class="phone">
+      <div class="ptop disp"><span>3:12 AM</span><span class="mode">✈ airplane mode</span><span>▮▮▮▯</span></div>
+      <div class="chat" id="chat" aria-label="Example conversation with Playa Pal">
+        <div class="msg user step" id="m-user">any pancake breakfasts tomorrow?</div>
+        <div class="msg tool step" id="m-tool"><span id="tool-t"><span class="ok">✓</span> searched the event guide · on-device · 1 match</span></div>
+        <div class="evt step" id="m-evt">
+          <span class="etag">event · from the guide (sample)</span>
+          <div class="ename">Pancake Sunrise Sessions</div>
+          <p class="emeta">Thu · 7:30–10:00 AM · Camp Grid &amp; Griddle · 7:15 &amp; E</p>
+        </div>
+        <div class="msg pal step" id="m-pal"><span class="av" aria-hidden="true">🦛</span><span id="pal-t">Yes — Pancake Sunrise Sessions, 7:30am at 7:15 &amp; E. Bring your own mug and your best syrup face. 🥞</span></div>
+      </div>
+    </div>
+    <p class="demo-cap">Staged right here on this page — no backend, no signal, sample event.
+    Which is the point: <b>this is the exact shape of the real thing.</b> It searches the guide
+    stored on your phone, then answers like a friend.</p>
+  </section>
+  </div><!-- /hero -->
+
+  <hr class="rule">
+
+  <section class="reveal sec-cyn">
+    <h2 class="disp" data-n="01">What it is</h2>
+    <p class="lead">A small, fully open AI model that lives <b>entirely on your phone</b>, tuned
+    to be a warm, funny, genuinely useful guide to Black Rock City — and wired to <b>read real
+    data locally</b>: the event guide, survival essentials, city geography. Ask it anything a
+    dusty friend would know.</p>
+    <div class="cards">
+      <div class="card stag"><span class="n disp">01</span><h3>Tiny model, real brain</h3>
+        <p>A 2.6-billion-parameter open-weights model, fine-tuned for playa life and quantized to run fast on ordinary phones.</p></div>
+      <div class="card stag"><span class="n disp">02</span><h3>Looks things up</h3>
+        <p>It doesn't guess your sunrise yoga — it searches the actual event guide and survival manual stored on your phone, then answers like a person.</p></div>
+      <div class="card stag"><span class="n disp">03</span><h3>Data packs</h3>
+        <p>Drop in your own camp's docs and it becomes <i>your</i> camp's guide. No training, no uploads — just files, with a published authoring spec and a validator so any camp can build one.</p></div>
+      <div class="card stag"><span class="n disp">04</span><h3>Whiteout compass</h3>
+        <p>Every located event links to one giant arrow — distance and clock-address directions from wherever you stand. Drop a pin at camp and <b>Take me home</b> works at 3am, in a whiteout, in airplane mode.</p></div>
+      <div class="card stag"><span class="n disp">05</span><h3>The camp board</h3>
+        <p>Gifts and needs, shared phone-to-phone with <b>no signal</b> — beam the whole board over AirDrop or Quick Share; a camp passphrase seals it against tampering in transit.</p></div>
+      <div class="card stag"><span class="n disp">06</span><h3>Speaks out loud</h3>
+        <p>Answers read aloud through your phone's own <b>offline</b> voice — eyes on the dust and the art, not the screen.</p></div>
+      <div class="card stag"><span class="n disp">07</span><h3>Find your friends</h3>
+        <p>Share a <b>friend card</b> as a QR any camera scans — where you camp, how to find you. It travels inside the code itself: <b>no server, no address book, no account</b>. Friends' camps get a compass arrow, a walk time, and a spot on the map.</p></div>
+      <div class="card stag"><span class="n disp">08</span><h3>The whole city, offline</h3>
+        <p>A map of Black Rock City drawn from measured geometry — streets, plazas, toilets, your pins, your people, your blue dot. No tiles, no downloads, a few kilobytes of math.</p></div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="reveal sec-grn">
+    <h2 class="disp" data-n="02">For the AI-skeptical burner</h2>
+    <p class="lead">Honestly? This gift is partly for you.</p>
+    <div class="creed">
+      <p><span class="no">No</span> cloud. Every word is generated on your phone.</p>
+      <p><span class="no">No</span> account, no login, no email, no tracking, no analytics.</p>
+      <p><span class="no">No</span> corporation between you and your questions.</p>
+      <p><span class="no">No</span> cost. Free and open source, forever.</p>
+    </div>
+    <p class="flip">The serious arguments against AI deserve serious answers, so here they are —
+    because building it small, local, and open <b>flips every honest argument on its head</b>:
+    you get the benefits while falling to none of them.</p>
+
+    <details class="faq c-mag">
+      <summary>Isn't AI flooding the burn with low-effort slop?<span class="chev">▾</span></summary>
+      <div class="fa">
+        <p>A lot of it is, and the artists are right to be angry. So here's what this is
+        <b>not</b>: it generates no art, no logos, no camp songs — nothing anyone passes off as
+        their own creativity. It's a guidebook that answers questions, and its favorite move is
+        pointing you at things <b>humans</b> made: real events, real camps, real art out on the
+        open playa. A compass toward the human-made stuff, not a replacement for it.</p>
+      </div>
+    </details>
+
+    <details class="faq c-vio">
+      <summary>Big tech already colonized the playa. Why bring AI too?<span class="chev">▾</span></summary>
+      <div class="fa">
+        <p>This isn't big tech. No corporation, no venture capital, no pitch deck, no plan to
+        disrupt anything. One burner, a garage, one second-hand GPU, and a pocket guidebook that
+        admits what it doesn't know. It doesn't want your attention, your data, or your future —
+        it wants you to find the pancakes.</p>
+        <p>Techno-utopianism sells AI as civilization's answer. This is the counter-argument you
+        can hold in your hand: small, local, humble, and yours.</p>
+      </div>
+    </details>
+
+    <details class="faq c-grn">
+      <summary>AI datacenters drink rivers. How is this okay?<span class="chev">▾</span></summary>
+      <div class="fa">
+        <p>That critique is real — and it's exactly why this project is built the way it is.
+        <b>All the training we did ran on two second-hand Intel GPUs in a home closet</b>: about
+        a kilowatt-hour per training run, measured live at 252 watts per card — roughly one old
+        incandescent bulb each. The entire program — dozens of experimental runs over a month —
+        cost <b>a few dollars of electricity, total</b>.</p>
+        <p>Answering a question on your phone draws about what the flashlight does. No
+        datacenter, no evaporative cooling, no water. The base model is open weights that already
+        exist for everyone; our published recipe adds the playa smarts for less electricity than one
+        American household uses in a day. <span class="pr">Leave No Trace, applied to
+        compute.</span></p>
+        <details class="receipts">
+          <summary>+ the receipts</summary>
+          <ul class="ledger">
+            <li><span>hardware</span><b>2× second-hand Intel Arc B70</b></li>
+            <li><span>draw under load</span><b>252 W per card, measured at the wall</b></li>
+            <li><span>per training run</span><b>≈ 1 kWh</b></li>
+            <li><span>whole program</span><b>dozens of runs · ~100 GPU-hours</b></li>
+            <li><span>electricity, total</span><b>a few dollars</b></li>
+            <li><span>weights + recipe</span><b><a href="https://huggingface.co/davidryalpug/playa-angel" style="color:var(--gld)">huggingface.co/davidryalpug/playa-angel</a></b></li>
+          </ul>
+        </details>
+      </div>
+    </details>
+
+    <details class="faq c-cyn">
+      <summary>Every AI product is a data-mining operation.<span class="chev">▾</span></summary>
+      <div class="fa">
+        <p>Nothing to mine, nowhere to send it. It runs in airplane mode — there is no server, no
+        account, no analytics, not even crash reporting. Your 3am questions stay between you and
+        your phone, all week. <span class="pr">Leave No Trace, applied to data: the week leaves
+        no exhaust.</span></p>
+      </div>
+    </details>
+
+    <details class="faq c-gld">
+      <summary>Won't this glue people to their phones — one more crutch?<span class="chev">▾</span></summary>
+      <div class="fa">
+        <p>It's the anti-feed. No notifications, no scroll, no engagement loop, no streak begging
+        you back. You ask, it answers, you put the phone away — a 30-second lookup instead of a
+        30-minute doomscroll. And because it needs zero infrastructure, it makes the gear you
+        already carry more capable when everything else is dark.
+        <span class="pr">Radical Self-Reliance shouldn't stop at your water supply.</span></p>
+      </div>
+    </details>
+
+    <details class="faq c-org">
+      <summary>Okay. So what's the catch — who's monetizing this?<span class="chev">▾</span></summary>
+      <div class="fa">
+        <p>Nobody. Free, no ads, no upsell, no premium tier, no email capture — there's no
+        account to capture. It's a gift in the plain burner sense: made for the city, given to
+        the city. Code, weights, and the training recipe publish openly at release, so the gift
+        includes the means of making more gifts.
+        <span class="pr">Decommodification isn't a vibe here; it's the architecture.</span></p>
+      </div>
+    </details>
+
+    <p class="dim">It was built in a garage, trained on a couple of consumer GPUs, and it will be
+    published openly — weights, code, and the recipe. Local-first AI is possible, prosocial, and
+    kind of magical. This is the proof you can hold.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section class="reveal sec-vio">
+    <h2 class="disp" data-n="03">Who you'll meet</h2>
+    <div class="pals">
+      <div class="pal stag"><span class="glyph">😇</span><div>
+        <h3 class="disp">The Playa Angel</h3>
+        <p>Your guide. Where's breakfast on burn day, how much water per person, what's a Dusty
+        Mary (it will tell you, honestly, that it doesn't know). Short answers, warm voice,
+        admits its limits.</p></div></div>
+      <div class="pal stag"><span class="glyph">📜</span><div>
+        <h3 class="disp">The Historian <span class="soon">soon</span></h3>
+        <p>A campfire elder for stories and lore — yours to feed with your own camp's history via
+        data packs.</p></div></div>
+      <div class="pal stag"><span class="glyph">🏦</span><div>
+        <h3 class="disp">The Teller <span class="soon">soon</span></h3>
+        <p>Keeper of a different kind of bank — one that only accepts deposits of memories and
+        pays interest in gratitude.</p></div></div>
+    </div>
+    <aside class="origin stag">
+      <span class="otag disp">Origin story · a gift that grew</span>
+      <p>The Teller began as a real teller's window: at one camp's café, a <b>Memory Bank Credit
+      Union</b> has long taken deposits of memories and intentions instead of money, paying
+      interest in gratitude. Then the idea got bigger — <b>from doing spiritual accounting for
+      our visitors to gifting a spiritual accountant to everyone</b> in this neon jewelbox of a
+      city. Data packs are how any camp opens a branch.</p>
+    </aside>
+  </section>
+
+  <hr class="rule">
+
+  <section class="reveal sec-org">
+    <h2 class="disp" data-n="04">Field notes</h2>
+    <div class="qa"><p class="q">» Does it really work with no internet?</p>
+      <p class="a">That's the whole point. <b>Airplane mode is the intended habitat.</b> Download once at home, use all week in the dust.</p></div>
+    <div class="qa"><p class="q">» What phones?</p>
+      <p class="a">Recent Androids and iPhones with ~6GB+ of memory run the full Angel comfortably. 4&nbsp;GB phones run <b>Angel Light</b> — same guide, smaller brain (tested on an iPhone 13 mini).</p></div>
+    <div class="qa"><p class="q">» Will it hallucinate?</p>
+      <p class="a">Less than you'd think — for facts it <b>reads the actual guide</b> instead of remembering, and it's trained to say "I don't know that one" rather than invent. It's a campfire friend, not a court reporter.</p></div>
+    <div class="qa"><p class="q">» When can I get it?</p>
+      <p class="a">Before the burn — with a final event-data update once the 2026 guide is locked. Check back here, or watch for it in the usual burner places.</p></div>
+    <div class="qa"><p class="q">» Open source?</p>
+      <p class="a">Yes — app code and model weights, published at release. Bring-your-own-model and bring-your-own-data are first-class.</p></div>
+  </section>
+
+  <footer class="reveal">
+    <a class="plate" href="https://playapal.lol">
+      <span class="plabel">Pass it on</span>
+      <span class="purl">playapal<b>.lol</b></span>
+    </a>
+    <p class="disp" style="letter-spacing:.2em; text-transform:uppercase; color:var(--dust)">Playa Pal 🦛</p>
+    <p><a href="/changelog" style="color:var(--gld)">Changelog — the road to the playa</a> ·
+    <a href="https://github.com/simbi-community-dev/playapal" style="color:var(--gld)">GitHub</a> ·
+    <a href="https://huggingface.co/davidryalpug/playa-angel" style="color:var(--gld)">Model weights</a></p>
+    <p>Free · non-commercial · community-made. Event data is used per the Burning Man Project's
+    API terms; art locations honor the pre-gate embargo.</p>
+    <p class="fine">This project is not affiliated with, endorsed by, or verified by Burning Man
+    Project. Radical self-reliance applies: pack your water either way.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  root.classList.add('js');
+  var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* theme */
+  var KEY='pp-theme';
+  try{ var saved=localStorage.getItem(KEY);
+    if(saved==='day'||saved==='night') root.setAttribute('data-theme',saved); }catch(e){}
+  d.getElementById('tbtn').addEventListener('click',function(){
+    var mode=getComputedStyle(root).getPropertyValue('--mode').trim();
+    var next=(mode==='day')?'night':'day';
+    root.setAttribute('data-theme',next);
+    try{ localStorage.setItem(KEY,next); }catch(e){}
+  });
+
+  /* section reveals */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  d.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* chat vignette */
+  var chat=d.getElementById('chat');
+  var steps=['m-user','m-tool','m-evt','m-pal'].map(function(id){return d.getElementById(id);});
+  var toolT=d.getElementById('tool-t'), palT=d.getElementById('pal-t');
+  var userMsg=steps[0], palFinal=palT.innerHTML, userFinal=userMsg.textContent;
+  var toolDone=toolT.innerHTML;
+  var played=false;
+
+  function sleep(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+  function typeInto(el, txt, cps){
+    return new Promise(function(res){
+      var i=0, caret=d.createElement('span'); caret.className='caret';
+      el.textContent=''; el.appendChild(caret);
+      (function tick(){
+        if(i<txt.length){
+          caret.before(txt.charAt(i++));
+          setTimeout(tick, cps + Math.random()*34);
+        } else { caret.remove(); res(); }
+      })();
+    });
+  }
+  function finish(){
+    played=true;
+    steps.forEach(function(s){ s.classList.add('on'); });
+    userMsg.textContent=userFinal; toolT.innerHTML=toolDone; palT.innerHTML=palFinal;
+  }
+  async function play(){
+    played=true;
+    await sleep(500);
+    userMsg.classList.add('on');
+    await typeInto(userMsg, userFinal, 38);
+    await sleep(450);
+    toolT.innerHTML='searching the event guide<span class="dots"></span>';
+    steps[1].classList.add('on');
+    await sleep(1450);
+    toolT.innerHTML=toolDone;
+    await sleep(420);
+    steps[2].classList.add('on');
+    await sleep(750);
+    steps[3].classList.add('on');
+    palT.textContent='';
+    var tmp=d.createElement('span'); tmp.innerHTML=palFinal;
+    await typeInto(palT, tmp.textContent, 16);
+    palT.innerHTML=palFinal;
+  }
+  var co=new IntersectionObserver(function(es){
+    if(es[0].isIntersecting && !played){
+      co.disconnect();
+      if(rm){ finish(); } else { play(); }
+    }
+  },{threshold:.4});
+  co.observe(chat);
+})();
+</script>
+</body>
+</html>
