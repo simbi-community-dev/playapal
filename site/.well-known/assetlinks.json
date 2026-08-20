@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.playapal",
+      "sha256_cert_fingerprints": [
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "5C:95:E2:C4:F6:1B:BE:CC:F3:F7:58:9D:03:F5:35:68:4B:7D:46:3F:F5:17:72:10:A4:0C:45:33:F6:A7:8A:D2"
+      ]
+    }
+  }
+]

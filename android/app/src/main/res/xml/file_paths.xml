@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- The beam file the app writes for sharing lives in the external
+         files dir; nothing broader is ever exposed. -->
+    <external-files-path name="beams" path="." />
+    <files-path name="internal" path="." />
+</paths>

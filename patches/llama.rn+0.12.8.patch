@@ -1,0 +1,99 @@
+diff --git a/node_modules/llama.rn/ios/RNLlama.mm b/node_modules/llama.rn/ios/RNLlama.mm
+index 6039042..a7292ee 100644
+--- a/node_modules/llama.rn/ios/RNLlama.mm
++++ b/node_modules/llama.rn/ios/RNLlama.mm
+@@ -10,6 +10,15 @@
+ #endif
+ 
+ #import "../cpp/jsi/RNLlamaJSI.h"
++#import <React/RCTBridge+Private.h>
++#import <ReactCommon/RCTTurboModuleWithJSIBindings.h>
++
++// Bridgeless runtime access: RCTBridgeProxy implements -(void*)runtime
++// directly but false-negatives respondsToSelector: (NSProxy forwarding),
++// so duck-type + @try (pattern proven by op-sqlite 18.1.1 on RN 0.87).
++@protocol RNLlamaRuntimeProvider <NSObject>
++- (void *)runtime;
++@end
+ #import <Foundation/Foundation.h>
+ #import <Metal/Metal.h>
+ #import <TargetConditionals.h>
+@@ -73,6 +82,11 @@ MetalAvailability getMetalAvailability(bool skipGpuDevices) {
+ }
+ } // namespace rnllama_jsi
+ 
++@interface RNLlama () <RCTTurboModuleWithJSIBindings> {
++  BOOL _jsiInstalled;
++}
++@end
++
+ @implementation RNLlama {
+     __unsafe_unretained RCTBridge *_bridge;
+ }
+@@ -87,36 +101,50 @@ RCT_EXPORT_MODULE()
+     _bridge = bridge;
+ }
+ 
++- (void)installJSIBindingsWithRuntime:(facebook::jsi::Runtime &)runtime
++                          callInvoker:(const std::shared_ptr<facebook::react::CallInvoker> &)callInvoker
++{
++    // RN 0.87 removed the RCTCxxBridge class (bridgeless-only). The
++    // TurboModule layer hands us the runtime + CallInvoker directly, on the
++    // JS thread, when this module is created.
++    rnllama_jsi::installJSIBindings(runtime, callInvoker);
++    _jsiInstalled = YES;
++}
++
+ RCT_EXPORT_METHOD(install:(RCTPromiseResolveBlock)resolve
+                  withRejecter:(RCTPromiseRejectBlock)reject)
+ {
++    if (_jsiInstalled) {
++        resolve(@true);
++        return;
++    }
++    // Hook didn't fire (legacy-interop path): reach the runtime through the
++    // bridge proxy and install on the JS thread via the CallInvoker, exactly
++    // as the pre-0.87 code did.
+     RCTBridge *bridge = self.bridge ?: [RCTBridge currentBridge];
+     if (!bridge) {
+         resolve(@false);
+         return;
+     }
+-
+-    RCTCxxBridge *cxxBridge = (RCTCxxBridge *)bridge.batchedBridge;
+-    if (!cxxBridge) {
+-        cxxBridge = (RCTCxxBridge *)bridge;
+-    }
+-    auto callInvoker = cxxBridge.jsCallInvoker ?: bridge.jsCallInvoker;
+-    if (!cxxBridge.runtime) {
++    facebook::jsi::Runtime *runtime = nullptr;
++    @try {
++        id<RNLlamaRuntimeProvider> provider = (id<RNLlamaRuntimeProvider>)bridge;
++        runtime = (facebook::jsi::Runtime *)[provider runtime];
++    } @catch (NSException *exception) {
+         resolve(@false);
+         return;
+     }
+-
+-    facebook::jsi::Runtime *runtime = static_cast<facebook::jsi::Runtime *>(cxxBridge.runtime);
+-
+-    if (callInvoker) {
+-        callInvoker->invokeAsync([runtime, callInvoker]() {
+-            rnllama_jsi::installJSIBindings(*runtime, callInvoker);
+-        });
+-    } else {
++    auto callInvoker = bridge.jsCallInvoker;
++    if (!runtime || !callInvoker) {
+         resolve(@false);
+         return;
+     }
+-
++    // MRC file (no __weak): capture only the runtime pointer and the
++    // CallInvoker shared_ptr, exactly like the pre-0.87 code did.
++    callInvoker->invokeAsync([runtime, callInvoker]() {
++        rnllama_jsi::installJSIBindings(*runtime, callInvoker);
++    });
++    _jsiInstalled = YES;
+     resolve(@true);
+ }
+ 
