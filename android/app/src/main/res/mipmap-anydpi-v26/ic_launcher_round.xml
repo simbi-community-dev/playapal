@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The round variant resolves to the SAME adaptive icon: an adaptive icon is
+  already mask-agnostic, so the launcher's circular mask is applied to these
+  layers directly. Shipping a separately drawn round icon here would just be a
+  second thing to keep in sync.
+-->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@mipmap/ic_launcher_foreground" />
+</adaptive-icon>

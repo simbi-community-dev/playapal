@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%A6%9B%3C/text%3E%3C/svg%3E">
+<title>Playa Pal changelog</title>
+<meta name="description" content="Playa Pal's road to the playa, one tenth at a time. Each version is an era of the seven-day build.">
+<style>
+  :root{--bg:#0c0912;--dust:#ece3d1;--dust-dim:#b6aa96;--card:#171020;--line:#2d2436;--el:#ff5fa2;--gld:#ffb84d;--grn:#7ce87c;--cyn:#7de0d6;--vio:#a98cff}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--dust);font:17px/1.65 ui-rounded,system-ui,sans-serif;padding:48px 20px 80px;display:flex;flex-direction:column;align-items:center}
+  main{max-width:640px;width:100%}
+  h1{font-size:1.7rem;margin:8px 0 4px}
+  .lede{color:var(--dust-dim);margin-bottom:36px}
+  .rel{border-left:3px solid var(--line);padding:4px 0 4px 22px;margin:0 0 34px;position:relative}
+  .rel::before{content:'';position:absolute;left:-8px;top:14px;width:13px;height:13px;border-radius:50%;background:var(--line)}
+  .rel.now{border-color:var(--el)} .rel.now::before{background:var(--el);box-shadow:0 0 12px #ff5fa27a}
+  .v{font-size:1.25rem;font-weight:800}
+  .v .num{color:var(--el)} .rel:nth-of-type(3) .num{color:var(--gld)} .rel:nth-of-type(4) .num{color:var(--grn)} .rel:nth-of-type(5) .num{color:var(--cyn)} .rel:nth-of-type(6) .num{color:var(--vio)}
+  .when{color:var(--dust-dim);font-size:.9rem;margin-bottom:10px}
+  ul{padding-left:20px;margin:8px 0} li{margin:6px 0}
+  b{color:#fff}
+  a{color:var(--gld)}
+  .ghbtn{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 16px;text-decoration:none;font-size:.9rem;margin-top:10px}
+  .foot{color:var(--dust-dim);font-size:.9rem;margin-top:24px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+<p style="font-size:2rem" aria-hidden="true">🦛</p>
+<h1>The road to the playa</h1>
+<p class="lede">Playa Pal was built in one seven-day sprint before Burning Man
+2026. Each tenth of a version is an era: a thing the app couldn't do the day
+before. <b>1.0 is earned when Black Rock City itself has field-tested it.</b></p>
+
+<div class="rel now">
+  <p class="v"><span class="num">0.6.0</span> · Camp knowledge</p>
+  <p class="when">Aug 20 · "can info be uploaded to it?" — yes, by anyone with the camp passphrase</p>
+  <ul>
+    <li><b>Add to camp knowledge</b>: a memory, an event the guide missed,
+      a fix to a wrong fact, or a camp resource — typed in the app, no
+      files. Your own notes can be edited and removed.</li>
+    <li><b>Notes travel with the camp beam</b>, integrity-checked with the
+      shared camp passphrase (not encrypted; the author name is a label,
+      not a verified identity) and carried verbatim across hops. The beam
+      is a real shareable file now, and a copy stays on the phone for
+      re-sending.</li>
+    <li><b>Notes are first-class knowledge</b>: search, a live "Camp
+      notes" reader document, and the Now tab. Search and reader passages
+      are labeled "recorded by X; camp-passphrase verified, not
+      authenticated"; event cards name who added them. Citing a fix
+      beside the exact fact it corrects is wired underneath and gets its
+      fact-picker UI in a coming release.</li>
+    <li>The whole loop was driven end-to-end on two devices before
+      release, and everything the testing stumbled on was fixed: loud
+      profile saves with a camp-change warning, honest import counts, back
+      navigation in the reader, first-tap saves with the keyboard open.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.6.0">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.5.2</span> · Listening to the first users</p>
+  <p class="when">Aug 19 · the evening the app met its audience</p>
+  <ul>
+    <li><b>Typing to the Angel works like a messenger</b>: the input and
+      Send stay visible above the keyboard.</li>
+    <li><b>Downloads show themselves</b>: a model pull reads its live
+      progress right on the model list.</li>
+    <li>The Boards heading tells the truth, and the site and README now say
+      plainly that <b>every tool works with no AI installed</b> and the
+      Angel is the optional layer. The copy was trimmed after real-user
+      feedback.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.5.2">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.5.1</span> · Consent, the reader, and the Max Angel</p>
+  <p class="when">Aug 19 · same-day follow-through on the public release</p>
+  <ul>
+    <li><b>Consent on friend cards</b>: sharing asks "just for them" or
+      "pass it on" at the moment of sharing; only pass-it-on cards ride
+      "Beam friends", and direct cards say so on their row. This is honored
+      by the app rather than enforced by cryptography, and the app tells
+      you that itself.</li>
+    <li><b>The pack reader</b>: read the saved source materials straight
+      through, credited and fully offline, with no question needed
+      first.</li>
+    <li><b>Playa Angel Max</b>: the first zero-contradiction Angel on our
+      31-question battery (a Gemma 4 E4B fine-tune) joins as a top tier for
+      high-memory phones, with an honest measured-RAM recommendation.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.5.1">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.5.0</span> · The social city</p>
+  <p class="when">Aug 19 · the first public release, the candidate that rides to the burn</p>
+  <ul>
+    <li><b>Friends on playa</b>: share a friend card as a QR any normal camera
+      scans; the card travels inside the link itself, with no server, address
+      book, or account behind it. "Beam friends" gossips a whole crew's map;
+      a printable paper list honors the BurnerMap tradition.</li>
+    <li><b>The offline city map</b>: Black Rock City drawn from measured
+      geometry, with streets, plazas, toilet banks, your pins, your people,
+      and your blue dot. It needs no tiles and no network.</li>
+    <li>One coherent app: three tabs, the Angel as a full-screen conversation,
+      the real 2026 city geometry live, daily-event honesty, curation with
+      restore, and the disclosure that the whole app is AI-written under
+      human direction.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.5.0">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.4.0</span> · The trained Angel and the field kit</p>
+  <p class="when">Aug 17–18</p>
+  <ul>
+    <li>The <b>whiteout compass</b>: offline GPS to a city address, one giant
+      arrow with clock-phrase directions, dropped pins, "Take me home",
+      nearest toilets, walk times on every event card.</li>
+    <li>An open model catalog with a device-aware chooser; retrieval ranking
+      and disciplined thinking budgets; an eval instrument carrying its
+      owner's scoring bar. iOS cracked: it runs on a 4&nbsp;GB iPhone mini.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.3.0</span> · Facts over vibes</p>
+  <p class="when">Aug 15–16</p>
+  <ul>
+    <li>A <b>fact graph</b> under the packs: provenance-carrying edges, a
+      query engine, and the roots of the lineage view.</li>
+    <li>Engine hardening, and the training program stood up: three audits
+      over every fact before any fine-tune touched the model.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.2.0</span> · Camp life, on day two</p>
+  <p class="when">Aug 14</p>
+  <ul>
+    <li>The <b>camp board</b>: gifts and needs shared phone-to-phone as sealed
+      beams, designed, built, and device-verified in a day.</li>
+    <li>The survival guide grew its credited layers; pack import landed.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.1.0</span> · An Angel in your pocket</p>
+  <p class="when">Aug 13 · day one</p>
+  <ul>
+    <li>A fully local LLM on a phone: model downloads, SQLite full-text
+      search, data packs, the conversation loop with local tools, and
+      spoken replies, because hands are for bikes.</li>
+  </ul>
+</div>
+
+<p class="foot">Detail lives in the repo's
+<a href="https://github.com/simbi-community-dev/playapal/blob/main/CHANGELOG.md">CHANGELOG.md</a>
+· <a href="https://playapal.lol">playapal.lol</a></p>
+</main>
+</body>
+</html>
