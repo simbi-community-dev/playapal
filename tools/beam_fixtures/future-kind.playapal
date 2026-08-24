@@ -1,0 +1,48 @@
+{
+ "kind": "playapal-camp-board",
+ "format": 2,
+ "camp_id": "0b7868f0",
+ "envelopes": [
+  {
+   "format": 2,
+   "camp_id": "0b7868f0",
+   "writer_id": "ffffaaaa",
+   "author_name": "Future",
+   "key_id": "85a39429",
+   "seq": 1,
+   "payload_hash": "9ad1d189e26230a4ed344ea4bd1a138f0494010d5d12f1ca9e027f634b216a7a",
+   "posts": [
+    {
+     "id": "p-mt2jsdyp-6d09",
+     "ref_id": null,
+     "type": "offer",
+     "text": "a future-built board",
+     "author_name": "Future",
+     "created_at": "2026-08-21T06:07:47.377Z",
+     "done": false
+    }
+   ],
+   "notes": [
+    {
+     "id": "ffffaaaa:n-future-1",
+     "writer_id": "ffffaaaa",
+     "author_name": "Future",
+     "kind": "sculpture",
+     "title": "Art the future knows",
+     "when_date": "",
+     "time_start": "",
+     "time_end": "",
+     "where_addr": "",
+     "text": "a note kind this build cannot name",
+     "subject_type": "",
+     "subject_key": "",
+     "year": "",
+     "supersedes": "",
+     "created_at": "2026-08-21T06:07:47.378Z",
+     "revised_at": ""
+    }
+   ],
+   "tag": "bf6b8101119fd77f49949a7cd5a1eccfff5d716d7d846486c3564d0c22c04a88"
+  }
+ ]
+}

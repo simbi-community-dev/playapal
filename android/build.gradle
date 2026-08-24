@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        buildToolsVersion = "37.0.0"
+        minSdkVersion = 24
+        compileSdkVersion = 37
+        targetSdkVersion = 36
+        ndkVersion = "27.1.12297006"
+        kotlinVersion = "2.2.0"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    }
+}
+
+apply plugin: "com.facebook.react.rootproject"
+
+// 16 KB page-size compliance (Android 15+ "app isn't 16KB compatible"):
+// react-native-quick-sqlite builds its .so from source and NDK r27 still
+// links with 4 KB max-page-size by default, so libRNQuickSQLite.so was the
+// one ELF in the APK at align=0x1000 (everything else — RN core, Hermes,
+// llama.rn 0.12.8 prebuilts, our libappmodules — is already 0x4000).
+// ANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON makes the NDK toolchain link with
+// -Wl,-z,max-page-size=16384. Verify after any build with:
+//   readelf -lW libRNQuickSQLite.so | grep LOAD   (want align 0x4000)
+subprojects { subproject ->
+    if (subproject.name == 'react-native-quick-sqlite') {
+        subproject.afterEvaluate {
+            subproject.android {
+                defaultConfig {
+                    externalNativeBuild {
+                        cmake {
+                            arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
