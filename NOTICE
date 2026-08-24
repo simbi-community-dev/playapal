@@ -1,0 +1,42 @@
+Playa Pal
+Copyright 2026 David Anderson and Playa Pal contributors
+
+This product includes software developed for the Playa Pal project
+(https://github.com/simbi-community-dev/playapal), licensed under the Apache
+License, Version 2.0.
+
+Third-party content and models
+------------------------------
+
+Playa Angel model weights (downloaded by the app, not part of this
+repository) are fine-tuned derivatives of LFM2.5 by Liquid AI
+(https://huggingface.co/LiquidAI), distributed under the LFM Open
+License v1.0. That license conditions commercial use on an annual
+revenue threshold (see the license text shipped with the weights);
+the same condition applies to any use of the derivative weights.
+
+The bundled survival-guide pack summarizes and, where marked, quotes
+preparedness and cultural material from Burning Man Project
+(https://burningman.org), including the Ten Principles, with source
+attribution in the pack headings. Provenance: authored 2026-08 from
+burningman.org survival/preparedness pages and the published 2026 event
+dates; transformation = curated summaries plus marked verbatim passages;
+the built pack ships as assets/packs/survival-guide/guide.md.json. Burning Man, Black Rock City, and
+related marks belong to Burning Man Project. This project is not
+affiliated with or endorsed by Burning Man Project.
+
+Event listings are built from Burning Man's public playa events data
+(playaevents.burningman.org), fetched 2026-08 by tools/fetch_playaevents.py
+(cached, rate-limited crawl); transformation = parsing to structured rows,
+no editorial changes, plus seven hand-authored city-milestone rows
+(gates open, Man burn, Temple burn, exodus — tools/data/
+brc-2026-city-milestones.jsonl) sourced from the published 2026
+schedule. Placement addresses join at the pre-event data drop.
+
+Veteran technique summaries are curated from Burn.Life
+(https://burn.life) with per-article credit and links, summarized
+rather than reproduced.
+
+The YouTube lore tooling fetches transcripts for PERSONAL, LOCAL use
+only; no transcript content is included in or distributed with this
+repository.

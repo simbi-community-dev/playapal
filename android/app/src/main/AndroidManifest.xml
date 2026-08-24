@@ -1,0 +1,110 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- GPS lane (src/geo): on-device only, nothing leaves the phone.
+         Android 12+ requires COARSE alongside FINE in the runtime dialog. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Art photos (camp notes): a 320px thumbnail snapped at the piece.
+         Declaring CAMERA makes the runtime grant mandatory before
+         launchCamera — AddNoteSheet requests it in context. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- required=false: declaring the CAMERA permission alone lets Play
+         infer camera hardware as REQUIRED and hide the app from
+         camera-less devices — which can still pick from the gallery. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme"
+      android:usesCleartextTraffic="${usesCleartextTraffic}"
+      android:supportsRtl="true">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <!-- Friend-card deep links (Friends on playa): the QR encodes
+             https://playapal.lol/f#<card>; playapal://friend#<card> is the
+             offline-safe custom scheme. The payload rides the FRAGMENT, so
+             it never reaches any server either way. -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="playapal.lol" android:pathPrefix="/f" />
+            <data android:scheme="https" android:host="www.playapal.lol" android:pathPrefix="/f" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="playapal" android:host="friend" />
+        </intent-filter>
+        <!-- Beam deep links (small boards over QR): the sibling of the friend
+             card — https://playapal.lol/b#<frag> and playapal://beam#<frag>.
+             Decoders are anchored on the PATH, so a friend link and a beam
+             link can never be mistaken for each other. -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="playapal.lol" android:pathPrefix="/b" />
+            <data android:scheme="https" android:host="www.playapal.lol" android:pathPrefix="/b" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="playapal" android:host="beam" />
+        </intent-filter>
+        <!-- Beam FILES (docs/BEAM-INGRESS-CONTRACT.md §1). A .playapal file
+             is JSON with our own MIME, but Android's MimeTypeMap has no entry
+             for a custom extension, so a file received through Quick Share
+             or opened from Downloads arrives as application/octet-stream on
+             a content:// URI whose path does not contain the filename. The
+             VIEW filter therefore claims our exact MIME AND octet-stream —
+             and deliberately NOT application/json (every JSON on the phone).
+             The JS sniffer refuses a non-beam with one honest sentence. -->
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="content" />
+            <data android:scheme="file" />
+            <data android:mimeType="application/vnd.playapal.beam+json" />
+            <data android:mimeType="application/octet-stream" />
+        </intent-filter>
+        <!-- "Share → Playa Pal" from Files, Drive, Signal, mail. Over-offering
+             in a share sheet is the norm, so JSON is claimed here too (legacy
+             .json beams from v0.6.x still share in). -->
+        <intent-filter>
+            <action android:name="android.intent.action.SEND" />
+            <action android:name="android.intent.action.SEND_MULTIPLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="application/vnd.playapal.beam+json" />
+            <data android:mimeType="application/octet-stream" />
+            <data android:mimeType="application/json" />
+        </intent-filter>
+      </activity>
+      <provider
+          android:name="androidx.core.content.FileProvider"
+          android:authorities="${applicationId}.fileprovider"
+          android:exported="false"
+          android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths" />
+      </provider>
+    </application>
+</manifest>

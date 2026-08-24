@@ -1,0 +1,215 @@
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Folders */
+    //   The root of your project, i.e. where "package.json" lives. Default is '../..'
+    // root = file("../../")
+    //   The folder where the react-native NPM package is. Default is ../../node_modules/react-native
+    // reactNativeDir = file("../../node_modules/react-native")
+    //   The folder where the react-native Codegen package is. Default is ../../node_modules/@react-native/codegen
+    // codegenDir = file("../../node_modules/@react-native/codegen")
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../../node_modules/react-native/cli.js
+    // cliFile = file("../../node_modules/react-native/cli.js")
+
+    /* Variants */
+    // Bundle JS into EVERY variant (empty debuggable list): a debug APK
+    // otherwise expects a Metro dev server and white-screens on any fresh
+    // install without one — certification caught a camper-facing dud. Local
+    // dev with Metro: temporarily restore ["debug"].
+    debuggableVariants = []
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. Default is "debug", "debugOptimized".
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = ["liteDebug", "liteDebugOptimized", "prodDebug", "prodDebugOptimized"]
+
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = ["node"]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = "ram-bundle"
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = "MyApplication.android.bundle"
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    // entryFile = file("../js/MyApplication.android.js")
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+    // hermesFlags = ["-O", "-output-source-map"]
+
+    /* Autolinking */
+    autolinkLibrariesWithApp()
+}
+
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
+def enableProguardInReleaseBuilds = false
+
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ *
+ * For example, to use the international variant, you can use:
+ * `def jscFlavor = io.github.react-native-community:jsc-android-intl:2026004.+`
+ *
+ * The international variant includes ICU i18n library and necessary data
+ * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ * give correct results when using with locales other than en-US. Note that
+ * this variant is about 6MiB larger per architecture than default.
+ */
+def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
+
+android {
+    ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
+
+    namespace "com.playapal"
+    defaultConfig {
+        applicationId "com.playapal"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 10
+        versionName "0.7.4"
+    }
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        // Production signing comes from gradle properties that are NEVER
+        // committed -- ~/.gradle/gradle.properties locally, or secrets in CI.
+        // The block only materialises when the keystore is actually present,
+        // so a checkout without it still configures.
+        if (project.hasProperty('PLAYAPAL_UPLOAD_STORE_FILE')) {
+            release {
+                storeFile file(PLAYAPAL_UPLOAD_STORE_FILE)
+                storePassword PLAYAPAL_UPLOAD_STORE_PASSWORD
+                keyAlias PLAYAPAL_UPLOAD_KEY_ALIAS
+                keyPassword PLAYAPAL_UPLOAD_KEY_PASSWORD
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // THE DEBUG KEY MUST NEVER SIGN A DISTRIBUTED BUILD. debug.keystore
+            // is checked into this repository and into every React Native
+            // repository on earth -- its private key is public. An APK/AAB
+            // signed with it can be re-signed by anyone, and if one is ever
+            // uploaded to Play, that public key becomes the app's PERMANENT
+            // update identity: no later build signed with a real key will be
+            // accepted as an update, ever, and the listing cannot be recovered.
+            //
+            // The stock template silently defaults release to the debug key,
+            // which means the catastrophic outcome is what you get by typing
+            // the obvious command. Here it must be asked for BY NAME:
+            //
+            //   real release:  ./gradlew assembleRelease            (needs the 4 props)
+            //   field test:    ./gradlew assembleRelease -PallowDebugSigning=true
+            //
+            // The field-test path is legitimate and used for on-device smoke
+            // builds -- it is kept, but it is no longer the default, so nobody
+            // reaches it without saying so out loud.
+            if (project.hasProperty('PLAYAPAL_UPLOAD_STORE_FILE')) {
+                signingConfig signingConfigs.release
+            } else if (project.hasProperty('allowDebugSigning')) {
+                signingConfig signingConfigs.debug
+                println "WARNING: signing release with the PUBLIC debug key. " +
+                        "This build is for on-device testing only and must " +
+                        "never be uploaded to Play or distributed."
+            } else {
+                // THROW ONLY WHEN A RELEASE TASK IS ACTUALLY REQUESTED. Gradle
+                // evaluates EVERY buildType at configuration time, so an
+                // unconditional throw here fired on `assembleDebug` too and
+                // blocked the debug build outright (measured 2026-08-17 on
+                // the fab node: "Refusing to build a release" from a debug
+                // build). Debug builds must never be gated by release-signing
+                // policy. Leave release unsigned at configuration; if a
+                // release task is on the requested graph, refuse then.
+                signingConfig null
+                gradle.taskGraph.whenReady { graph ->
+                    def wantsRelease = graph.allTasks.any { t ->
+                        t.name ==~ /(?i).*(assemble|bundle|package|install)Release.*/
+                    }
+                    if (wantsRelease) {
+                        throw new GradleException(
+                    "Refusing to build a release with the public debug key.\n" +
+                    "  For a distributable build, set in ~/.gradle/gradle.properties:\n" +
+                    "    PLAYAPAL_UPLOAD_STORE_FILE=/abs/path/to/upload.jks\n" +
+                    "    PLAYAPAL_UPLOAD_STORE_PASSWORD=...\n" +
+                    "    PLAYAPAL_UPLOAD_KEY_ALIAS=...\n" +
+                    "    PLAYAPAL_UPLOAD_KEY_PASSWORD=...\n" +
+                    "  For an on-device test build, pass -PallowDebugSigning=true")
+                    }
+                }
+            }
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+    // ARM64 ONLY IN A RELEASE APK (docs/BEAM-INGRESS-CONTRACT.md §6). The APK
+    // is pushed phone-to-phone over Quick Share on playa, and measured on
+    // v0.6.1: arm64-v8a 119.8 MB, x86 50.6 MB (emulator only), armeabi-v7a
+    // 36.3 MB (phones from ~2015). Dropping the two dead ABIs takes the
+    // release APK from 292.5 MB to ~206 MB with no runtime change.
+    //
+    // WHY splits AND NOT buildTypes.release.ndk.abiFilters: the React Native
+    // gradle plugin addAll()s every reactNativeArchitectures entry into
+    // defaultConfig.ndk.abiFilters, and AGP MERGES abiFilters across
+    // defaultConfig/buildType as a union — so a release-only filter can never
+    // narrow the set (measured: 306,757,399 bytes with the filter, identical
+    // to without). The plugin's own escape hatch is splits.abi: when it is
+    // enabled the plugin leaves abiFilters alone (NdkConfiguratorUtils.kt).
+    //
+    // Gated on a release task being REQUESTED so debug builds keep every ABI
+    // (the x86_64 emulator is how agents dogfood) and so the output file name
+    // only changes for release: app/build/outputs/apk/release/
+    // app-arm64-v8a-release.apk. App bundles (bundleRelease) ignore splits
+    // and carry every ABI for Play to serve per device, which is correct.
+    def releaseApkRequested = gradle.startParameter.taskNames.any { t ->
+        t ==~ /(?i).*(assemble|install|package)Release.*/
+    }
+    splits {
+        abi {
+            enable releaseApkRequested
+            reset()
+            include "arm64-v8a"
+            universalApk false
+        }
+    }
+}
+
+dependencies {
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation("com.facebook.react:react-android")
+
+    if (hermesEnabled.toBoolean()) {
+        implementation("com.facebook.react:hermes-android")
+    } else {
+        implementation jscFlavor
+    }
+}
