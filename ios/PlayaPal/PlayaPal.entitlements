@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:playapal.lol</string>
+		<string>applinks:www.playapal.lol</string>
+	</array>
+	<!-- llama.rn-recommended for loading multi-GB GGUF models on device:
+	     lets a 1.6 GB mmap'd model address cleanly and raises the Jetsam
+	     memory ceiling. EAS managed credentials syncs these capabilities
+	     onto the App ID automatically. -->
+	<key>com.apple.developer.kernel.extended-virtual-addressing</key>
+	<true/>
+	<key>com.apple.developer.kernel.increased-memory-limit</key>
+	<true/>
+</dict>
+</plist>
