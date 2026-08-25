@@ -1,0 +1,21 @@
+pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+rootProject.name = 'PlayaPal'
+include ':app'
+
+// ── Heavy builds belong on fab (owner directive, 2026-08-24) ────────────────
+// A local NDK/Hexagon build froze the interactive laptop for 47 minutes; the
+// fix is a refusing gate here, not a briefing nobody re-reads. fab runs stamp
+// FAB_ID into every child (measured: fab-run's own orphan reaper keys on it),
+// and FAB_ALLOW_LOCAL_BUILD=1 is this box's one deliberate force-local escape
+// — the same env the rest of the toolchain already honors. Everything else
+// refuses loudly with the command that works.
+if (System.getenv('FAB_ID') == null && System.getenv('FAB_ALLOW_LOCAL_BUILD') == null) {
+  throw new GradleException(
+    'Local gradle build refused: heavy builds run on fab.\n' +
+    '  fab build --repo <repo> --artifact android/app/build/outputs/apk/release/app-arm64-v8a-release.apk \\\n' +
+    "    -- bash -c 'export PATH=\$HOME/.cache/playapal-node-v22.23.2/bin:\$PATH; npm ci; cd android && ./gradlew assembleRelease'\n" +
+    '  (deliberate local run: FAB_ALLOW_LOCAL_BUILD=1 ./gradlew …)')
+}
+includeBuild('../node_modules/@react-native/gradle-plugin')

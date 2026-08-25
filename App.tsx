@@ -1,0 +1,892 @@
+/**
+ * Playa Pal — offline LLM companion for
+ * Black Rock City. "Playa Angel" is the default GUIDE PERSONA inside the app,
+ * not the app name.
+ *
+ * Tabs: Right Now (default, deterministic, works with no model), Pods (the
+ * people whose phones stay in touch — presence, the answering machine, the
+ * walkie), Camp (the camp board and everything that moves it), Settings.
+ * The Angel is not a tab — it is the ask-mode of Now, reachable from the
+ * header wing on every tab.
+ */
+
+import React, { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {
+  Linking,
+  Alert,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+import { HomeArrow } from './src/components/HomeArrow';
+import { OnboardingFlow } from './src/onboarding/OnboardingFlow';
+import { onboardingDone } from './src/onboarding/onboarding';
+import { Tour } from './src/tour/Tour';
+import { tourSeen } from './src/tour/tourState';
+import { RightNowScreen } from './src/screens/RightNowScreen';
+import { CompassScreen } from './src/screens/CompassScreen';
+import type { WaypointTarget } from './src/geo/brcGeo';
+import { ChatScreen } from './src/screens/ChatScreen';
+import { CampScreen } from './src/screens/CampScreen';
+import { PodScreen } from './src/screens/PodScreen';
+import { SettingsScreen } from './src/screens/SettingsScreen';
+import {
+  canAdoptPodName,
+  crewsRevision,
+  joinCrew,
+  listCrews,
+  placeholderPodName,
+  saveCrew,
+  subscribeCrewsChanged,
+} from './src/crews/crew';
+import {
+  messagesRevision,
+  subscribeMessagesChanged,
+  unreadCount,
+} from './src/crews/messages';
+import { useKeyboardInset } from './src/hooks/useKeyboardInset';
+import { LlamaSession } from './src/llm/LlamaSession';
+import { DEFAULT_PERSONA_ID } from './src/llm/personas';
+import { findModel, pickModel } from './src/llm/modelFile';
+import {
+  CATALOG,
+  downloadModel,
+  fitEntry,
+  localPath,
+  readCircumstances,
+  recommendedEntry,
+  type CatalogEntry,
+} from './src/llm/modelCatalog';
+import { registerSpeechBackend } from './src/speech/backend';
+import { kokoroSpeechBackend } from './src/speech/kokoroBackend';
+import { pruneChatLog } from './src/log/chatLog';
+import {
+  migrateLegacyOwnPack,
+  pruneCampPosts,
+  reconcileWriterIncarnation,
+} from './src/camp/campBoard';
+import { getDb, rebuildFtsIndexes } from './src/events/db';
+import { startMyPlansSync } from './src/rightnow/myPlans';
+import { getMyCard, installFriendBundle } from './src/friends/friendCard';
+import { notifyBeamInstalled, startBeamIngress } from './src/beam/ingress';
+import { decodeBeamLink } from './src/beam/beamLink';
+import { describeInstall, installIncomingPayload } from './src/packs/importPack';
+import { decodeFriendLink } from './src/friends/friendLink';
+import {
+  decodePodLink,
+  inviteCardBundleJson,
+  type PodInvite,
+} from './src/crews/podLink';
+import {
+  CachesDirectoryPath,
+  exists as fsExists,
+  readFile as fsReadFile,
+  writeFile as fsWriteFile,
+} from '@dr.pogodin/react-native-fs';
+
+// Writer-incarnation token lives in Caches — the one app-writable place
+// iOS backup/restore does NOT carry (Android is covered by
+// allowBackup=false). A restored clone arrives without it and rotates to a
+// fresh writer id instead of forking against the original.
+const INCARNATION_TOKEN_PATH = `${CachesDirectoryPath}/camp-writer-incarnation`;
+import { APP_DISPLAY_NAME } from './src/legal';
+import type { ModelStatus } from './src/types';
+import { activeScheme, colors, radius, spacing, tap, type } from './src/theme';
+
+type Tab = 'now' | 'pod' | 'camp' | 'settings';
+
+// Tier-2 neural "Angel voice" (Kokoro via sherpa-onnx) joins the speech
+// registry at startup; the platform backend registers itself as tier 1 and
+// stays the default. Registration is idempotent and does NOT load the model
+// (that happens lazily on first speak).
+registerSpeechBackend(kokoroSpeechBackend);
+
+// Option A consolidation (owner-picked 2026-08-19): three questions, three
+// tabs — the Angel is not a place, it is the ask-mode of Now, reachable from
+// the wing button and every "Ask the Angel" affordance, rendered as a
+// full-screen conversation overlay. Packs dissolved into Camp (camp/private
+// packs + import + campmates' boards) and Settings (public packs).
+//
+// POD COMMS BECAME THE FOURTH TAB (owner, 2026-08-24: "the camp tab is now
+// totally unmanageable, all this useful comms is buried halfway down a long
+// scroll"). Messaging is an activity, not camp administration: the pod card
+// — presence, the answering machine, the walkie — was the last section of
+// the Camp scroll, roughly two screens down, and it is the thing a camper
+// opens most. It is now one tap from anywhere, and Camp lost its largest
+// block in the same move.
+//
+// Order is deliberate: the two LIVE surfaces (what's happening, who I'm
+// with) take the left and the reachable middle; the two you go to on
+// purpose (the camp's board, the phone's settings) take the right.
+const TABS: { key: Tab; label: string }[] = [
+  { key: 'now', label: 'Now' },
+  { key: 'pod', label: 'Pods' },
+  { key: 'camp', label: 'Camp' },
+  { key: 'settings', label: 'Settings' },
+];
+
+/**
+ * Messages waiting across EVERY pod on this phone. Answering-machine mail
+ * arrives minutes-to-hours after it was spoken (gossip, not a server), so a
+ * camper has no reason to open the tab on a hunch — the count is the only
+ * thing that tells them there is anything to check. Never throws: a phone
+ * with no db yet, no card and no pods reads zero rather than failing at
+ * boot, because this runs on the tab bar, which paints on every frame of
+ * every tab.
+ */
+function podUnreadCount(): number {
+  try {
+    const codes = listCrews().map(c => c.code);
+    if (codes.length === 0) {
+      return 0;
+    }
+    return unreadCount(codes, getMyCard(getDb()).id);
+  } catch {
+    return 0;
+  }
+}
+
+function App() {
+  return (
+    <GestureHandlerRootView style={rootFlex}>
+      <SafeAreaProvider>
+        {/* Status-bar icons must contrast the ground: dark icons on the
+            light palette, light icons on the dark one. activeScheme() is
+            what boot resolved before this module loaded; a mid-session
+            preference change lands via the JS reload, which re-renders
+            this from scratch. */}
+        <StatusBar
+          barStyle={activeScheme() === 'dark' ? 'light-content' : 'dark-content'}
+        />
+        <AppContent />
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
+  );
+}
+
+const rootFlex = { flex: 1 } as const;
+
+function AppContent() {
+  const insets = useSafeAreaInsets();
+  // Keyboard inset on the ROOT: the whole layout (tab bar included) rises
+  // above the IME, so the chat input is always visible while typing.
+  const keyboardInset = useKeyboardInset();
+  const [tab, setTab] = useState<Tab>('now');
+  // Has Pods ever been opened? Once true it stays true — see the mount
+  // below for why that tab, alone, is kept alive.
+  const [podMounted, setPodMounted] = useState(false);
+  const openTab = useCallback((t: Tab) => {
+    if (t === 'pod') {
+      setPodMounted(true);
+    }
+    setTab(t);
+  }, []);
+  // The Pods badge follows the two stores that can change the answer: mail
+  // arriving or being read, and pods being joined, made or disbanded. Both
+  // are revision emitters, so the tab bar re-renders on the same signal the
+  // pod screen does — never on a timer.
+  const msgRev = useSyncExternalStore(subscribeMessagesChanged, messagesRevision);
+  const crewRev = useSyncExternalStore(subscribeCrewsChanged, crewsRevision);
+  // The revisions are the deps ON PURPOSE: they are the stores' change
+  // signals, not values the count reads, so recomputing exactly when one
+  // bumps is the whole contract.
+  const podUnread = React.useMemo(podUnreadCount, [msgRev, crewRev]);
+  const [status, setStatus] = useState<ModelStatus>({ state: 'idle' });
+  const [pendingQuestion, setPendingQuestion] = useState<string | null>(null);
+  // Waypoint compass overlay (no nav library — same plain-state pattern as
+  // tabs). Open/target are separate: open-with-null shows the pins picker.
+  const [compassOpen, setCompassOpen] = useState(false);
+  const [compassTarget, setCompassTarget] = useState<WaypointTarget | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  // First-run gates (0.7.3): onboarding, then the tour, rendered as the LAST
+  // overlays so they sit above the tabs and the chat/compass overlays. Lazy
+  // initializers read settings (getDb opens on demand — the same pattern as
+  // every screen's mount reads). The tour's initializer covers the app being
+  // killed between onboarding and the tour: seen-state is only written when a
+  // card flow actually ends. Settings can re-open either one (replay rows);
+  // the tour ignores tour_seen by construction and a replayed onboarding
+  // never erases skipped answers, so neither replay needs a state reset.
+  const [showOnboarding, setShowOnboarding] = useState(() => !onboardingDone());
+  const [showTour, setShowTour] = useState(() => onboardingDone() && !tourSeen());
+  const sessionRef = useRef<LlamaSession | null>(null);
+  if (!sessionRef.current) {
+    sessionRef.current = new LlamaSession(DEFAULT_PERSONA_ID);
+  }
+  const session = sessionRef.current;
+
+  // Auto-load a previously imported (or adb-pushed) model at startup.
+  // The model then stays RESIDENT for the whole app session.
+  useEffect(() => {
+    (async () => {
+      try {
+        // Field-log retention (90 days / 20 MB, oldest first) runs once per
+        // launch, before anything writes new rows. Never throws.
+        pruneChatLog();
+        // Camp-board startup reconciliation: legacy pack-id migration, the
+        // writer-incarnation check (restore-clone → rotate, never fork),
+        // then the 30-day LOCAL prune. All internally transactional and
+        // no-throw; guarded regardless so a camp failure can never block
+        // model load.
+        try {
+          const conn = getDb();
+          migrateLegacyOwnPack(conn);
+          let fileToken: string | null = null;
+          try {
+            fileToken = (await fsExists(INCARNATION_TOKEN_PATH))
+              ? (await fsReadFile(INCARNATION_TOKEN_PATH, 'utf8')).trim()
+              : null;
+          } catch {
+            fileToken = null; // unreadable = missing; reconcile decides
+          }
+          const incarnation = reconcileWriterIncarnation(conn, fileToken);
+          try {
+            await fsWriteFile(INCARNATION_TOKEN_PATH, incarnation.token, 'utf8');
+          } catch (e) {
+            console.warn('[camp] incarnation token not persisted:', e);
+          }
+          pruneCampPosts(conn);
+          rebuildFtsIndexes(conn);
+        } catch (e) {
+          console.warn('[camp] startup reconciliation skipped:', e);
+        }
+        // "My plans" (faves + pins -> searchable doc, src/rightnow/myPlans.ts)
+        // lives HERE beside the other once-per-launch data upkeep: its first
+        // build rides its own debounce, off the model-load critical path.
+        startMyPlansSync();
+        const path = await findModel();
+        if (path) {
+          await session.load(path, setStatus);
+        }
+      } catch (e: any) {
+        // Surface EVERY startup failure (findModel included) to the status
+        // bar — a swallowed error here once left the app silently model-less
+        // (measured 2026-08-13). Raw detail is diagnostics, not camper UI
+        // (public-QA P2-5): console carries it, the bar stays plain.
+        console.warn('[startup] model load failed:', e?.message ?? e);
+        setStatus({ state: 'error', detail: 'The model could not start — try choosing it again in Settings.' });
+      }
+    })();
+  }, [session]);
+
+  // Pull one catalog entry, showing progress in the status bar's existing
+  // 'copying' state (no new UI), then load it. The digest is checked before
+  // load, so a torn download reads as "didn't verify, try again" and never
+  // as a broken phone.
+  const downloadAndLoad = useCallback(
+    async (entry: CatalogEntry) => {
+      const mb = (n: number) => (n / 1_048_576).toFixed(0);
+      setStatus({ state: 'copying', detail: `Downloading ${entry.title}…` });
+      const r = await downloadModel(
+        entry,
+        p => {
+          const pct = p.contentLength > 0 ? Math.floor((100 * p.bytesWritten) / p.contentLength) : 0;
+          setStatus({
+            state: 'copying',
+            detail: `Downloading ${entry.title}… ${pct}% (${mb(p.bytesWritten)} of ${mb(p.contentLength)} MB)`,
+          });
+        },
+        phase => {
+          if (phase === 'verifying') {
+            setStatus({ state: 'copying', detail: `Verifying ${entry.title}'s checksum… (about a minute)` });
+          }
+        },
+      );
+      if (!r.ok) {
+        // A failed download must NEVER brick a working Angel: chat input
+        // gates on status==='ready', so leaving 'error' here disabled a
+        // loaded, functioning model until app restart (owner hit it live
+        // 2026-08-18 — the 401 from the still-private model repo). Surface
+        // the failure, then fall back to ready if a model is resident.
+        // Map machine reasons to camper words; raw detail goes to console
+        // (public-QA P2-5).
+        console.warn('[download] failed:', r.reason, r.detail);
+        const friendly =
+          r.reason === 'network'
+            ? "The download couldn't finish — check your connection and try again."
+            : r.reason === 'digest'
+              ? "The download didn't verify, so it was removed — try again."
+              : 'This model is not available in this build.';
+        if (session.isReady) {
+          Alert.alert('Download failed', `${friendly}\n\nYour current model is untouched and still running.`);
+          setStatus({ state: 'ready', modelName: session.loadedModelName ?? 'model' });
+        } else {
+          setStatus({ state: 'error', detail: friendly });
+        }
+        return;
+      }
+      await session.load(r.path, setStatus);
+    },
+    [session],
+  );
+
+  // "Choose model…" -- the one entry point for getting a model onto the
+  // phone. Offers the catalog (downloads) first, with "a file on this phone"
+  // last, so the adb/Finder path still works for dev without being what a
+  // stranger sees first. The phone's REAL numbers drive the labels now:
+  // readCircumstances() (total RAM via device-info, free space via the fs
+  // probe) feeds recommendedEntry() and per-entry fitEntry(), so the tag a
+  // user sees -- recommended / needs more memory / needs N GB free -- is a
+  // measurement, not a vibe: the app recommends the best fit while showing
+  // every option. A
+  // model that does not fit stays VISIBLE and tappable: low-RAM offers "try
+  // anyway" (it may load slowly; the error is real and recoverable), while
+  // no-room says plainly how much space to free.
+  const onPickModel = useCallback(() => {
+    (async () => {
+      const gb = (n: number) => (n / 1e9).toFixed(1);
+      const c = await readCircumstances();
+      const downloaded = new Set<string>();
+      for (const e of CATALOG) {
+        if (await fsExists(localPath(e))) {
+          downloaded.add(e.id);
+        }
+      }
+      const rec = recommendedEntry(c, downloaded);
+      const buttons: { text: string; onPress: () => void; style?: 'cancel' }[] =
+        CATALOG.map(e => {
+          const fit = fitEntry(e, c, downloaded.has(e.id));
+          const tag =
+            fit.status === 'low-ram'
+              ? '⚠ needs a phone with more memory'
+              : fit.status === 'no-room'
+              ? `⚠ needs ${gb(fit.shortBytes)} GB more free space`
+              : e.id === rec.id
+              ? '★ recommended for this phone'
+              : downloaded.has(e.id)
+              ? 'already on this phone'
+              : '';
+          return {
+            text: `${e.title} · ~${gb(e.bytes)} GB${tag ? ` · ${tag}` : ''}\n${e.blurb}`,
+            onPress: () => {
+              if (fit.status === 'fits') {
+                downloadAndLoad(e);
+                return;
+              }
+              if (fit.status === 'no-room') {
+                Alert.alert(
+                  'Not enough free space',
+                  `${e.title} needs about ${gb(fit.shortBytes)} GB more free space before it can download.`,
+                );
+                return;
+              }
+              Alert.alert(
+                'This phone may struggle',
+                `${e.title} is sized for phones with ${gb(e.minTotalRamBytes)} GB+ of memory; this one has ${
+                  c.totalRamBytes !== undefined ? gb(c.totalRamBytes) : 'an unknown amount'
+                }. It may fail to load or run very slowly.`,
+                [
+                  { text: 'Try anyway', onPress: () => downloadAndLoad(e) },
+                  { text: 'Cancel', style: 'cancel' },
+                ],
+              );
+            },
+          };
+        });
+    buttons.push({
+      text: 'A file on this phone…',
+      onPress: () => {
+        (async () => {
+          try {
+            setStatus({ state: 'copying', detail: 'Importing model…' });
+            const path = await pickModel();
+            if (!path) {
+              setStatus({ state: 'idle' });
+              return;
+            }
+            await session.load(path, setStatus);
+          } catch (e: any) {
+            console.warn('[import] model load failed:', e?.message ?? e);
+            setStatus({ state: 'error', detail: 'That file could not be loaded as a model — it may be damaged or incompatible.' });
+          }
+        })();
+      },
+    });
+      // NO dedicated cancel button, ON PURPOSE: Android renders at most
+      // THREE Alert buttons and silently drops the rest — with two catalog
+      // entries plus the file row we are already at three, and a fourth
+      // "Not now" was the one being dropped. Combined with RN's Android
+      // default cancelable:false, that shipped a dialog that trapped the
+      // user (no outside-tap, no BACK — measured on the Pixel 7,
+      // 2026-08-18). cancelable:true IS the cancel affordance. When the
+      // catalog grows past two entries this Alert stops fitting at all —
+      // the chooser must then become a real screen.
+      const known: string[] = [];
+      if (c.totalRamBytes !== undefined) {
+        known.push(`${gb(c.totalRamBytes)} GB memory`);
+      }
+      if (c.freeBytes !== undefined) {
+        known.push(`${gb(c.freeBytes)} GB free`);
+      }
+      Alert.alert(
+        'Choose a model',
+        `${known.length ? `This phone: ${known.join(' · ')}.\n` : ''}Downloads need Wi-Fi and a little patience. Once it is on the phone it works with no signal at all.`,
+        buttons,
+        { cancelable: true },
+      );
+    })();
+  }, [downloadAndLoad, session]);
+
+  const onAskAngel = useCallback((question: string) => {
+    setPendingQuestion(question);
+    setChatOpen(true);
+  }, []);
+
+  // A scanned pod invite (docs/WALKIE-LADDER.md §8, rung 0) — the third
+  // member of the deep-link family, and the ONLY one that asks first.
+  //
+  // A beam and a friend card are copies: something arrives on the phone and
+  // the app says so. A pod is a RELATIONSHIP — joining puts this phone's
+  // nameplate on the mesh for that pod (podMembers.ts announces on the next
+  // reconcile) and offers a position toggle. That is consent, so it wears
+  // the app's established consent shape: the two-button Alert the disband
+  // ask uses, with the true sentence in it and no state written until the
+  // camper taps Join.
+  const askToJoinPod = useCallback(
+    (invite: PodInvite) => {
+      // The pod's own name when the inviter had named it, and the honest
+      // placeholder — which still carries the code — when nobody has. The
+      // one thing this ask must never do is put a bare join code where a
+      // name belongs (crew.ts, podLabel).
+      const podName = invite.name ?? placeholderPodName(invite.code);
+      // The card rides along when it fit one QR, and it is who the invite is
+      // FROM. Without it the ask names the pod and nothing else, which is
+      // still true — a link forwarded through three people has no face.
+      const inviter = invite.card?.name.trim() ?? '';
+      const from =
+        inviter.length > 0 ? `${inviter} invited you — their card comes with it.\n\n` : '';
+      Alert.alert(
+        `Join ${podName}?`,
+        `${from}Joining puts your name on the air in this pod, and where you are while you're sharing. You'll see the same of them.`,
+        [
+          // Declining writes NOTHING: no crew, no card, no tab change. The
+          // invite is just a URL, so a second scan asks again.
+          { text: 'Not now', style: 'cancel' },
+          {
+            text: 'Join',
+            onPress: () => {
+              try {
+                // The code is the identity and joinCrew is idempotent on it,
+                // so scanning the same invite twice — or scanning a pod this
+                // phone already types into — lands in the SAME pod.
+                const joined = joinCrew(invite.code);
+                // The invite's name is the MESH's name delivered by eyeball,
+                // not a name this phone's owner typed. joinCrew's `name`
+                // argument stores nameSource 'mine', which would freeze the
+                // pod against a later rename AND make this phone re-broadcast
+                // a name it never chose — the exact regression podMembers.ts
+                // records as measured ("a joiner adopted the name and
+                // immediately started announcing it as their own"). So the
+                // name is adopted through adoptPodName's own rule instead:
+                // 'mesh', and only over a name nobody here chose.
+                if (
+                  invite.name !== undefined &&
+                  invite.name !== joined.name &&
+                  canAdoptPodName(joined)
+                ) {
+                  saveCrew({ ...joined, name: invite.name, nameSource: 'mesh' });
+                }
+              } catch (e: any) {
+                Alert.alert("Couldn't join that pod", e?.message ?? String(e));
+                return;
+              }
+              try {
+                // The inviter's card through the ONE import path a beamed
+                // friend card uses — same merge rules (greatest seq wins, my
+                // own id skipped), no second importer to drift.
+                const bundle = inviteCardBundleJson(invite);
+                if (bundle) {
+                  installFriendBundle(getDb(), bundle);
+                }
+              } catch (e: any) {
+                // A card that will not install costs a face for a few
+                // minutes; the mesh delivers it anyway. It must never cost
+                // the pod the camper just agreed to join.
+                console.warn('[pod invite] card not installed:', e?.message ?? e);
+              }
+              // RADIOS (invite.radios, §4): nothing to do here, and that is
+              // a finding rather than an omission. The announce/reconcile
+              // seam only ever puts THIS phone's rungs on the air — the
+              // `radios` reconcilePods passes is myRungsSync(), and the only
+              // store of a PEER's rungs is announcedMembers(), which is
+              // built from pod-member records that peer actually authored.
+              // Writing the inviter's bitmap there would mean minting a
+              // record in their name, which the relay would then spread as
+              // their word — §5's line is that capability is announced by
+              // the phone that has it. So the invite's radios rides the
+              // NORMAL flow: the inviter's own announcement carries the same
+              // field and arrives over rung 1/2. Nothing in this build reads
+              // a peer's rungs yet either way (§10: "inert but travelling").
+              //
+              // Landing on Pods is not decoration: it MOUNTS CrewSection,
+              // whose reconcile effect is what actually announces this phone
+              // into the pod it just joined. The new pod is saveCrew's
+              // unshift, so it is the first chip; a camper who had already
+              // selected another pod stays on that one and picks the new
+              // chip themselves (activePodId is CrewSection's own state).
+              openTab('pod');
+            },
+          },
+        ],
+      );
+    },
+    [openTab],
+  );
+
+  // Deep links (Friends on playa, 2026-08-19; pod invites 2026-08-24): a
+  // scanned QR or tapped link opens the app carrying its whole payload in the
+  // URL FRAGMENT, which no browser ever sends to a server — decode, act, tell
+  // the camper. Works with zero connectivity by design.
+  //
+  // Three path-anchored families, one door: /b a camp beam, /f a friend card,
+  // /p a pod invite. The first two are COPIES and install on arrival; the
+  // third starts a relationship and therefore asks. A URL that is none of
+  // them falls through silently — this handler also sees every link the two
+  // other filters carry.
+  useEffect(() => {
+    const handle = (url: string | null | undefined) => {
+      if (!url) {
+        return;
+      }
+      try {
+        // A beam link (the sibling of the friend card, contract §5): a small
+        // board scanned off a campmate's screen. Path-anchored decoders mean
+        // the two can never be mistaken for each other.
+        const beamJson = decodeBeamLink(url);
+        if (beamJson) {
+          const r = installIncomingPayload({ name: 'beam link', content: beamJson, source: 'link' });
+          notifyBeamInstalled();
+          Alert.alert('Beam received', describeInstall(r));
+          return;
+        }
+        const json = decodeFriendLink(url);
+        if (json) {
+          const r = installFriendBundle(getDb(), json);
+          const bits = [
+            r.added.length > 0 ? `added ${r.added.join(', ')}` : null,
+            r.updated.length > 0 ? `updated ${r.updated.join(', ')}` : null,
+            r.added.length + r.updated.length === 0 ? 'nothing new' : null,
+          ].filter(Boolean);
+          Alert.alert('Friends on playa', `${bits.join('; ')} — see the Camp tab.`);
+          return;
+        }
+        // A pod invite (rung 0). Third and last, in the same path-anchored
+        // family — a /f or /b link returns null here and a /p link returns
+        // null from the two decoders above, so the order is for reading, not
+        // for correctness. Unlike its two siblings this one INSTALLS
+        // NOTHING: it opens a question (askToJoinPod).
+        const invite = decodePodLink(url);
+        if (invite) {
+          askToJoinPod(invite);
+        }
+      } catch (e: any) {
+        Alert.alert("Couldn't read that card", e?.message ?? String(e));
+      }
+    };
+    Linking.getInitialURL().then(handle);
+    const sub = Linking.addEventListener('url', ev => handle(ev.url));
+    return () => sub.remove();
+  }, [askToJoinPod]);
+
+  // Beam files (docs/BEAM-INGRESS-CONTRACT.md): a .playapal opened from
+  // Files / Quick Share / AirDrop / a share sheet was copied by native code
+  // and queued; this drains the queue on mount (cold start) and on every
+  // warm delivery, and installs through the same seam as the picker.
+  useEffect(() => startBeamIngress(), []);
+
+  const onOpenCompass = useCallback((target: WaypointTarget | null) => {
+    setCompassTarget(target);
+    setCompassOpen(true);
+  }, []);
+
+  // Onboarding done (first run or replay): the flow has already persisted its
+  // answers, seeded the Home pin, and marked itself done — the host only
+  // unmounts it, then hands first-runners straight to the tour.
+  const finishOnboarding = useCallback(() => {
+    setShowOnboarding(false);
+    if (!tourSeen()) {
+      setShowTour(true);
+    }
+  }, []);
+
+  return (
+    <View
+      style={[
+        styles.root,
+        {
+          paddingTop: insets.top,
+          paddingBottom: Math.max(insets.bottom, keyboardInset),
+        },
+      ]}>
+      <View style={styles.header}>
+        <Text style={styles.title}>🦛 {APP_DISPLAY_NAME}</Text>
+        {/* The two doors, side by side, in the header — which is rendered
+            ABOVE the tab conditional, so both are one tap from every tab.
+            Angel had this door already; Map did not, and that asymmetry
+            was the whole navigation defect (owner 2026-08-20: "the angel
+            and map surfaces are triggered in totally different ways by
+            randomly placed buttons"). Cross-family meld converged on
+            completing the existing header pattern rather than adding a
+            second navigation layer beside it. The giant Take-me-home
+            button stays on Now: this is the everyday map, not the 3am
+            emergency, and the emergency outranks tidiness. */}
+        <View style={styles.headerDoors}>
+          <HomeArrow
+            onPress={() => onOpenCompass(null)}
+            pillStyle={styles.headerWingPill}
+            textStyle={styles.headerWing}
+          />
+          <Pressable
+            onPress={() => setChatOpen(true)}
+            hitSlop={spacing.md}
+            accessibilityLabel="Open the Angel conversation"
+            style={styles.headerWingPill}>
+            <Text style={styles.headerWing}>🪽 Angel</Text>
+          </Pressable>
+        </View>
+        <View
+          style={[
+            styles.modelDot,
+            {
+              backgroundColor:
+                status.state === 'ready'
+                  ? colors.sage
+                  : status.state === 'loading' || status.state === 'copying'
+                  ? colors.gold
+                  : colors.haze,
+            },
+          ]}
+        />
+      </View>
+      <View style={styles.body}>
+        {tab === 'now' ? (
+          <RightNowScreen onAskAngel={onAskAngel} onOpenCompass={onOpenCompass} />
+        ) : null}
+        {/* Pods mounts on first visit and then STAYS mounted, hidden — the
+            ChatScreen treatment, for the same reason and two more. A tab
+            switch must not throw away a half-typed message, must not put a
+            camper back on the wrong pod after they deliberately switched to
+            their small one, and must not hang up a walkie channel they
+            turned on to go look at the map. Lazy, not eager: a phone whose
+            owner never opens Pods never pays for the roster query. */}
+        {podMounted ? (
+          <View style={tab === 'pod' ? styles.screenShown : styles.screenHidden}>
+            <PodScreen onOpenCompass={onOpenCompass} />
+          </View>
+        ) : null}
+        {/* ChatScreen stays MOUNTED across tab switches. Its message list
+            is the UI half of the llama session's transcript, and the session
+            is a singleton that survives navigation — unmounting orphaned the
+            pair (Pixel 7, 2026-08-17): the tab came back showing a fresh
+            thread while the session still carried the old exchanges, so the
+            next question rode invisible history and the model echoed its own
+            stale answer without calling a single tool. */}
+        {tab === 'camp' ? <CampScreen onOpenCompass={onOpenCompass} /> : null}
+        {tab === 'settings' ? (
+          <SettingsScreen
+            onChooseModel={onPickModel}
+            onReplayTour={() => setShowTour(true)}
+            onReplaySetup={() => setShowOnboarding(true)}
+          />
+        ) : null}
+      </View>
+      <View style={styles.tabBar} accessibilityRole="tablist">
+        {TABS.map(t => {
+          const unread = t.key === 'pod' ? podUnread : 0;
+          return (
+            <Pressable
+              key={t.key}
+              style={styles.tabBtn}
+              onPress={() => openTab(t.key)}
+              // A tab says it IS a tab and whether it is the one showing
+              // (a11y review 2026-08-24): the active tab was a color change
+              // and nothing else, which is silent to a screen reader.
+              accessibilityRole="tab"
+              accessibilityState={{ selected: tab === t.key }}
+              accessibilityLabel={
+                unread > 0
+                  ? `${t.label}, ${unread} message${unread === 1 ? '' : 's'} waiting`
+                  : t.label
+              }>
+              <View style={styles.tabInner}>
+                <Text style={[styles.tabText, tab === t.key && styles.tabActive]}>
+                  {t.label}
+                </Text>
+                {/* The count is spoken in the tab's own label above, so the
+                    badge is decorative to a screen reader — hidden on both
+                    platforms (they spell it differently) so it is never
+                    read a second time as a bare number. */}
+                {unread > 0 ? (
+                  <View
+                    style={styles.tabBadge}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no-hide-descendants">
+                    <Text style={styles.tabBadgeText}>
+                      {unread > 99 ? '99+' : String(unread)}
+                    </Text>
+                  </View>
+                ) : null}
+              </View>
+            </Pressable>
+          );
+        })}
+      </View>
+      <View
+        style={
+          chatOpen
+            ? [
+                styles.chatOverlay,
+                { top: insets.top, bottom: Math.max(insets.bottom, keyboardInset) },
+              ]
+            : styles.screenHidden
+        }>
+        <View style={styles.chatOverlayHeader}>
+          <Text style={styles.chatOverlayTitle}>🪽 Angel</Text>
+          <Pressable
+            onPress={() => setChatOpen(false)}
+            hitSlop={spacing.md}
+            accessibilityLabel="Close the conversation">
+            <Text style={styles.chatOverlayClose}>✕</Text>
+          </Pressable>
+        </View>
+        <ChatScreen
+          session={session}
+          status={status}
+          onStatus={setStatus}
+          onPickModel={onPickModel}
+          pendingQuestion={pendingQuestion}
+          onPendingConsumed={() => setPendingQuestion(null)}
+        />
+      </View>
+      {compassOpen ? (
+        <View
+          style={[
+            styles.compassOverlay,
+            { top: insets.top, bottom: Math.max(insets.bottom, keyboardInset) },
+          ]}>
+          <CompassScreen
+            initialTarget={compassTarget}
+            onClose={() => setCompassOpen(false)}
+          />
+        </View>
+      ) : null}
+      {showOnboarding ? (
+        <View
+          style={[
+            styles.firstRunOverlay,
+            { top: insets.top, bottom: Math.max(insets.bottom, keyboardInset) },
+          ]}>
+          <OnboardingFlow onDone={finishOnboarding} />
+        </View>
+      ) : null}
+      {showTour ? <Tour onDone={() => setShowTour(false)} /> : null}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: colors.dust },
+  screenShown: { flex: 1 },
+  screenHidden: { display: 'none' },
+  // Absolute children position against the root's border box, NOT its
+  // padding box (Pixel 7, 2026-08-19: the Angel header rendered under the
+  // status-bar clock and the input hid behind the keyboard while every tab
+  // screen rose correctly). So each overlay carries the safe-area +
+  // keyboard insets itself, inline at the mount.
+  chatOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: colors.dust,
+  },
+  chatOverlayHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+  },
+  chatOverlayTitle: { color: colors.night, fontSize: type.body, fontWeight: '700' },
+  chatOverlayClose: { color: colors.night, fontSize: 22, paddingHorizontal: spacing.sm },
+  // the two doors travel together, so space-between still reads
+  // title | doors | model-dot rather than spreading four children
+  headerDoors: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  headerWingPill: {
+    backgroundColor: colors.sand,
+    borderRadius: 999,
+    paddingHorizontal: spacing.md,
+    paddingVertical: 4,
+  },
+  headerWing: { fontSize: type.small, fontWeight: '700', color: colors.night },
+  compassOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: colors.dust,
+  },
+  // Onboarding rides the same inset-carrying absolute-overlay shape as the
+  // chat/compass overlays (see the border-box note above); its TextInputs
+  // need the keyboard inset just like the chat's.
+  firstRunOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    backgroundColor: colors.dust,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+  },
+  title: { color: colors.night, fontSize: type.title, fontWeight: '800' },
+  modelDot: { width: 10, height: 10, borderRadius: 5 },
+  body: { flex: 1 },
+  tabBar: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: colors.haze,
+    backgroundColor: colors.dust,
+  },
+  tabBtn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: tap.minHeight, // 44pt floor — padding alone left this at ~40
+    paddingVertical: spacing.md,
+  },
+  // Label and badge ride one row so the badge sits beside the word rather
+  // than over it: at four tabs there is room, and an overlapping dot on a
+  // text-only bar reads as damage.
+  tabInner: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
+  tabText: { color: colors.faded, fontSize: type.small, fontWeight: '600' },
+  tabActive: { color: colors.clay, fontWeight: '800' },
+  tabBadge: {
+    backgroundColor: colors.clay,
+    borderRadius: radius.chip,
+    minWidth: 18,
+    paddingHorizontal: 5,
+    paddingVertical: 1,
+  },
+  tabBadgeText: {
+    color: colors.onAccent,
+    fontSize: type.tiny,
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+});
+
+export default App;

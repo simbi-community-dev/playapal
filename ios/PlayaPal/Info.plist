@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Playa Pal Beam</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.playapal.beam</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Playa Pal</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Playa Pal takes a small photo of an art piece for your camp&#8217;s own art directory — it stays on this phone and in your camp beams.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick a photo of an art piece for your camp&#8217;s own art directory — only a small thumbnail is kept.</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.playapal.friend</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>playapal</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Playa Pal uses your location on this phone to show your Black Rock City address, walk times, and the way back to your camp. It leaves the device only if you turn on crew sharing — then only your position, only to your crew, over Bluetooth, never the internet.</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Playa Pal Beam</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.playapal.beam</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>playapal</string>
+				</array>
+				<key>public.mime-type</key>
+				<string>application/vnd.playapal.beam+json</string>
+			</dict>
+		</dict>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Playa Pal uses your location to point the compass toward your camp, saved pins, and event locations. Nothing is uploaded; your position is shared only over Bluetooth, only with your crew, and only while a sharing session you started is on.</string>
+	<!-- Walkie (CREW-DESIGN §6d): Bonjour browsing + local-network UDP need
+	     these on iOS 14+ — without the declared service type the browser
+	     silently finds nothing. -->
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Playa Pal uses the local camp Wi-Fi to find your pod&#8217;s phones for live talk — no internet, nothing leaves the network.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_playapal-walkie._udp</string>
+	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Playa Pal uses the microphone for pod voice notes and live walkie talk — only while you hold the button, only to your pod&#8217;s phones, never the internet.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Playa Pal uses Bluetooth to find your crew nearby when there&#8217;s no signal — and to be findable by them, only while a sharing session you started is on.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
+</dict>
+</plist>

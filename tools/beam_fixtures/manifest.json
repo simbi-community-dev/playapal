@@ -1,0 +1,26 @@
+{
+  "passphrase": "dusty mary",
+  "camp_id": "0b7868f0",
+  "valid-2-envelope.playapal": {
+    "expect": "installs 2 writers (Maria, Ben); +2 camp_posts; +1 camp_note (resource)",
+    "posts_delta": 2,
+    "notes_delta": 1
+  },
+  "truncated-60.playapal": {
+    "expect": "refused (not a beam / damaged); 0 delta"
+  },
+  "byte-flipped.playapal": {
+    "expect": "refused (integrity); 0 delta"
+  },
+  "future-kind.playapal": {
+    "expect": "installs Future; +1 camp_post; +1 camp_note stored kind sculpture, reads memory",
+    "posts_delta": 1,
+    "notes_delta": 1
+  },
+  "unrelated-octet-stream.playapal": {
+    "expect": "refused (not a beam); 0 delta"
+  },
+  "oversize-4mib-plus-1.playapal": {
+    "expect": "refused (size gate); 0 delta"
+  }
+}

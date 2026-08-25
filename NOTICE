@@ -1,0 +1,71 @@
+Playa Pal
+Copyright 2026 David Anderson and Playa Pal contributors
+
+This product includes software developed for the Playa Pal project
+(https://github.com/simbi-community-dev/playapal), licensed under the Apache
+License, Version 2.0.
+
+Third-party content and models
+------------------------------
+
+Playa Angel model weights (downloaded by the app, not part of this
+repository) are published at
+https://huggingface.co/davidryalpug/playa-angel. The three tiers do
+not share one base model, so the license attaches PER FILE, not to
+"the weights" as a group. src/llm/modelCatalog.ts pins the exact file
+each tier downloads.
+
+Playa Angel Max (angel-max.gguf, built from angel-v44g-e4b-q4_0.gguf)
+is a fine-tuned, quantized derivative of Google's Gemma 4 E4B. It is a
+Model Derivative under the Gemma Terms of Use
+(https://ai.google.dev/gemma/terms) and is distributed subject to
+them. Those terms carry use restrictions (section 3.2, which
+incorporates the Gemma Prohibited Use Policy at
+https://ai.google.dev/gemma/prohibited_use_policy), and those
+restrictions apply to anyone who uses or redistributes this file. The
+base weights were modified by fine-tuning and by quantization. A copy
+of the Gemma Terms of Use ships with the weights.
+
+  Gemma is provided under and subject to the Gemma Terms of Use found at ai.google.dev/gemma/terms
+
+Google claims no rights in the text a Gemma model generates (section
+3.3). The Gemma terms grant no rights in Google's trademarks (section
+4.2), and this project is not affiliated with or endorsed by Google.
+
+Playa Angel and Playa Angel Light (angel-smart.gguf and
+angel-light.gguf) are one fine-tuned derivative of LFM2.5 by Liquid AI
+(https://huggingface.co/LiquidAI) at two quantizations, distributed
+under the LFM Open License v1.0. That license conditions commercial
+use on an annual revenue threshold (see the license text shipped with
+the weights); the same condition applies to any use of the derivative
+weights.
+
+The two schemes do not conflict, because they attach to different
+files. Neither one covers all three tiers, and no single license
+covers "Playa Angel" as a whole.
+
+The bundled survival-guide pack summarizes and, where marked, quotes
+preparedness and cultural material from Burning Man Project
+(https://burningman.org), including the Ten Principles, with source
+attribution in the pack headings. Provenance: authored 2026-08 from
+burningman.org survival/preparedness pages and the published 2026 event
+dates; transformation = curated summaries plus marked verbatim passages;
+the built pack ships as assets/packs/survival-guide/guide.md.json. Burning Man, Black Rock City, and
+related marks belong to Burning Man Project. This project is not
+affiliated with or endorsed by Burning Man Project.
+
+Event listings are built from Burning Man's public playa events data
+(playaevents.burningman.org), fetched 2026-08 by tools/fetch_playaevents.py
+(cached, rate-limited crawl); transformation = parsing to structured rows,
+no editorial changes, plus seven hand-authored city-milestone rows
+(gates open, Man burn, Temple burn, exodus — tools/data/
+brc-2026-city-milestones.jsonl) sourced from the published 2026
+schedule. Placement addresses join at the pre-event data drop.
+
+Veteran technique summaries are curated from Burn.Life
+(https://burn.life) with per-article credit and links, summarized
+rather than reproduced.
+
+The YouTube lore tooling fetches transcripts for PERSONAL, LOCAL use
+only; no transcript content is included in or distributed with this
+repository.
