@@ -1,0 +1,51 @@
+pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+rootProject.name = 'PlayaPal'
+include ':app'
+
+// ── Heavy builds belong on fab (owner directive, 2026-08-24) ────────────────
+// A local NDK/Hexagon build froze the interactive laptop for 47 minutes; the
+// fix is a refusing gate here, not a briefing nobody re-reads. fab runs stamp
+// FAB_ID into every child (measured: fab-run's own orphan reaper keys on it).
+// EAS Android workers are the other approved remote substrate and stamp
+// EAS_BUILD into the build process (codex batch, merged 2026-08-25). And
+// FAB_ALLOW_LOCAL_BUILD=1 is this box's one deliberate force-local escape —
+// the same env the rest of the toolchain honors, and the one tools/gate.sh's
+// --apk arm depends on: a guard that closes it silently disables the gate's
+// own build (found the hard way once already). Everything else refuses
+// loudly with the command that works.
+//
+// AND IT ONLY SPEAKS WHERE THE ROUTE IT NAMES EXISTS. This file ships in the
+// PUBLIC tree (+android in tools/PUBLIC-TREE.manifest), where README.md tells
+// the world to run `npm run android` and `./gradlew assembleRelease`. Without
+// the route check below, every one of those documented commands was refused
+// for everyone who is not on this laptop, pointing them at `fab build` and a
+// node cache under someone else's home directory -- with no hint that
+// FAB_ALLOW_LOCAL_BUILD exists. A guard that makes the public artifact
+// unbuildable is not a strict guard, it is a broken one, and the public-safe
+// check cannot catch it: that check scans for names, paths and hosts, and
+// this file leaked none. Same arm as tools/jest-fab-guard.js.
+def fabRouteExists = {
+  String path = System.getenv('PATH')
+  if (path != null) {
+    for (String dir : path.split(File.pathSeparator)) {
+      if (dir && new File(dir, 'fab').isFile()) {
+        return true
+      }
+    }
+  }
+  // PATH-independent fallback: a spawned agent's environment is not a login
+  // shell, and both rogue runs that motivated these guards came from spawned
+  // worktrees. A stripped PATH must not make the guard inert on the very box
+  // it protects.
+  return new File(System.getProperty('user.home'), '.buildr/homelab-bin/fab').isFile()
+}
+if (fabRouteExists() && System.getenv('FAB_ID') == null && System.getenv('EAS_BUILD') == null && System.getenv('FAB_ALLOW_LOCAL_BUILD') == null) {
+  throw new GradleException(
+    'Local gradle build refused: heavy builds run on fab.\n' +
+    '  fab build --repo <repo> --artifact android/app/build/outputs/apk/release/app-arm64-v8a-release.apk \\\n' +
+    "    -- bash -c 'export PATH=\$HOME/.cache/playapal-node-v22.23.2/bin:\$PATH; npm ci; cd android && ./gradlew assembleRelease'\n" +
+    '  (deliberate local run: FAB_ALLOW_LOCAL_BUILD=1 ./gradlew …)')
+}
+includeBuild('../node_modules/@react-native/gradle-plugin')
