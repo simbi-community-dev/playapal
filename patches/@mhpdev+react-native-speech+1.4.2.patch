@@ -1,0 +1,13 @@
+diff --git a/node_modules/@mhpdev/react-native-speech/android/src/main/java/com/speech/RNSpeechModule.kt b/node_modules/@mhpdev/react-native-speech/android/src/main/java/com/speech/RNSpeechModule.kt
+index 0ae28af..2fec24e 100644
+--- a/node_modules/@mhpdev/react-native-speech/android/src/main/java/com/speech/RNSpeechModule.kt
++++ b/node_modules/@mhpdev/react-native-speech/android/src/main/java/com/speech/RNSpeechModule.kt
+@@ -730,7 +730,7 @@ class RNSpeechModule(reactContext: ReactApplicationContext) :
+ 
+   override fun openVoiceDataInstaller(promise: Promise) {
+     try {
+-      val activity = currentActivity ?: throw Exception("The current activity is not available to launch the installer.")
++      val activity = getCurrentActivity() ?: throw Exception("The current activity is not available to launch the installer.")
+       val intent = Intent(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA)
+       if (intent.resolveActivity(activity.packageManager) != null) {
+         activity.startActivity(intent)
