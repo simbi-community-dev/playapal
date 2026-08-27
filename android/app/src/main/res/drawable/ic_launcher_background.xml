@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The adaptive icon's background layer: the playa sunset gradient behind the
+  sun and horizon lines.
+
+  A shape drawable rather than five PNGs. The launcher scales and parallaxes
+  this layer independently of the foreground, so it has to stay sharp at any
+  size a launcher asks for, and a vector gradient does that for 300 bytes.
+
+  Colours are sampled from the shipped iOS marketing icon so the two platforms
+  render the same artwork; they are NOT the app's theme tokens, which are the
+  in-app UI palette and a different thing.
+
+  angle=270 is top-to-bottom in Android's convention (0 = left-to-right).
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:startColor="#E78239"
+        android:endColor="#B5451F"
+        android:angle="270" />
+</shape>

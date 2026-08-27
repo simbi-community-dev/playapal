@@ -1,0 +1,82 @@
+{
+  "name": "playapal",
+  "version": "0.8.7",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "lint": "eslint .",
+    "postinstall": "patch-package",
+    "start": "react-native start",
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dr.pogodin/react-native-fs": "^2.40.0",
+    "@mhpdev/react-native-speech": "1.4.2",
+    "@op-engineering/op-sqlite": "^18.1.1",
+    "@react-native-community/geolocation": "^3.4.0",
+    "@react-native-documents/picker": "^12.0.2",
+    "@react-native/new-app-screen": "0.87.0",
+    "fflate": "^0.8.3",
+    "graphology": "0.26.0",
+    "graphology-shortest-path": "2.1.0",
+    "graphology-traversal": "0.3.1",
+    "jpeg-js": "^0.4.4",
+    "jsqr": "^1.4.0",
+    "llama.rn": "0.12.8",
+    "react": "19.2.3",
+    "react-native": "0.87.0",
+    "react-native-device-info": "^15.0.2",
+    "react-native-gesture-handler": "^3.2.1",
+    "react-native-image-picker": "^8.2.1",
+    "react-native-qrcode-svg": "^6.3.21",
+    "react-native-quick-sqlite": "^8.2.7",
+    "react-native-safe-area-context": "^5.5.2",
+    "react-native-sensors": "^7.3.6",
+    "react-native-sherpa-onnx": "^0.4.3",
+    "react-native-svg": "^15.15.5",
+    "react-native-webrtc": "^124.0.8",
+    "sqlite-vec": "^0.1.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/runtime": "^7.25.0",
+    "@react-native-community/cli": "20.2.0",
+    "@react-native-community/cli-platform-android": "20.2.0",
+    "@react-native-community/cli-platform-ios": "20.2.0",
+    "@react-native/babel-preset": "0.87.0",
+    "@react-native/eslint-config": "0.87.0",
+    "@react-native/jest-preset": "0.87.0",
+    "@react-native/metro-config": "0.87.0",
+    "@react-native/typescript-config": "0.87.0",
+    "@types/jest": "^29.5.13",
+    "@types/react": "^19.2.0",
+    "@types/react-test-renderer": "^19.1.0",
+    "eslint": "^8.19.0",
+    "jest": "^29.6.3",
+    "patch-package": "8.0.1",
+    "prettier": "2.8.8",
+    "react-test-renderer": "19.2.3",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=22.23 <23 || >=24.3 <25 || >=26"
+  },
+  "op-sqlite": {
+    "fts5": true,
+    "sqliteVec": true
+  },
+  "license": "Apache-2.0",
+  "description": "Offline, on-device guide for Black Rock City: local LLM chat, event search, survival guide, camp board — core features run without a server or signal after models and data are set up",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simbi-community-dev/playapal.git"
+  },
+  "homepage": "https://playapal.lol",
+  "bugs": {
+    "url": "https://github.com/simbi-community-dev/playapal/issues"
+  },
+  "author": "David Anderson and Playa Pal contributors"
+}
