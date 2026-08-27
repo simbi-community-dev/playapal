@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%A6%9B%3C/text%3E%3C/svg%3E">
+<title>A camp beam · Playa Pal</title>
+<meta name="description" content="Someone beamed you their camp's board from Black Rock City. It opens in Playa Pal, and no server ever sees it.">
+<style>
+  :root{--bg:#0c0912;--dust:#ece3d1;--dust-dim:#b6aa96;--card:#171020;--line:#2d2436;--el:#ff5fa2;--gld:#ffb84d}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--dust);font:17px/1.6 ui-rounded,system-ui,sans-serif;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+  h1{font-size:1.4rem;margin-bottom:4px}
+  .dim{color:var(--dust-dim);font-size:.95rem}
+  .cards{margin:20px 0;display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px}
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;text-align:left}
+  .fname{font-weight:700;font-size:1.1rem}
+  .fwhere{color:var(--gld)}
+  .fnote{color:var(--dust-dim);font-size:.92rem}
+  a.open{display:inline-block;background:var(--el);color:#1a0812;font-weight:700;border-radius:999px;padding:12px 26px;text-decoration:none;margin:8px 0}
+  a.plain{color:var(--gld)}
+  .fine{color:var(--dust-dim);font-size:.85rem;max-width:420px;margin-top:18px}
+</style>
+</head>
+<body>
+<p style="font-size:2.2rem" aria-hidden="true">🦛</p>
+<h1 id="title">A beam from a camp</h1>
+<p class="dim" id="sub">Someone beamed you their camp's board.</p>
+<div class="cards">
+  <div class="fcard">
+    <p class="fname">A beam is a camp's board in one link</p>
+    <p class="fwhere">Camp posts and notes, sealed to one camp</p>
+    <p class="fnote">The board rides after the <b>#</b> in this address, and
+    only Playa Pal can open it: the app checks the seal against your own camp's
+    passphrase before a single post is filed. A phone in a different camp gets
+    nothing, and that is exactly what makes a camp board camp-private.</p>
+  </div>
+</div>
+<p><a class="open" id="openapp" href="#" style="display:none">Open in Playa Pal</a></p>
+<p class="dim">Don't have it? Playa Pal is a free, offline, open-source
+Black Rock City guide: <a class="plain" href="https://playapal.lol">playapal.lol</a></p>
+<p class="fine">This page never opened the beam: the part of the link after
+<b>#</b> is never sent to any server. Playa Pal has no accounts and no
+backend; a board only travels between the phones in a camp.</p>
+<script>
+(function(){
+  var h=location.hash.slice(1), sub=document.getElementById('sub'),
+      open=document.getElementById('openapp');
+  if(!h){sub.textContent='This link is missing its board — ask them to beam it again.';return}
+  if(h.length>368640){sub.textContent='This link is too large to be a camp beam.';return}
+  if(!/^[A-Za-z0-9_-]+$/.test(h)){sub.textContent='This link did not arrive whole — ask them to beam it again.';return}
+  open.href='playapal://beam#'+h;
+  open.style.display='';
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- GPS lane (src/geo): on-device only, nothing leaves the phone.
+         Android 12+ requires COARSE alongside FINE in the runtime dialog. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- Wi-Fi Aware discovery for the walkie's own-link rung (API 33+;
+         neverForLocation because the pod's position feature has its own
+         explicit location grant). Pre-33 Aware rides ACCESS_FINE_LOCATION
+         above. The feature stays optional: phones without the radio keep
+         every other rung.
+
+         SECOND USE, NO NEW PERMISSION: the camp hotspot (HotspotModule.kt —
+         one phone makes the shared Wi-Fi a video call needs) asks the same
+         grant, because WifiManager.startLocalOnlyHotspot demands
+         NEARBY_WIFI_DEVICES on 33+ and ACCESS_FINE_LOCATION below it. Both
+         lines were already here for the walkie; hosting adds a new MOMENT
+         at which one of them is requested, not a new thing to grant. -->
+
+    <uses-permission
+        android:name="android.permission.NEARBY_WIFI_DEVICES"
+        android:usesPermissionFlags="neverForLocation" />
+    <!-- Both are install-time (normal) grants; WifiAwareManager demands
+         them for attach/isAvailable — measured on the Pixel 7: their
+         absence surfaced as a SecurityException DIALOG on walkie open. -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- ConnectivityManager.requestNetwork() — the Aware DATAPATH request.
+         Measured on two off-network Pixels: discovery matched and both
+         peer handles resolved, then every requestNetwork was refused with
+         "was not granted either of these permissions: CHANGE_NETWORK_STATE,
+         WRITE_SETTINGS" — the one line between a discovered peer and live
+         voice. Normal (install-time) grant. -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-feature
+        android:name="android.hardware.wifi.aware"
+        android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Two uses, one permission: art photos (a 320px thumbnail snapped at
+         the piece) and reading a friend's QR code without leaving the app.
+         Declaring CAMERA makes the runtime grant mandatory before
+         launchCamera — AddNoteSheet and scanCode.ts each request it in
+         context, with their own sentence. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- required=false: declaring the CAMERA permission alone lets Play
+         infer camera hardware as REQUIRED and hide the app from
+         camera-less devices — which can still pick from the gallery. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <!-- Crew (docs/CREW-DESIGN.md Phase B/C): offline crew presence over BLE.
+         API 31+ runtime trio; the maxSdkVersion pair covers 30-and-below,
+         where scanning additionally rides the location grant the compass
+         already asks for. No neverForLocation flag ON PURPOSE: a crew
+         sighting IS position data (self-reported in the payload), and
+         claiming otherwise would be gaming the declaration. -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
+    <!-- Phase C: the share session survives the pocket via a foreground
+         service (persistent notification = the honest "this is running"
+         surface). Types: location keeps the GPS fix flowing under the
+         while-in-use grant (the modern alternative to ACCESS_BACKGROUND_
+         LOCATION, which we deliberately do NOT request), connectedDevice
+         covers the BLE radio work. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <!-- Voice notes for the pod's answering machine (FieldAudio): asked in
+         context at the record button, never up front. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Video calls (react-native-webrtc). Its network monitor reads
+         network state to follow the LAN/Aware path a call rides, and its
+         audio device module manages speaker/earpiece routing. Both are
+         install-time grants, no runtime ask. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <!-- "Update to latest" (src/update/appUpdate.ts, AppUpdateModule.kt).
+         Playa Pal reaches most Android phones as an APK handed over by
+         another phone, and nothing about that install will ever tell the
+         camper a newer build exists. This grant is what lets the app fire
+         the system package installer on the release APK it just fetched;
+         without it the ACTION_VIEW lands on a refusal with no explanation.
+         It is not a silent power: Android still asks the camper to allow
+         installs from this source, per-source, at the moment it happens. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme"
+      android:usesCleartextTraffic="${usesCleartextTraffic}"
+      android:supportsRtl="true">
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+        android:launchMode="singleTask"
+        android:windowSoftInputMode="adjustResize"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <!-- Friend-card deep links (Friends on playa): the QR encodes
+             https://playapal.lol/f#<card>; playapal://friend#<card> is the
+             offline-safe custom scheme. The payload rides the FRAGMENT, so
+             it never reaches any server either way. -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="playapal.lol" android:path="/f" />
+            <data android:scheme="https" android:host="www.playapal.lol" android:path="/f" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="playapal" android:host="friend" />
+        </intent-filter>
+        <!-- Beam deep links (small boards over QR): the sibling of the friend
+             card — https://playapal.lol/b#<frag> and playapal://beam#<frag>.
+             Decoders are anchored on the PATH, so a friend link and a beam
+             link can never be mistaken for each other. -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="playapal.lol" android:path="/b" />
+            <data android:scheme="https" android:host="www.playapal.lol" android:path="/b" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="playapal" android:host="beam" />
+        </intent-filter>
+        <!-- EXACT PATHS, not prefixes. `pathPrefix="/p"` also claimed
+             https://playapal.lol/privacy — which is LIVE (200) and is the
+             Play Console privacy-policy URL. Once app-link verification
+             succeeded, tapping "Privacy policy" in a store listing would open
+             Playa Pal, which decodes nothing and returns silently. A Play
+             reviewer would have hit that. The same over-claim applied to /f
+             (/faq, /friends…) and /b (/board…) with no live collision yet.
+             The fragment is not part of Uri.getPath(), so exact-path matching
+             still catches #frag payloads.
+
+             Pod invite deep links (docs/WALKIE-LADDER.md §8, rung 0). The
+             third member of the family — https://playapal.lol/p#<frag> and
+             playapal://pod#<frag>. A pod was the only shareable object in the
+             app you could not hand over by pointing a camera at a screen; the
+             payload rides the FRAGMENT like its two siblings, so no server
+             ever sees a pod code. Decoders are anchored on the PATH, so /f,
+             /b and /p can never be mistaken for one another. -->
+        <intent-filter android:autoVerify="true">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="playapal.lol" android:path="/p" />
+            <data android:scheme="https" android:host="www.playapal.lol" android:path="/p" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="playapal" android:host="pod" />
+        </intent-filter>
+        <!-- Beam FILES (docs/BEAM-INGRESS-CONTRACT.md §1). A .playapal file
+             is JSON with our own MIME, but Android's MimeTypeMap has no entry
+             for a custom extension, so a file received through Quick Share
+             or opened from Downloads arrives as application/octet-stream on
+             a content:// URI whose path does not contain the filename. The
+             VIEW filter therefore claims our exact MIME AND octet-stream —
+             and deliberately NOT application/json (every JSON on the phone).
+             The JS sniffer refuses a non-beam with one honest sentence. -->
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:scheme="content" />
+            <data android:scheme="file" />
+            <data android:mimeType="application/vnd.playapal.beam+json" />
+            <data android:mimeType="application/octet-stream" />
+        </intent-filter>
+        <!-- "Share → Playa Pal" from Files, Drive, Signal, mail. Over-offering
+             in a share sheet is the norm, so JSON is claimed here too (legacy
+             .json beams from v0.6.x still share in). -->
+        <intent-filter>
+            <action android:name="android.intent.action.SEND" />
+            <action android:name="android.intent.action.SEND_MULTIPLE" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <data android:mimeType="application/vnd.playapal.beam+json" />
+            <data android:mimeType="application/octet-stream" />
+            <data android:mimeType="application/json" />
+        </intent-filter>
+      </activity>
+      <!-- Crew Phase C: the share-session heartbeat (see CrewShareService's
+           header for the consent posture; exported=false — nothing outside
+           the app may start or stop a sharing session). -->
+      <service
+          android:name=".CrewShareService"
+          android:exported="false"
+          android:foregroundServiceType="location|connectedDevice" />
+      <provider
+          android:name="androidx.core.content.FileProvider"
+          android:authorities="${applicationId}.fileprovider"
+          android:exported="false"
+          android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths" />
+      </provider>
+    </application>
+</manifest>
