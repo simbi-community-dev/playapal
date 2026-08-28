@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  THE PLAY BINARY, MINUS ONE PERMISSION.
+
+  Google Play's Device and Network Abuse policy forbids an app that downloads
+  and installs an APK of itself. Playa Pal does exactly that on the sideload
+  road ("Update to latest", src/update/appUpdate.ts + AppUpdateModule.kt),
+  because a phone that got the app handed to it in the dust has no other
+  channel that will ever mention a newer build. On the Play road there IS
+  another channel — the Store — so the capability is not merely hidden here,
+  it is REMOVED: without REQUEST_INSTALL_PACKAGES the system installer cannot
+  be fired at all, whatever any future JS says.
+
+  Hiding alone would not have been enough. A declared permission is what a
+  policy scan reads, and "the row is behind a flag" is not a defence for a
+  binary that still asks Android for the power. tools:node="remove" strikes
+  the line during manifest merge, so the play AAB's merged manifest simply
+  does not contain it — verify after any build with:
+
+    ./gradlew :app:processPlayReleaseMainManifest
+    grep -c REQUEST_INSTALL_PACKAGES \
+      android/app/build/intermediates/merged_manifest/playRelease/AndroidManifest.xml
+
+  ...which must print 0, and the same grep against githubRelease must print 1.
+
+  The Settings rows that USED that power ("Update to latest", "Share Playa
+  Pal") are hidden in this flavor by src/config/distribution.ts, which reads
+  the generated asset flag this flavor carries. Two independent locks on one
+  door, on purpose: the manifest is the one Play scans, the flag is the one a
+  camper sees.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission
+        android:name="android.permission.REQUEST_INSTALL_PACKAGES"
+        tools:node="remove" />
+
+</manifest>

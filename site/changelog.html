@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%A6%9B%3C/text%3E%3C/svg%3E">
+<title>Playa Pal changelog</title>
+<meta name="description" content="Playa Pal's road to the playa, one tenth at a time. Each version is an era of the seven-day build.">
+<style>
+  :root{--bg:#0c0912;--dust:#ece3d1;--dust-dim:#b6aa96;--card:#171020;--line:#2d2436;--el:#ff5fa2;--gld:#ffb84d;--grn:#7ce87c;--cyn:#7de0d6;--vio:#a98cff}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--dust);font:17px/1.65 ui-rounded,system-ui,sans-serif;padding:48px 20px 80px;display:flex;flex-direction:column;align-items:center}
+  main{max-width:640px;width:100%}
+  h1{font-size:1.7rem;margin:8px 0 4px}
+  .lede{color:var(--dust-dim);margin-bottom:36px}
+  .rel{border-left:3px solid var(--line);padding:4px 0 4px 22px;margin:0 0 34px;position:relative}
+  .rel::before{content:'';position:absolute;left:-8px;top:14px;width:13px;height:13px;border-radius:50%;background:var(--line)}
+  .rel.now{border-color:var(--el)} .rel.now::before{background:var(--el);box-shadow:0 0 12px #ff5fa27a}
+  .v{font-size:1.25rem;font-weight:800}
+  .v .num{color:var(--el)} .rel:nth-of-type(3) .num{color:var(--gld)} .rel:nth-of-type(4) .num{color:var(--grn)} .rel:nth-of-type(5) .num{color:var(--cyn)} .rel:nth-of-type(6) .num{color:var(--vio)}
+  .when{color:var(--dust-dim);font-size:.9rem;margin-bottom:10px}
+  ul{padding-left:20px;margin:8px 0} li{margin:6px 0}
+  b{color:#fff}
+  a{color:var(--gld)}
+  .ghbtn{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 16px;text-decoration:none;font-size:.9rem;margin-top:10px}
+  .foot{color:var(--dust-dim);font-size:.9rem;margin-top:24px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+<p style="font-size:2rem" aria-hidden="true">🦛</p>
+<h1>The road to the playa</h1>
+<p class="lede">Playa Pal was built in twelve days before Burning Man 2026. The
+first commit landed on Aug 13 and 0.8.0 shipped on Aug 24. Each tenth of a
+version is an era: a thing the app couldn't do the day before. The current
+release rides to the playa as an experimental beta. <b>1.0 is earned when Black
+Rock City itself has field-tested it.</b></p>
+
+<div class="rel now">
+  <p class="v"><span class="num">0.9.0</span> · The links learn to let go</p>
+  <p class="when">Aug 27 · one long lesson in ownership · the road build</p>
+  <p style="margin:0 0 12px">This is the build that drives to Black Rock City,
+  and it goes as an experimental beta. Two weeks of work put more into the app
+  than a workbench can prove, so 2026 is the test: what holds up at 4am, in
+  real dust, in a camp full of phones. The proof grid below is where that gets
+  recorded, and anything it does not mark proven is still waiting on a
+  phone.</p>
+  <ul>
+    <li><b>iPhone links no longer strangle their replacements</b> (iPhone):
+      an old link's shutdown could reach across and close the radio the new
+      one was already using. Four rounds to get right; the shape that held
+      is that a retirement <i>leases</i> what it retires until its cancel
+      has taken effect, never merely been issued. Adverts end the same way,
+      and every dial gets its own Bluetooth stack.</li>
+    <li><b>Your iPhone finds Androids much faster when the walkie is
+      open</b>: the discovery asymmetry has a root cause at last. A phone
+      scanning while its own radio talks was giving the air away between
+      looks. The scan holds its airtime now, and <b>Look again</b> collects
+      what is really there.</li>
+    <li><b>A link says its name before it carries a voice</b>: the dialer
+      introduces itself instead of leaving the other phone waiting. Two
+      earlier attempts at this were built, measured, and taken back out,
+      because a fix that needs four rounds to bind is telling you the shape
+      is wrong.</li>
+    <li><b>The voice queue drops the right end</b>: a full queue loses its
+      oldest frame and never the newest, which is the only choice that makes
+      sense for live voice. (Android) the crash that could take the app down
+      mid-sentence is fenced.</li>
+    <li><b>The pod page keeps its place</b>: re-entry re-reads the unread
+      count, a pane you chose outranks the default, the title rides the
+      picker row, and a hot radio always says so on screen.</li>
+    <li><b>Tap a mention, land where it happened</b>: the notification opens
+      that pod's mail rather than a home screen.</li>
+    <li><b>Settings becomes the gear</b>, and the Angel takes the fourth
+      slot, since five tabs were one more than a thumb wants.</li>
+    <li><b>The proof grid is a grid</b>: an at-a-glance matrix of which pair,
+      on which radio, has carried which feature, plus the manual bench for
+      what automation cannot replace. Not marked proven means no phone has
+      said so yet.</li>
+    <li><b>One radio, one truth</b> (iPhone): the scan and the advert now
+      report the level the radio itself says, and every road that turns
+      Bluetooth off, resets it, or has it denied ends its promises with the
+      truth instead of leaving them waiting.</li>
+    <li><b>Recovery is a transaction with three legs</b>: the interruption
+      banner clears only when the scan, the advert, and the mesh's own
+      republish have all come back for the same outage. An acknowledgment
+      from before the outage, or from a session that ended, clears
+      nothing.</li>
+    <li><b>A crash cannot ride the handshake</b> (iPhone): two bare radio
+      writes could take the whole app down mid-introduction; both now fail
+      caught, logged, and retired, and the field log says so in words the
+      phone's own redaction leaves readable.</li>
+    <li><b>A refusal at the door costs three seconds, not thirty</b>: a
+      phone turned away before anything went on the air is no longer
+      punished like one that failed on the air.</li>
+    <li><b>Late work signs its name</b>: an acknowledgment for a replaced
+      session, a callback for a reset radio, a debt from a retired link:
+      each carries the identity of the world that minted it, and a dead
+      world's mail moves nothing in the live one.</li>
+    <li><b>Two roads to the store</b>: the Play build and the sideload build
+      are two binaries now. The Play one has no self-updater because the
+      store owns delivery there; the GitHub one keeps "Update to
+      latest".</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.9.0">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.7</span> · The pod page finds its rooms</p>
+  <p class="when">Aug 27 · a UX pass and two race fixes, the road build</p>
+  <ul>
+    <li><b>Four panes, one strip</b>: the pod page's long scroll became
+      rooms: <b>People · Mail · Walkie · Setup</b>, one concern per
+      screenful, the same chips the Camp tab already taught your thumb.
+      Opens on Mail when mail is waiting, the unread count on the chip.</li>
+    <li><b>A fast toggle can't undo itself</b>: a quick off→on used to let
+      the slow teardown finish <i>after</i> the restart, silently stopping
+      the radio you just started. Lifecycle runs single-file now; the
+      mini-bar still goes honest the instant you tap.</li>
+    <li><b>The volume stopped pumping</b> (iPhone): the audio session is
+      re-asserted only when measurably wrong, ending the once-a-second
+      duck, and the same gate now notices a lost loudspeaker route, so
+      old messages stop whispering out of the earpiece.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.7">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.6</span> · Say a name, buzz a pocket</p>
+  <p class="when">Aug 26 · one four-phone bench day, distilled into the pre-playa build</p>
+  <ul>
+    <li><b>Mentions</b>: type <b>@kupo</b> and Kupo's pocket buzzes the moment
+      the mesh reaches her phone, on its own high-priority channel, on by
+      default, with one Settings row jumping straight to the OS
+      controls.</li>
+    <li><b>Nothing arrives late</b>: a walkie that falls behind now drops
+      late audio instead of haunting you with it ten seconds after, on both
+      platforms, with counters that admit it.</li>
+    <li><b>Every phone finds every phone</b>: iOS truncates its own
+      Bluetooth name in real packets; both decoders now accept what is
+      actually sent, identity stays proven over the wire, and a
+      <b>Look again</b> control re-asks every radio by hand.</li>
+    <li><b>The call grew up</b>: mirrored self-view (panning fixed), a
+      gold Muted pill readable in sunlight, fading controls, and a timer.
+      Two linked iPhones carry calls with <b>no Wi-Fi at all</b>,
+      field-measured at full quality.</li>
+    <li><b>Honest buttons</b>: the repeated-press crash is fixed with its
+      crash report as the proof, a quick dab no longer earns a scolding,
+      and <b>Check for update</b> installs the newest release in one tap.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.6">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.5</span> · The talk button proves it</p>
+  <p class="when">Aug 26 · one screenshot and one system log, half the answer each</p>
+  <ul>
+    <li><b>The iPhone talk button proves the mic is alive, and heals it
+      when it isn't</b>: 0.8.4 cured how the audio engine is born; the
+      holdout was how it ages. A video call rebuilds the phone's shared
+      audio session behind the walkie's back, and the engine the walkie
+      keeps warm survives that looking healthy while its microphone half
+      is quietly dead, so every press read "no-audio" even though a
+      fresh engine worked perfectly. Now the walkie checks the mic's
+      pulse on every reuse (a dead one has a readable tell), rebuilds
+      the engine the moment a call ends, and, if a press still hears
+      nothing for one second, swaps in a fresh engine before ever
+      bothering you.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.5">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.4</span> · The phones that make their own network</p>
+  <p class="when">Aug 26 · the overnight train: one night, eleven landings</p>
+  <ul>
+    <li><b>One Android makes the Wi-Fi</b>: video calls need a shared
+      Wi-Fi and the playa doesn't have one, so the pod does. Flip on
+      <b>Camp hotspot</b> and one Android hosts a no-internet Wi-Fi the
+      others join by pointing a camera at the code it shows (iPhones
+      offer to join straight from the stock Camera app). Fourteen ways
+      hosting can fail, fourteen honest sentences.</li>
+    <li><b>Two iPhones link directly</b> (new, and being field-tested):
+      pair once with a six-digit code on both screens, then talk at
+      full quality with no Wi-Fi at all, the same no-network trick two
+      Androids already do. Cross-platform with zero Wi-Fi stays lo-fi
+      voice and messages, since that half waits on Apple.</li>
+    <li><b>The talk button hears again</b>: the iPhone mic bug came
+      apart into three root causes: an audio engine born without its
+      input half, a session mode whose voice processor delivered
+      nothing, and a stray double-catch that swallowed every error. All
+      three fixed at the root. And a project-file collision that had
+      silently left one iOS module pair out of every build to date is
+      found, fixed, and pinned.</li>
+    <li><b>Curiosity gets a tap</b>: the tiny-print paragraphs on every
+      screen moved behind a calm circled <b>?</b>, so one tap gives the full
+      explanation and the screen keeps its ink for what changes.
+      Status lines stay put. Settings grew a <b>text size</b> dial of four
+      steps, instant, everywhere.</li>
+    <li><b>Voice notes grow up</b>: a graze can't mint an empty
+      voicemail (a note needs a held second, and a shorter press says
+      so), and received notes became a full-width play control with a
+      bright playing state, hittable with gloves on.</li>
+    <li><b>The radio keeps its cool</b>: a reviewer pass closed four
+      race conditions in the night's radio surgery before they could
+      bite, including a crash reachable from network input.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.4">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.3</span> · The link that holds in the dust</p>
+  <p class="when">Aug 26 · one night of three-phone field testing, distilled</p>
+  <ul>
+    <li><b>The walkie stops flapping</b>: with no Wi-Fi anywhere, which is
+      the playa's normal, the phone-to-phone link used to come up, go deaf,
+      and re-dial in an endless 30-second loop, and a name on the channel
+      could look fine while nothing got through. Two root causes found in
+      one night of two-sided logs and fixed: a re-dialed phone now
+      re-learns where its podmate answers from instead of latching the
+      first address forever, and an answering phone abandons a link the
+      system quietly killed instead of staying bound to its corpse.
+      Measured before and after: the loop is gone, at one blip in five
+      minutes, healed in two seconds.</li>
+    <li><b>The channel list stops lying</b>: a podmate whose link went
+      quiet now reads <b>(quiet)</b> rather than (lo-fi), which promised live
+      audio over a link that had none, with one sentence under the list
+      saying your voice may not be reaching them while messages still go.
+      And when names drop off the channel and come back as links flap,
+      the app says so: that's the dust, not a fault.</li>
+    <li><b>Call endings tell the truth</b>: "No answer" used to cover the
+      case where the invite never left your phone. That's now its own
+      ending, which says it couldn't get through because their link went
+      quiet, and when
+      that person still carries lo-fi voice, it says the working
+      alternative out loud: hold the talk button.</li>
+    <li><b>Why some pairs are lo-fi</b>: the walkie hint now leads with
+      what to expect: some pairs of phones link at full quality, some
+      always come through rougher, and both carry your voice. A
+      podmate you can talk to but not video-call gets that ceiling named
+      instead of a silently missing button.</li>
+    <li><b>Each phone's list is its own</b>: the pod list now says reach
+      is per-phone, so two podmates can see different lists and both are
+      right, because messages hop phone to phone.</li>
+    <li><b>Video's honest limit, measured</b>: with no Wi-Fi anywhere, a
+      video call rings, tries, and says it couldn't get through. The
+      video stream needs a shared Wi-Fi (a hotspot with no internet
+      counts), and every surface now says so instead of implying the
+      walkie's no-network trick covers video too. Live voice and voice
+      notes are the no-network tools; carrying video over the direct
+      phone-to-phone link is the next frontier.</li>
+    <li><b>iPhone: the talk button comes back</b>: a video call could
+      leave the iPhone's audio engine dead in a way it never noticed, so
+      press-to-talk read "no audio" and incoming voice played nothing
+      while the who's-talking chip showed. The engine now rebuilds itself
+      the moment it's found dead. And Settings grew a <b>microphone
+      check</b>: one tap tries every way the app can listen and reports
+      which of them works, so a mic bug gets diagnosed from a screenshot
+      instead of a guess.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.3">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.2</span> · The pod gets a face</p>
+  <p class="when">Aug 25 · the walkie stops needing a network</p>
+  <ul>
+    <li><b>Live voice without Wi-Fi</b>: the walkie used to need a shared
+      network, which is the thing you most often don't have. Two phones
+      now find their own way to each other, and where they can't, the
+      voice still carries over Bluetooth alone, rougher, and marked
+      <b>lo-fi</b> on the row so you know why. You never pick a radio: the
+      app climbs to the best link it can prove and drops back the moment
+      that link goes quiet, and you stay in the pod either way. It's much
+      louder too, since the voice comes out of the loudspeaker now, not the
+      earpiece.</li>
+    <li><b>1:1 video calls</b>: a 📹 beside each person in the walkie, then
+      ring, answer or decline, hang up from either side, mute, flip the
+      camera. It runs over the pod's own link with no server and no
+      internet, and the picture climbs on its own to whatever the two
+      phones can carry. Walk out of range and the call ends with a
+      sentence that says so, instead of freezing.</li>
+    <li><b>Am I connected, and to whom</b>: one line on the pod card, and
+      a tap opens the list, each podmate with what that connection is
+      actually good for (voice · lo-fi voice · messages now · when you
+      pass by · notes keep). It never names a radio, and a quiet podmate
+      reads as a member who is quiet, not as an error.</li>
+    <li><b>Messages read like messages</b>: newest at the bottom, opening
+      there and following new arrivals, unless you've scrolled up, in
+      which case your place is kept and a <b>New messages</b> chip offers
+      one tap back down.</li>
+    <li><b>A voice note that can't play says so</b>: a recording whose
+      save failed left a file with sound in it and no index: the right
+      size, and unplayable by anything, so it travelled across camp
+      anyway. Broken takes are now refused as they happen, and one that
+      arrives damaged is labelled honestly instead of handing you
+      silence.</li>
+    <li><b>Swap cards by pointing a camera</b>: "We're together — swap
+      cards" opens a panel with your code to hold up and <b>Scan theirs</b>
+      to take one. The app can read a code now: one photo, inside the
+      app, no trip out to the camera and back. A scanned pod invite still
+      asks before it joins.</li>
+    <li><b>Camp lore the Angel can cite</b>: credited summaries of
+      veteran-burner talks, documentaries and camp histories, covering the
+      Temple, Rangers, art cars and gifting, each pointing you at the original
+      video. And the Angel can no longer quote the guide's own worked
+      <i>example</i> as if it were a real event.</li>
+    <li><b>4&nbsp;GB iPhones stop crashing</b>: the app sizes the model's
+      memory to the phone it's on instead of pinning the whole thing where
+      iOS can't move it.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.2">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.1</span> · The Angel learns its own strength</p>
+  <p class="when">Aug 25 · cut, then folded into 0.8.2 above</p>
+  <ul>
+    <li><b>Events answer like a schedule, not a search box</b>: naming an
+      event by its exact title answers instantly, every occurrence, cards
+      first. Titles keep their own words ("Morning" is part of a name, not
+      a time filter), and a time in your question is honored.</li>
+    <li><b>The camp board survives its own history</b>: a phone restored
+      from a backup rejoins as itself instead of duplicating its board,
+      and replies survive any number of reinstalls.</li>
+    <li><b>Honesty fixes</b>: a failed model import says so instead of
+      going quiet, a beam from the wrong camp says "wrong passphrase", and
+      the Angel never dresses a search hiccup as an authoritative "nothing
+      found".</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.8.0</span> · Camp Mesh, consolidated</p>
+  <p class="when">Aug 24 · your pod, off the grid</p>
+  <ul>
+    <li><b>Pods</b>: pick your people, or join by a spoken code, and your
+      phones keep track of each other over Bluetooth, with live direction and
+      distance when you're near. An Android shares from your pocket; an
+      iPhone shares while the app is open. One switch shares, one switch
+      stops everything.</li>
+    <li><b>A pod you can hand over</b>: a QR and a link, not just four
+      digits read aloud. Both carry the pod's name and your card, and
+      scanning one asks before it joins. No radio involved.</li>
+    <li><b>The answering machine</b>: leave the pod a note, typed or spoken,
+      and it hops phone to phone when podmates pass in range. A
+      spare phone plugged in at camp keeps the mailbox. Mail no longer
+      depends on two phones agreeing what time it is.</li>
+    <li><b>Walkie</b>: hold to talk, live, on the camp Wi-Fi, where a hotspot
+      with no internet behind it is enough. Ten people at once; a bigger
+      pod is pointed at voice notes rather than dropping someone.</li>
+    <li><b>Dark mode</b>: system-matched or pinned, every label in both
+      palettes, kept honest by a build test.</li>
+    <li><b>The Angel knows your plans</b>: your hearted events and saved
+      pins are searchable now, written on the phone and never off it.</li>
+    <li><b>Sharing, sorted</b>: an audit of every share button left almost
+      everything where it was, and moved the one door that takes things
+      IN to a section that says what it accepts.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.8.0">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.7.4</span> · Every camp counts</p>
+  <p class="when">Aug 24 · a field report, fixed within the hour</p>
+  <ul>
+    <li><b>The setup camp picker offers the whole city now</b>: all 1,184
+      placed camps with their placements, not just the ones hosting
+      events. If your camp was missing, "Run setup again" in Settings will
+      find it.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.7.4">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.7.3</span> · Welcome home</p>
+  <p class="when">Aug 24 · the app introduces itself</p>
+  <ul>
+    <li><b>A real first hour</b>: a 30-second setup asking your name (optional)
+      and your camp, picked from the real 2026 placements or typed freehand.
+      Pick a placed camp and Home lands on the map, "Take me home" works
+      from night one, and your friend card starts pre-filled. Nothing
+      required; nothing you type leaves the phone.</li>
+    <li><b>A tour you can keep</b>: five cards, the whole app in under a
+      minute, and you can replay it, or re-run setup, from Settings
+      whenever.</li>
+    <li><b>The way home, in the header</b>: the map door becomes a live
+      arrow the moment the app knows where home is, pointing at your camp
+      from every tab.</li>
+    <li><b>Pins you can keep</b>: the compass's ✎ manager lists every pin,
+      Home first and then newest, each with its address and a visible
+      Remove.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.7.3">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.7.2</span> · Faves</p>
+  <p class="when">Aug 24 · a campmate asked to plan her burn days</p>
+  <ul>
+    <li><b>♥ Faves</b>: tap the heart on any event, while browsing,
+      searching, or reading the Angel's answers, and it joins your lineup:
+      time-ordered,
+      grouped by day, walk-timed. Hearts are keyed to the event itself, so
+      they survive every data update.</li>
+    <li><b>The settled city</b>: event submissions closed Aug 22 and the
+      weekend's approvals are in, with 6,500+ events, every placement current,
+      the art register as it stands.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.7.2">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.7.1</span> · The real city</p>
+  <p class="when">Aug 21 · the API key arrived</p>
+  <ul>
+    <li><b>Real 2026 placements</b>: every event card carries its camp's
+      true clock address, with walk and bike times to the actual spot.</li>
+    <li><b>The art of 2026, on board</b>: every registered piece in the
+      artists' own words, searchable and citable by the Angel. Locations
+      stay hidden until Gate opens, exactly as Burning Man requires.</li>
+    <li><b>Search knows names</b>: typing the exact name of a thing puts
+      that thing first, above every party riffing on its name.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.7.0</span> · Tap the file, it opens</p>
+  <p class="when">Aug 20 · beams became real files</p>
+  <ul>
+    <li><b>A beam is a file now</b>: a .playapal opened from Files, Quick
+      Share, AirDrop, or a cable installs itself, cold start or warm, with no
+      internet anywhere in the loop.</li>
+    <li><b>Share the whole app</b> phone-to-phone on Android, with honest
+      guidance past the scary screens.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.6.1</span> · The map answers back</p>
+  <p class="when">Aug 20 · "it doesn't feel very interactive" · now it does</p>
+  <ul>
+    <li><b>Tap anywhere to aim</b>: touch a spot and the compass points at
+      it, named by its real address, as in "Map spot · 4:36 &amp; G". Tap again
+      from the arrow view and walk there.</li>
+    <li><b>Hold and drag to place exactly</b>: a tap is fast but coarse.
+      Press and hold for a third of a second and the target lifts off your
+      fingertip, so your hand stops hiding the thing you are placing. Drag
+      until the address reads right, then let go. That is how you pin your
+      camp's actual corner instead of near it.</li>
+    <li><b>Pinch and pan</b>: two fingers zoom to 4x, one drags the city
+      under you, and the map stays inside its frame at every zoom.</li>
+    <li><b>Tap a pin to pick it</b>: your saved pins, your friends' camps,
+      the Man and the Temple all answer a tap on the map itself, so there is
+      no more hunting the chips below and no more dropping a rival pin beside
+      your own.</li>
+    <li><b>Your camp is a waypoint</b>: set your camp address on your card
+      and Home appears on the map without dropping a pin.</li>
+    <li>Fixed: taps landing centimeters off while zoomed; a press held
+      between 0.22s and 0.35s doing nothing at all; the map flickering
+      while zoomed and again every five seconds while standing still; and
+      a long press crashing the app on some phones.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.6.1">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.6.0</span> · Camp knowledge</p>
+  <p class="when">Aug 20 · "can info be uploaded to it?" · yes, by anyone with the camp passphrase</p>
+  <ul>
+    <li><b>Add to camp knowledge</b>: a memory, an event the guide missed,
+      a fix to a wrong fact, or a camp resource, typed in the app with no
+      files. Your own notes can be edited and removed.</li>
+    <li><b>Notes travel with the camp beam</b>, integrity-checked with the
+      shared camp passphrase (not encrypted; the author name is a label,
+      not a verified identity) and carried verbatim across hops. The beam
+      is a real shareable file now, and a copy stays on the phone for
+      re-sending.</li>
+    <li><b>Notes are first-class knowledge</b>: search, a live "Camp
+      notes" reader document, and the Now tab. Search and reader passages
+      are labeled "recorded by X; camp-passphrase verified, not
+      authenticated"; event cards name who added them. Citing a fix
+      beside the exact fact it corrects is wired underneath and gets its
+      fact-picker UI in a coming release.</li>
+    <li>The whole loop was driven end-to-end on two devices before
+      release, and everything the testing stumbled on was fixed: loud
+      profile saves with a camp-change warning, honest import counts, back
+      navigation in the reader, first-tap saves with the keyboard open.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.6.0">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.5.2</span> · Listening to the first users</p>
+  <p class="when">Aug 19 · the evening the app met its audience</p>
+  <ul>
+    <li><b>Typing to the Angel works like a messenger</b>: the input and
+      Send stay visible above the keyboard.</li>
+    <li><b>Downloads show themselves</b>: a model pull reads its live
+      progress right on the model list.</li>
+    <li>The Boards heading tells the truth, and the site and README now say
+      plainly that <b>every tool works with no AI installed</b> and the
+      Angel is the optional layer. The copy was trimmed after real-user
+      feedback.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.5.2">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.5.1</span> · Consent, the reader, and the Max Angel</p>
+  <p class="when">Aug 19 · same-day follow-through on the public release</p>
+  <ul>
+    <li><b>Consent on friend cards</b>: sharing asks "just for them" or
+      "pass it on" at the moment of sharing; only pass-it-on cards ride
+      "Beam friends", and direct cards say so on their row. This is honored
+      by the app rather than enforced by cryptography, and the app tells
+      you that itself.</li>
+    <li><b>The pack reader</b>: read the saved source materials straight
+      through, credited and fully offline, with no question needed
+      first.</li>
+    <li><b>Playa Angel Max</b>: the first zero-contradiction Angel on our
+      31-question battery (a Gemma 4 E4B fine-tune) joins as a top tier for
+      high-memory phones, with an honest measured-RAM recommendation.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.5.1">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.5.0</span> · The social city</p>
+  <p class="when">Aug 19 · the first public release, the candidate that rides to the burn</p>
+  <ul>
+    <li><b>Friends on playa</b>: share a friend card as a QR any normal camera
+      scans; the card travels inside the link itself, with no server, address
+      book, or account behind it. "Beam friends" gossips a whole crew's map;
+      a printable paper list honors the BurnerMap tradition.</li>
+    <li><b>The offline city map</b>: Black Rock City drawn from measured
+      geometry, with streets, plazas, toilet banks, your pins, your people,
+      and your blue dot. It needs no tiles and no network.</li>
+    <li>One coherent app: three tabs, the Angel as a full-screen conversation,
+      the real 2026 city geometry live, daily-event honesty, curation with
+      restore, and the disclosure that the whole app is AI-written under
+      human direction.</li>
+  </ul>
+  <a class="ghbtn" href="https://github.com/simbi-community-dev/playapal/releases/tag/v0.5.0">Release on GitHub →</a>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.4.0</span> · The trained Angel and the field kit</p>
+  <p class="when">Aug 17–18</p>
+  <ul>
+    <li>The <b>whiteout compass</b>: offline GPS to a city address, one giant
+      arrow with clock-phrase directions, dropped pins, "Take me home",
+      nearest toilets, walk times on every event card.</li>
+    <li>An open model catalog with a device-aware chooser; retrieval ranking
+      and disciplined thinking budgets; an eval instrument carrying its
+      owner's scoring bar. iOS cracked: it runs on a 4&nbsp;GB iPhone mini.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.3.0</span> · Facts over vibes</p>
+  <p class="when">Aug 15–16</p>
+  <ul>
+    <li>A <b>fact graph</b> under the packs: provenance-carrying edges, a
+      query engine, and the roots of the lineage view.</li>
+    <li>Engine hardening, and the training program stood up: three audits
+      over every fact before any fine-tune touched the model.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.2.0</span> · Camp life, on day two</p>
+  <p class="when">Aug 14</p>
+  <ul>
+    <li>The <b>camp board</b>: gifts and needs shared phone-to-phone as sealed
+      beams, designed, built, and device-verified in a day.</li>
+    <li>The survival guide grew its credited layers; pack import landed.</li>
+  </ul>
+</div>
+
+<div class="rel">
+  <p class="v"><span class="num">0.1.0</span> · An Angel in your pocket</p>
+  <p class="when">Aug 13 · day one</p>
+  <ul>
+    <li>A fully local LLM on a phone: model downloads, SQLite full-text
+      search, data packs, the conversation loop with local tools, and
+      spoken replies, because hands are for bikes.</li>
+  </ul>
+</div>
+
+<p class="foot">Detail lives in the repo's
+<a href="https://github.com/simbi-community-dev/playapal/blob/main/CHANGELOG.md">CHANGELOG.md</a>
+· <a href="https://playapal.lol">playapal.lol</a></p>
+</main>
+</body>
+</html>

@@ -1,0 +1,4738 @@
+[
+{
+"camp": "...cats",
+"location": "Esplanade & 4:00"
+},
+{
+"camp": "17 Virgins",
+"location": "A & 9:15"
+},
+{
+"camp": "2 girls 1 camp",
+"location": "6:00 & D"
+},
+{
+"camp": "3907",
+"location": "5:00 & A"
+},
+{
+"camp": "42 Ramen",
+"location": "D & 6:45"
+},
+{
+"camp": "7 Sirens Cove",
+"location": "7:00 & A"
+},
+{
+"camp": "706 Tribe",
+"location": "G & 6:15"
+},
+{
+"camp": "8-bit Bunny",
+"location": "7:00 & E"
+},
+{
+"camp": "A Shack of Sit",
+"location": "Esplanade & 6:45"
+},
+{
+"camp": "A Touchy Subject",
+"location": "G & 4:45"
+},
+{
+"camp": "A Transformation Station",
+"location": "D & 3:15"
+},
+{
+"camp": "A&mpersand",
+"location": "D & 7:15"
+},
+{
+"camp": "A-PLAYA-MASK",
+"location": "F & 4:45"
+},
+{
+"camp": "AAA Astro Accessible Arcade",
+"location": "9:00 B Plaza @ 8:15"
+},
+{
+"camp": "Aah Wonder",
+"location": "C & 4:45"
+},
+{
+"camp": "Abominable Base Camp",
+"location": "8:30 & C"
+},
+{
+"camp": "Above & Below",
+"location": "D & 4:45"
+},
+{
+"camp": "Abraxas Camp",
+"location": "2:15 & H"
+},
+{
+"camp": "Abstininthe",
+"location": "D & 6:45"
+},
+{
+"camp": "Accult",
+"location": "9:30 & A"
+},
+{
+"camp": "Acid On Ice",
+"location": "C & 8:45"
+},
+{
+"camp": "Acorn Oasis",
+"location": "6:30 & F"
+},
+{
+"camp": "ADHz",
+"location": "2:00 & H"
+},
+{
+"camp": "AdramaNation",
+"location": "C & 7:15"
+},
+{
+"camp": "adult playground",
+"location": "E & 9:45"
+},
+{
+"camp": "AerialKnotics",
+"location": "4:00 & A"
+},
+{
+"camp": "Afterglow",
+"location": "D & 4:45"
+},
+{
+"camp": "Afterglow Lounge & Spa",
+"location": "5:00 & B"
+},
+{
+"camp": "Airpusher Collective",
+"location": "E & 9:15"
+},
+{
+"camp": "Airstreameri and What Not",
+"location": "C & 3:45"
+},
+{
+"camp": "Alborz",
+"location": "E & 9:45"
+},
+{
+"camp": "Alchemist Bazaar",
+"location": "3:30 & D"
+},
+{
+"camp": "Alchemy Stop",
+"location": "5:00 & F"
+},
+{
+"camp": "Alice in Slumberland",
+"location": "5:30 & C"
+},
+{
+"camp": "Alma Borekas",
+"location": "6:30 & D"
+},
+{
+"camp": "Alter Ego",
+"location": "4:00 & A"
+},
+{
+"camp": "Alternative Energy Zone",
+"location": "3:30 & E"
+},
+{
+"camp": "Altitude Lounge",
+"location": "B & 8:15"
+},
+{
+"camp": "Amateur Hour Playa Pub",
+"location": "2:00 B Plaza"
+},
+{
+"camp": "AMAZONE",
+"location": "4:00 & C"
+},
+{
+"camp": "AmberDust",
+"location": "8:00 & F"
+},
+{
+"camp": "Amma",
+"location": "2:00 & I"
+},
+{
+"camp": "Amulet",
+"location": "C & 6:45"
+},
+{
+"camp": "Analog",
+"location": "F & 8:15"
+},
+{
+"camp": "And Then There's Only Love",
+"location": "7:30 & F"
+},
+{
+"camp": "Anonymous Village",
+"location": "5:30 & F"
+},
+{
+"camp": "ANTIIX",
+"location": "E & 7:45"
+},
+{
+"camp": "Apokalyptika",
+"location": "A & 8:15"
+},
+{
+"camp": "Apotheneum",
+"location": "D & 6:45"
+},
+{
+"camp": "Après Ski Injury",
+"location": "2:00 B Plaza & B"
+},
+{
+"camp": "Après-Ski",
+"location": "B & 8:15"
+},
+{
+"camp": "Arctic Court",
+"location": "D & 4:15"
+},
+{
+"camp": "Arctica Ice Sales",
+"location": "Center Camp Plaza @ 8:00"
+},
+{
+"camp": "Arctica Ice Sales - Ice Cubed",
+"location": "3:00 G Plaza @ 5:30"
+},
+{
+"camp": "Arctica Ice Sales - Ice Nine",
+"location": "9:00 G Plaza @ 4:30"
+},
+{
+"camp": "Arctica Outpost",
+"location": "6:15 & J"
+},
+{
+"camp": "Argonauts",
+"location": "B & 5:15"
+},
+{
+"camp": "Armageddon Bike Camp",
+"location": "3:00 Portal & A"
+},
+{
+"camp": "ARMÉ - Army of Love",
+"location": ""
+},
+{
+"camp": "Art Car Camp",
+"location": "A & 2:45"
+},
+{
+"camp": "Art for Art's Sake",
+"location": "C & 4:45"
+},
+{
+"camp": "Art Haus",
+"location": "4:00 & E"
+},
+{
+"camp": "Art Support for Bass Snail",
+"location": "G & 4:15"
+},
+{
+"camp": "ARTery Pavilion",
+"location": "Esplanade & 6:15"
+},
+{
+"camp": "ArtSled",
+"location": "D & 7:45"
+},
+{
+"camp": "As Above So At Camp",
+"location": "D & 5:15"
+},
+{
+"camp": "Ashram Galactica",
+"location": "9:00 & J"
+},
+{
+"camp": "Astral Lab",
+"location": "10:00 & F"
+},
+{
+"camp": "Astral Outpost",
+"location": "3:00 & C"
+},
+{
+"camp": "Astro Cats",
+"location": "8:00 & A"
+},
+{
+"camp": "ASTRO SHACK JaVa JoINt",
+"location": "8:30 & A"
+},
+{
+"camp": "Astropups",
+"location": "C & 6:45"
+},
+{
+"camp": "Ataraxia",
+"location": "Esplanade & 2:15"
+},
+{
+"camp": "Atlantis",
+"location": "4:30 B Plaza @ 5:00"
+},
+{
+"camp": "Atmosbhear",
+"location": "B & 4:15"
+},
+{
+"camp": "Atom Cult",
+"location": "E & 7:45"
+},
+{
+"camp": "Atomic Octopus",
+"location": "B & 3:15"
+},
+{
+"camp": "Atomic Pussy Photo Lounge",
+"location": "B & 5:45"
+},
+{
+"camp": "Aurora",
+"location": "D & 4:15"
+},
+{
+"camp": "Avant Garden",
+"location": "G & 5:45"
+},
+{
+"camp": "Awesomesauce",
+"location": "7:30 B Plaza @ 5:00"
+},
+{
+"camp": "Awkward & Tawdry Lounge",
+"location": "Esplanade & 7:15"
+},
+{
+"camp": "Axis of Stillness",
+"location": "F & 4:45"
+},
+{
+"camp": "Aya The Tiger",
+"location": "D & 9:15"
+},
+{
+"camp": "B.E.D Bureau of Erotic Discourse",
+"location": "E & 6:15"
+},
+{
+"camp": "BAAAHS Station",
+"location": "7:00 & F"
+},
+{
+"camp": "Baby Boomer Burners",
+"location": ""
+},
+{
+"camp": "Backfire",
+"location": "7:00 & B"
+},
+{
+"camp": "Backstage",
+"location": "9:30 & E"
+},
+{
+"camp": "Baconeers",
+"location": "3:00 & D"
+},
+{
+"camp": "Bad Asstronauts",
+"location": "7:30 B Plaza @ 9:45"
+},
+{
+"camp": "Bad Boy's Discover Your Kinks",
+"location": "D & 4:15"
+},
+{
+"camp": "Bad Idea",
+"location": "E & 4:15"
+},
+{
+"camp": "badlands",
+"location": "9:30 & F"
+},
+{
+"camp": "Bag o' Dicks",
+"location": "B & 2:45"
+},
+{
+"camp": "Baggage Check",
+"location": "3:00 & E"
+},
+{
+"camp": "Bao Chicka Wow Wow",
+"location": "4:00 & B"
+},
+{
+"camp": "Bar Fallover",
+"location": "E & 4:15"
+},
+{
+"camp": "BAR MACTROPOLIS",
+"location": "3:00 & I"
+},
+{
+"camp": "Barbie Day Spa",
+"location": "5:30 & D"
+},
+{
+"camp": "Barbie Death Village",
+"location": "5:30 & C"
+},
+{
+"camp": "Barbots: Baby Needs A Break",
+"location": "D & 8:45"
+},
+{
+"camp": "Base Camp",
+"location": "G & 8:45"
+},
+{
+"camp": "Bat Haus",
+"location": "D & 7:45"
+},
+{
+"camp": "Battle Born Burners",
+"location": "G & 6:15"
+},
+{
+"camp": "Bearwhalea",
+"location": "4:00 & C"
+},
+{
+"camp": "Beats 'n Deets",
+"location": "6:30 & B"
+},
+{
+"camp": "Beaverton",
+"location": "E & 6:45"
+},
+{
+"camp": "Best Butt",
+"location": "B & 8:45"
+},
+{
+"camp": "Best Year Yet",
+"location": "9:00 Portal & A"
+},
+{
+"camp": "Better Together",
+"location": "E & 9:15"
+},
+{
+"camp": "Betty's Bike Shop",
+"location": "C & 7:45"
+},
+{
+"camp": "Beverly Grillz",
+"location": "7:30 B Plaza @ 7:45"
+},
+{
+"camp": "Big Unicorn Energy",
+"location": "9:30 & K"
+},
+{
+"camp": "BigFrankEnergy",
+"location": "C & 4:15"
+},
+{
+"camp": "Bike Gods",
+"location": "9:00 & D"
+},
+{
+"camp": "Bikini Bottom(less)",
+"location": "F & 6:45"
+},
+{
+"camp": "Bioluminati (Bike Mutation)",
+"location": "D & 7:45"
+},
+{
+"camp": "Birthday Camp",
+"location": "C & 6:15"
+},
+{
+"camp": "Bisous",
+"location": "E & 8:45"
+},
+{
+"camp": "Bistro Manonio",
+"location": "A & 4:15"
+},
+{
+"camp": "Bitchin' Braid Camp",
+"location": "3:00 G Plaza @ 3:45"
+},
+{
+"camp": "Black Hole Literary Society",
+"location": "8:30 & B"
+},
+{
+"camp": "Black Karma",
+"location": "D & 6:15"
+},
+{
+"camp": "Black Rock Academy",
+"location": "C & 5:45"
+},
+{
+"camp": "BLACK ROCK ADVENTURES BUS STOP!",
+"location": "C & 3:45"
+},
+{
+"camp": "Black Rock Brewery",
+"location": "3:30 & A"
+},
+{
+"camp": "Black Rock City Municipal Pool",
+"location": "7:00 & C"
+},
+{
+"camp": "Black Rock City Passport Office",
+"location": "Center Camp Plaza @ 4:30"
+},
+{
+"camp": "Black Rock City Pickleball Club",
+"location": "8:00 & B"
+},
+{
+"camp": "Black Rock City Shipyard",
+"location": "D & 9:45"
+},
+{
+"camp": "Black Rock City Welding & Repair",
+"location": "3:30 & A"
+},
+{
+"camp": "Black Rock Disc Golf Club",
+"location": "2:00 B Plaza & B"
+},
+{
+"camp": "Black Rock Labs The Expanse",
+"location": "H & 2:15"
+},
+{
+"camp": "Black Rock Observatory Theme Camp",
+"location": "3:00 G Plaza @ 8:15"
+},
+{
+"camp": "Black Rock Piano Lounge",
+"location": "9:00 B Plaza @ 5:00"
+},
+{
+"camp": "Black Rock Public Library",
+"location": "D & 6:15"
+},
+{
+"camp": "Black Rock Roller Disco",
+"location": "Esplanade & 7:00"
+},
+{
+"camp": "Black Rock Sauna Society",
+"location": "6:00 G Plaza @ 9:45"
+},
+{
+"camp": "Black Rock Socks",
+"location": "C & 8:15"
+},
+{
+"camp": "Black Rock Travel Agency",
+"location": "Airport Road"
+},
+{
+"camp": "Black Rock University",
+"location": "8:30 & A"
+},
+{
+"camp": "Black Rock Yacht Club",
+"location": "8:45 & K"
+},
+{
+"camp": "Black Rock Yearbook",
+"location": "B & 3:45"
+},
+{
+"camp": "Blazing Death Ship",
+"location": "B & 4:15"
+},
+{
+"camp": "BLD",
+"location": "6:00 G Plaza @ 2:15"
+},
+{
+"camp": "BlinkingManCamp97",
+"location": "C & 5:15"
+},
+{
+"camp": "BLM/FNW Interpretive Camp",
+"location": "Esplanade & 5:15"
+},
+{
+"camp": "Blood & Sugar",
+"location": "F & 2:45"
+},
+{
+"camp": "Bloom Camp",
+"location": "Esplanade & 9:45"
+},
+{
+"camp": "Blue CATerpillar",
+"location": "9:30 & C"
+},
+{
+"camp": "BMIR",
+"location": "Esplanade & 5:45"
+},
+{
+"camp": "Bo_b Squad",
+"location": "2:00 & 2:00 B Plaza"
+},
+{
+"camp": "Bone Voyage",
+"location": "F & 7:45"
+},
+{
+"camp": "Booboos Gaagoos",
+"location": "D & 6:45"
+},
+{
+"camp": "Book Club",
+"location": "9:30 & A"
+},
+{
+"camp": "Booty Worship",
+"location": "7:30 & C"
+},
+{
+"camp": "Brain Freeze Camp",
+"location": "5:00 & B"
+},
+{
+"camp": "Brainiac Camp",
+"location": "F & 6:15"
+},
+{
+"camp": "Brand-Ur-Ass N More",
+"location": "4:30 B Plaza @ 10:30"
+},
+{
+"camp": "Branding & Booze",
+"location": "7:00 & B"
+},
+{
+"camp": "BRC Ski Resort",
+"location": "9:00 Portal"
+},
+{
+"camp": "BRC Snow Club",
+"location": "Esplanade & 9:00 Portal"
+},
+{
+"camp": "BRC3PO (BRC 3:00 Post Office)",
+"location": "3:00 B Plaza @ 7:30"
+},
+{
+"camp": "BRCSPCA (anti-human society)",
+"location": "E & 3:45"
+},
+{
+"camp": "BRCvr presents BurnerSphere",
+"location": "B & 3:45"
+},
+{
+"camp": "Breakaway Republic",
+"location": "Esplanade & 6:15"
+},
+{
+"camp": "Bubble Camp",
+"location": "5:45 & G"
+},
+{
+"camp": "Bubble Lounge",
+"location": "7:30 B Plaza @ 3:45"
+},
+{
+"camp": "BUBBLEGASM",
+"location": "F & 7:15"
+},
+{
+"camp": "Bubbles and Bass",
+"location": "Esplanade & 8:15"
+},
+{
+"camp": "Bumblepuss",
+"location": "9:00 & F"
+},
+{
+"camp": "Bumpbed",
+"location": "9:45 & H"
+},
+{
+"camp": "Bungalow",
+"location": "F & 7:45"
+},
+{
+"camp": "Bunny Meth Lab",
+"location": "Esplanade & 9:30"
+},
+{
+"camp": "Burner Buddies",
+"location": "B & 6:45"
+},
+{
+"camp": "Burner Express Bus Depot",
+"location": "6:00 & I"
+},
+{
+"camp": "Burning Band Camp",
+"location": "Esplanade & 7:00"
+},
+{
+"camp": "Burning Globe",
+"location": "C & 8:45"
+},
+{
+"camp": "Burning Man Studios",
+"location": "B & 6:45"
+},
+{
+"camp": "Burning Man T-Shirt Factory",
+"location": "B & 6:45"
+},
+{
+"camp": "Burning My Crêpe",
+"location": "G & 4:15"
+},
+{
+"camp": "Burning Questions",
+"location": "4:00 & B"
+},
+{
+"camp": "Burning Sensation",
+"location": "G & 5:45"
+},
+{
+"camp": "Burning Sky",
+"location": "5:00 & F"
+},
+{
+"camp": "BurningShip",
+"location": "8:00 & C"
+},
+{
+"camp": "Burnstream Court",
+"location": "3:30 & E"
+},
+{
+"camp": "Burntown",
+"location": "7:30 G Plaza @ 9:45"
+},
+{
+"camp": "Cabana Club",
+"location": "4:00 & B"
+},
+{
+"camp": "Cameltopia",
+"location": "4:00 & D"
+},
+{
+"camp": "Camp (Can't) Stop",
+"location": "8:00 & A"
+},
+{
+"camp": "Camp [No Name]",
+"location": "E & 7:15"
+},
+{
+"camp": "Camp ASL Support Services HUB",
+"location": "G & 5:45"
+},
+{
+"camp": "Camp Babe",
+"location": "7:30 & H"
+},
+{
+"camp": "Camp Balagan",
+"location": "9:30 & E"
+},
+{
+"camp": "Camp Bangers Only",
+"location": "10:00 & E"
+},
+{
+"camp": "Camp Bare Tentacles",
+"location": "C & 8:15"
+},
+{
+"camp": "Camp Be Bothered",
+"location": "D & 7:15"
+},
+{
+"camp": "Camp Bean Water",
+"location": "C & 6:15"
+},
+{
+"camp": "Camp Blowjob",
+"location": "F & 2:45"
+},
+{
+"camp": "Camp BUI",
+"location": "B & 2:45"
+},
+{
+"camp": "Camp Butter",
+"location": "D & 4:15"
+},
+{
+"camp": "Camp Byte This",
+"location": "10:00 & C"
+},
+{
+"camp": "Camp BYUS",
+"location": "E & 7:15"
+},
+{
+"camp": "Camp Canadianderthal",
+"location": "D & 9:15"
+},
+{
+"camp": "Camp Castaway",
+"location": "8:00 & E"
+},
+{
+"camp": "Camp Codename",
+"location": "E & 4:15"
+},
+{
+"camp": "Camp Cohere",
+"location": "D & 2:15"
+},
+{
+"camp": "Camp Come Find Us CCFU",
+"location": "B & 3:15"
+},
+{
+"camp": "Camp Condundrum",
+"location": "B & 5:15"
+},
+{
+"camp": "Camp Connection",
+"location": "C & 7:45"
+},
+{
+"camp": "Camp Contact",
+"location": "C & 3:45"
+},
+{
+"camp": "Camp Cosmo",
+"location": "D & 7:15"
+},
+{
+"camp": "Camp Cul-de-Sac",
+"location": "C & 3:15"
+},
+{
+"camp": "Camp Darling",
+"location": "C & 7:15"
+},
+{
+"camp": "Camp Delicioso & Creperie",
+"location": "C & 2:15"
+},
+{
+"camp": "Camp DIY",
+"location": "G & 6:15"
+},
+{
+"camp": "Camp Do Nothing",
+"location": "3:00 & D"
+},
+{
+"camp": "Camp Elektra",
+"location": "J & 9:15"
+},
+{
+"camp": "Camp Elephant Toe",
+"location": "6:30 & G"
+},
+{
+"camp": "Camp Emergency",
+"location": "8:00 & B"
+},
+{
+"camp": "Camp Equilibrium",
+"location": "C & 8:45"
+},
+{
+"camp": "Camp Fly",
+"location": "C & 2:45"
+},
+{
+"camp": "Camp Fortress of Solitude",
+"location": "F & 5:15"
+},
+{
+"camp": "Camp Fucking Magical",
+"location": "F & 4:45"
+},
+{
+"camp": "Camp Gotalotgoinon",
+"location": "F & 5:15"
+},
+{
+"camp": "Camp Home",
+"location": "7:30 Portal"
+},
+{
+"camp": "Camp Hot Cheeks",
+"location": "B & 8:15"
+},
+{
+"camp": "CAMP JUICY",
+"location": "A & 4:45"
+},
+{
+"camp": "Camp Just Ahead",
+"location": "6:00 & E"
+},
+{
+"camp": "Camp Kerosene",
+"location": "B & 5:45"
+},
+{
+"camp": "Camp Kinetic",
+"location": "3:00 & E"
+},
+{
+"camp": "Camp Kühloff",
+"location": "3:15 & F"
+},
+{
+"camp": "Camp LandHO!",
+"location": "2:00 & E"
+},
+{
+"camp": "Camp Morning Wood",
+"location": "E & 7:45"
+},
+{
+"camp": "Camp Nafas",
+"location": "E & 8:15"
+},
+{
+"camp": "Camp Nope",
+"location": "B & 5:45"
+},
+{
+"camp": "Camp NOT a Cult!",
+"location": "B & 3:45"
+},
+{
+"camp": "Camp O-Wow",
+"location": "C & 7:45"
+},
+{
+"camp": "Camp of the Rising Buns",
+"location": "10:00 B Plaza & B"
+},
+{
+"camp": "Camp Orange",
+"location": "5:30 & B"
+},
+{
+"camp": "Camp Orange Heart",
+"location": "6:00 & E"
+},
+{
+"camp": "Camp P3",
+"location": "E & 7:45"
+},
+{
+"camp": "Camp Peace of Ass",
+"location": "C & 2:45"
+},
+{
+"camp": "Camp Pendant",
+"location": "C & 7:15"
+},
+{
+"camp": "Camp Piper",
+"location": "B & 7:45"
+},
+{
+"camp": "Camp PlayApology",
+"location": "6:30 & F"
+},
+{
+"camp": "Camp Ply Curious",
+"location": "Center Camp Plaza @ 11:00"
+},
+{
+"camp": "Camp PtP - Papillio Ovum",
+"location": "C & 4:45"
+},
+{
+"camp": "Camp Pull My Finger",
+"location": "E & 6:45"
+},
+{
+"camp": "Camp Questionmark",
+"location": "Esplanade & 2:00"
+},
+{
+"camp": "Camp Random Pants",
+"location": "2:30 & E"
+},
+{
+"camp": "Camp Reno Nation",
+"location": "C & 2:15"
+},
+{
+"camp": "Camp Safari",
+"location": "C & 4:45"
+},
+{
+"camp": "Camp Scone Fucker",
+"location": "6:00 & E"
+},
+{
+"camp": "Camp Seem to Leave",
+"location": "D & 6:15"
+},
+{
+"camp": "Camp Shark Cage",
+"location": "C & 5:45"
+},
+{
+"camp": "Camp Shit Ain't Right",
+"location": "A & 5:45"
+},
+{
+"camp": "Camp Shutterbuggy",
+"location": "E & 7:15"
+},
+{
+"camp": "Camp Slow Your Roll",
+"location": "B & 8:15"
+},
+{
+"camp": "Camp SnuggleFunk",
+"location": "C & 4:15"
+},
+{
+"camp": "Camp Stranger Things",
+"location": "B & 2:45"
+},
+{
+"camp": "Camp Summer Camp",
+"location": "E & 2:45"
+},
+{
+"camp": "Camp Sweaty Betty",
+"location": "C & 7:15"
+},
+{
+"camp": "Camp Synthesis",
+"location": "B & 5:45"
+},
+{
+"camp": "Camp TeaPunk",
+"location": "6:30 & E"
+},
+{
+"camp": "Camp Tell You",
+"location": "C & 5:45"
+},
+{
+"camp": "Camp THREAT",
+"location": "5:30 & A"
+},
+{
+"camp": "Camp Tidy",
+"location": "F & 4:15"
+},
+{
+"camp": "Camp Truth or Dare",
+"location": "C & 5:45"
+},
+{
+"camp": "Camp VRC",
+"location": "F & 6:15"
+},
+{
+"camp": "Camp Why is My Mouth Tingling",
+"location": "G & 4:15"
+},
+{
+"camp": "CAMP WWIT",
+"location": "6:30 & C"
+},
+{
+"camp": "Camp XUZA",
+"location": "9:15 & J"
+},
+{
+"camp": "Camp Zoombox",
+"location": "2:15 & F"
+},
+{
+"camp": "Campoline",
+"location": "9:00 & E"
+},
+{
+"camp": "Candyland",
+"location": "4:30 G Plaza @ 8:15"
+},
+{
+"camp": "Captain Pump's Raiders",
+"location": "F & 6:15"
+},
+{
+"camp": "Caravan D'Light",
+"location": "E & 8:15"
+},
+{
+"camp": "Casa de la Rumba",
+"location": "7:30 & E"
+},
+{
+"camp": "Castra Ursi",
+"location": "4:00 & F"
+},
+{
+"camp": "CatLand",
+"location": "D & 3:45"
+},
+{
+"camp": "Catmandu",
+"location": "D & 4:15"
+},
+{
+"camp": "Celestial Alchemy",
+"location": "Esplanade & 7:30 Portal"
+},
+{
+"camp": "Celestial Bodies",
+"location": "7:30 G Plaza @ 4:30"
+},
+{
+"camp": "Celestial Tea Garden",
+"location": "E & 8:45"
+},
+{
+"camp": "Census",
+"location": "Esplanade & 6:30"
+},
+{
+"camp": "Central Cafe",
+"location": "4:30 Portal"
+},
+{
+"camp": "Cereal Thrillers",
+"location": "Center Camp Plaza @ 10:15"
+},
+{
+"camp": "Chain Reaction",
+"location": "A & 5:45"
+},
+{
+"camp": "Chair Camp",
+"location": "E & 9:45"
+},
+{
+"camp": "Champagne Lounge",
+"location": "C & 5:45"
+},
+{
+"camp": "Chariot Project",
+"location": "6:30 & A"
+},
+{
+"camp": "Charting the Uncharted",
+"location": "A & 2:45"
+},
+{
+"camp": "Chatterbox Camp",
+"location": "A & 3:15"
+},
+{
+"camp": "Cheat Codes",
+"location": "A & 9:15"
+},
+{
+"camp": "Cheezy Oasis",
+"location": "7:00 & E"
+},
+{
+"camp": "Cheshire Alley",
+"location": "4:30 G Plaza @ 2:15"
+},
+{
+"camp": "Chicago Handshake",
+"location": "D & 2:45"
+},
+{
+"camp": "Chicken Cooter Soup",
+"location": "F & 8:15"
+},
+{
+"camp": "Chicken Dragon",
+"location": "D & 5:15"
+},
+{
+"camp": "Chico Urban Area",
+"location": "G & 4:15"
+},
+{
+"camp": "Children of Chaos",
+"location": "C & 6:45"
+},
+{
+"camp": "ChillVille on the Esplanade",
+"location": "Esplanade & 4:30 Portal"
+},
+{
+"camp": "Chivo Loco",
+"location": "D & 2:15"
+},
+{
+"camp": "Choo Choo",
+"location": "9:45 & F"
+},
+{
+"camp": "Chop Shop",
+"location": "8:00 & E"
+},
+{
+"camp": "Church of Chill",
+"location": "D & 7:45"
+},
+{
+"camp": "Cicadia",
+"location": "E & 7:15"
+},
+{
+"camp": "Cinderbox",
+"location": "F & 4:15"
+},
+{
+"camp": "Cinematic Regrets",
+"location": "E & 6:15"
+},
+{
+"camp": "Cirkus Freaks",
+"location": "D & 8:15"
+},
+{
+"camp": "Clevian Circularity",
+"location": "Esplanade & 6:45"
+},
+{
+"camp": "Cloud 9",
+"location": "8:00 & C"
+},
+{
+"camp": "Cloudy AF",
+"location": "4:30 & D"
+},
+{
+"camp": "ClusterF*ck United",
+"location": "B & 4:15"
+},
+{
+"camp": "Cockpit",
+"location": "B & 6:45"
+},
+{
+"camp": "Cocoon Society",
+"location": "G & 4:45"
+},
+{
+"camp": "Coffee and Pasties",
+"location": "B & 3:45"
+},
+{
+"camp": "Cognitive Research Institute",
+"location": "C & 7:15"
+},
+{
+"camp": "Cold Yogis",
+"location": "E & 6:15"
+},
+{
+"camp": "Colita de Rana",
+"location": "F & 9:15"
+},
+{
+"camp": "Combat Zone",
+"location": "9:30 & A"
+},
+{
+"camp": "Comfort & Joy",
+"location": "7:00 & E"
+},
+{
+"camp": "Coming Home",
+"location": "D & 2:45"
+},
+{
+"camp": "Congee Central",
+"location": "G & 4:15"
+},
+{
+"camp": "ConTent",
+"location": "9:30 & E"
+},
+{
+"camp": "Contraptionists",
+"location": "7:00 & B"
+},
+{
+"camp": "COOLSVILLE",
+"location": "A & 2:15"
+},
+{
+"camp": "CornHub",
+"location": "5:00 & A"
+},
+{
+"camp": "Cosmic Giggle",
+"location": "3:00 & E"
+},
+{
+"camp": "Cosmic Llama",
+"location": "4:00 & E"
+},
+{
+"camp": "Cosplay Central",
+"location": "F & 6:15"
+},
+{
+"camp": "Costco Soulmate Trading Outlet",
+"location": "7:30 G Plaza @ 2:45"
+},
+{
+"camp": "Counter Culture",
+"location": "C & 6:45"
+},
+{
+"camp": "Cozy Cat Camp",
+"location": "E & 4:15"
+},
+{
+"camp": "Cozy Dinosaur",
+"location": "C & 9:15"
+},
+{
+"camp": "CrazyCamera & Christmas Every Day",
+"location": "F & 8:15"
+},
+{
+"camp": "Crepiphany",
+"location": "6:00 & C"
+},
+{
+"camp": "Critical Connections",
+"location": "4:30 Portal & A"
+},
+{
+"camp": "Cuddle Oasis",
+"location": "Esplanade & 2:30"
+},
+{
+"camp": "Cult of the Magic Lady",
+"location": "A & 7:15"
+},
+{
+"camp": "Cuttlefish Homebase",
+"location": "E & 3:15"
+},
+{
+"camp": "D.F.C.B.(Don't Fckn' Care Bear)",
+"location": "H & 9:45"
+},
+{
+"camp": "Dacha",
+"location": "9:30 & D"
+},
+{
+"camp": "Dark Heart",
+"location": "3:30 & D"
+},
+{
+"camp": "Darkwad Patrol",
+"location": "C & 8:15"
+},
+{
+"camp": "Davey Jones Locker Pirate Cove",
+"location": "E & 6:45"
+},
+{
+"camp": "DayCare",
+"location": "A & 8:45"
+},
+{
+"camp": "Daydream",
+"location": "E & 2:15"
+},
+{
+"camp": "Death Guild Thunderdon't",
+"location": "8:30 & A"
+},
+{
+"camp": "Deco Fish",
+"location": "9:45 & K"
+},
+{
+"camp": "Deep C",
+"location": "7:30 Portal"
+},
+{
+"camp": "Deep Eat",
+"location": "C & 4:15"
+},
+{
+"camp": "Deep Ohm",
+"location": "4:30 B Plaza @ 3:45"
+},
+{
+"camp": "Deep Playa Simulator",
+"location": "D & 9:45"
+},
+{
+"camp": "DeMentha",
+"location": "3:00 Portal & A"
+},
+{
+"camp": "Deoxidized",
+"location": "2:00 & D"
+},
+{
+"camp": "Desert Dragon",
+"location": "2:00 & G"
+},
+{
+"camp": "Desert Healers",
+"location": "H & 5:45"
+},
+{
+"camp": "Dicey Side Quests",
+"location": "D & 7:15"
+},
+{
+"camp": "Dickhead Camp",
+"location": "E & 4:15"
+},
+{
+"camp": "Dilated Peoples",
+"location": "C & 6:45"
+},
+{
+"camp": "Dilla's Den",
+"location": "F & 3:15"
+},
+{
+"camp": "Dinosaur King",
+"location": "C & 5:45"
+},
+{
+"camp": "DIPTOWN",
+"location": "C & 7:45"
+},
+{
+"camp": "Disco Mushroom",
+"location": "A & 9:15"
+},
+{
+"camp": "Disco Space Shuttle",
+"location": "E & 8:15"
+},
+{
+"camp": "Discosmos",
+"location": "2:00 & K"
+},
+{
+"camp": "Discotique Pancake Boutique",
+"location": "2:00 & G"
+},
+{
+"camp": "Discrace",
+"location": "4:00 & E"
+},
+{
+"camp": "Disfunktion",
+"location": "9:00 & E"
+},
+{
+"camp": "Disorient",
+"location": "Esplanade & 8:00"
+},
+{
+"camp": "DJ University",
+"location": "E & 8:45"
+},
+{
+"camp": "DK50 Trash Fence Camp",
+"location": "J & 9:15"
+},
+{
+"camp": "Do Baskets Dream",
+"location": "C & 9:15"
+},
+{
+"camp": "Do not confuse here",
+"location": "A & 8:45"
+},
+{
+"camp": "Dogs N Recreation",
+"location": "4:30 & H"
+},
+{
+"camp": "Dome on the Range",
+"location": "7:30 B Plaza @ 1:30"
+},
+{
+"camp": "Dome Sweet Dome",
+"location": "D & 3:45"
+},
+{
+"camp": "Don't STOP",
+"location": "E & 7:15"
+},
+{
+"camp": "Down Low Club",
+"location": "D & 7:15"
+},
+{
+"camp": "Dr. Carl's Collection of Depts.",
+"location": "6:00 Portal"
+},
+{
+"camp": "Dr. Playa's ENT Clinic",
+"location": "Esplanade & 6:15"
+},
+{
+"camp": "Draft Punk",
+"location": "9:00 & E"
+},
+{
+"camp": "Dragon Axis Disco",
+"location": "D & 2:45"
+},
+{
+"camp": "DragonCamp Armory",
+"location": "7:30 & F"
+},
+{
+"camp": "DraKasha",
+"location": "I & 9:45"
+},
+{
+"camp": "Drawn Inn",
+"location": "7:30 G Plaza @ 6:45"
+},
+{
+"camp": "Dreamery",
+"location": "6:00 G Plaza @ 3:45"
+},
+{
+"camp": "Drink and Drive-In",
+"location": "6:00 & F"
+},
+{
+"camp": "Duane's Whirld",
+"location": "J & 9:15"
+},
+{
+"camp": "Duckbutt",
+"location": "B & 6:45"
+},
+{
+"camp": "Dune Dwellers",
+"location": "E & 2:45"
+},
+{
+"camp": "Dusk",
+"location": ""
+},
+{
+"camp": "dust & stars",
+"location": "7:30 Portal & A"
+},
+{
+"camp": "Dust Circus",
+"location": "C & 7:45"
+},
+{
+"camp": "DUST STARS COLLECTIVE",
+"location": "8:30 & E"
+},
+{
+"camp": "DUSTFISH",
+"location": "Esplanade & 3:45"
+},
+{
+"camp": "Dustmight",
+"location": "C & 3:15"
+},
+{
+"camp": "Dusty Beavers",
+"location": "F & 5:15"
+},
+{
+"camp": "Dusty Bottoms",
+"location": "E & 7:45"
+},
+{
+"camp": "Dusty Bunnies",
+"location": "B & 3:15"
+},
+{
+"camp": "Dusty Delight",
+"location": "7:00 & D"
+},
+{
+"camp": "Dusty Dillas",
+"location": "F & 5:15"
+},
+{
+"camp": "Dusty Dreamers",
+"location": "7:30 & E"
+},
+{
+"camp": "Dusty Mule Saloon and Playground",
+"location": "E & 4:45"
+},
+{
+"camp": "Dusty Scouts of Camp Campy Camp",
+"location": "4:00 & A"
+},
+{
+"camp": "Dusty Speakeasy and Sanctuary",
+"location": "5:00 & C"
+},
+{
+"camp": "Dusty Taint",
+"location": "3:00 B Plaza @ 2:30"
+},
+{
+"camp": "Earth Guardians",
+"location": "Esplanade & 5:00"
+},
+{
+"camp": "EBB & Glow Village",
+"location": "4:30 Portal & A"
+},
+{
+"camp": "Edna's Oasis",
+"location": "E & 2:15"
+},
+{
+"camp": "Eitherlight",
+"location": "E & 3:15"
+},
+{
+"camp": "El Pulpo Magnifico",
+"location": "9:30 & J"
+},
+{
+"camp": "ELEMENTUM",
+"location": "9:30 & B"
+},
+{
+"camp": "Elixai Dust Tribe",
+"location": "10:00 & G"
+},
+{
+"camp": "Elsewhere Institute",
+"location": "A & 8:45"
+},
+{
+"camp": "Embers",
+"location": "4:30 Portal & A"
+},
+{
+"camp": "Emergence with Buddha Lounge",
+"location": "10:00 & G"
+},
+{
+"camp": "Empire of Dirt",
+"location": "A & 3:45"
+},
+{
+"camp": "Enchanted Booty Forest",
+"location": "5:30 & B"
+},
+{
+"camp": "End of the Line",
+"location": "F & 4:15"
+},
+{
+"camp": "Endstation",
+"location": "9:15 & J"
+},
+{
+"camp": "Enrichment.Institute",
+"location": "F & 6:15"
+},
+{
+"camp": "Entheos Community Village",
+"location": "Esplanade & 9:15"
+},
+{
+"camp": "Erotic Inclination Photo Studio",
+"location": "3:00 & I"
+},
+{
+"camp": "ESD Rampart",
+"location": "Esplanade & 5:15"
+},
+{
+"camp": "ESD Station 3:00",
+"location": "3:00 & C"
+},
+{
+"camp": "ESD Station 9:00",
+"location": "9:00 & C"
+},
+{
+"camp": "Extinct Oasis",
+"location": "B & 8:45"
+},
+{
+"camp": "EYERIS",
+"location": "F & 4:45"
+},
+{
+"camp": "F.U.Ego Stage Bar & Lounge",
+"location": "7:30 B Plaza @ 6:45"
+},
+{
+"camp": "FAFA Camp",
+"location": "D & 5:15"
+},
+{
+"camp": "Fantastic Sams",
+"location": "E & 6:45"
+},
+{
+"camp": "Fantastica Music Healing Camp",
+"location": "D & 7:45"
+},
+{
+"camp": "Fast & Bi-Curious",
+"location": "B & 3:45"
+},
+{
+"camp": "Fat Panda",
+"location": "F & 7:15"
+},
+{
+"camp": "Fatwatt",
+"location": "B & 3:45"
+},
+{
+"camp": "Fauxliage",
+"location": "10:00 B Plaza & B"
+},
+{
+"camp": "Favela Culture",
+"location": "9:45 & I"
+},
+{
+"camp": "FDA: Food & Dance Administration",
+"location": "7:30 & E"
+},
+{
+"camp": "Feed tHE ARTists",
+"location": "10:00 & D"
+},
+{
+"camp": "FELANGY",
+"location": "B & 7:45"
+},
+{
+"camp": "Felis Mundi",
+"location": "Esplanade & 6:00 Portal"
+},
+{
+"camp": "Fermented Reality",
+"location": "7:00 & B"
+},
+{
+"camp": "Fingerbang",
+"location": "F & 4:15"
+},
+{
+"camp": "Fire Camp",
+"location": "7:30 Portal & A"
+},
+{
+"camp": "Fire Conclave Convergence",
+"location": "Esplanade & 6:00 Portal"
+},
+{
+"camp": "Firefly Solar",
+"location": "F & 7:15"
+},
+{
+"camp": "Firelight & Lemonade",
+"location": "D & 2:45"
+},
+{
+"camp": "Fjörgyn's Lair",
+"location": "F & 3:15"
+},
+{
+"camp": "Flat Tire Cafe",
+"location": "4:30 B Plaza @ 6:45"
+},
+{
+"camp": "Flock of Donkeys",
+"location": "F & 3:15"
+},
+{
+"camp": "Flybynyte",
+"location": "Airport Road"
+},
+{
+"camp": "Flying Pegasus",
+"location": "A & 8:45"
+},
+{
+"camp": "Foam Home presents FOAMADELIC",
+"location": "9:30 & E"
+},
+{
+"camp": "Fokaround",
+"location": "9:15 & F"
+},
+{
+"camp": "Fomo Playalounge",
+"location": "9:00 Portal & A"
+},
+{
+"camp": "For the Glory of The C Ship",
+"location": "2:15 & G"
+},
+{
+"camp": "Foreskin",
+"location": "C & 2:45"
+},
+{
+"camp": "Freeloader Pizza Kitchen",
+"location": "D & 7:15"
+},
+{
+"camp": "French Fruits",
+"location": "8:00 & D"
+},
+{
+"camp": "French Maid Brigade",
+"location": "A & 2:45"
+},
+{
+"camp": "French Manila",
+"location": "B & 4:45"
+},
+{
+"camp": "Freqz of Love",
+"location": "8:00 & E"
+},
+{
+"camp": "Fresh Squeezed!",
+"location": "5:00 & B"
+},
+{
+"camp": "Friendlandia",
+"location": "A & 8:45"
+},
+{
+"camp": "Frizz",
+"location": "D & 4:45"
+},
+{
+"camp": "From Mars With Love",
+"location": "E & 9:15"
+},
+{
+"camp": "Frozen Oasis",
+"location": "D & 4:45"
+},
+{
+"camp": "fruitPOP",
+"location": "E & 6:45"
+},
+{
+"camp": "Frybread and Friends",
+"location": "A & 7:15"
+},
+{
+"camp": "Fucking Joe Camp",
+"location": "8:00 & B"
+},
+{
+"camp": "FUN-DO BAR",
+"location": "D & 2:45"
+},
+{
+"camp": "Funky Town",
+"location": "10:00 & D"
+},
+{
+"camp": "FUR",
+"location": "B & 7:15"
+},
+{
+"camp": "Fusion Valley",
+"location": "2:30 & B"
+},
+{
+"camp": "Future Turtles",
+"location": "7:00 & E"
+},
+{
+"camp": "G",
+"location": "F & 9:45"
+},
+{
+"camp": "Gaian Airship",
+"location": "D & 3:15"
+},
+{
+"camp": "Galactic Cruzaders",
+"location": "6:30 & F"
+},
+{
+"camp": "Gallavant",
+"location": "3:00 G Plaza @ 10:30"
+},
+{
+"camp": "Garage Mahal",
+"location": "9:15 & G"
+},
+{
+"camp": "Gauchos del Fuego",
+"location": "6:30 & C"
+},
+{
+"camp": "Gaudium Genus Aureus",
+"location": "D & 7:45"
+},
+{
+"camp": "GDI's - Gawd Damn Independents",
+"location": "G & 8:15"
+},
+{
+"camp": "Gears & Beers",
+"location": "B & 7:45"
+},
+{
+"camp": "Gender Blender",
+"location": "F & 6:45"
+},
+{
+"camp": "Gianni's Fellas",
+"location": "C & 2:15"
+},
+{
+"camp": "Giants Workshop Saloon",
+"location": "8:30 & E"
+},
+{
+"camp": "Gigsville",
+"location": "5:00 & E"
+},
+{
+"camp": "Giraffelot",
+"location": "7:30 G Plaza @ 8:15"
+},
+{
+"camp": "Giraffè Caffè",
+"location": "7:30 G Plaza @ 10:45"
+},
+{
+"camp": "GLAMCOCKS",
+"location": "7:00 & D"
+},
+{
+"camp": "Global Camp",
+"location": "6:15 & F"
+},
+{
+"camp": "Glorious Gilded Alchemy",
+"location": "C & 4:15"
+},
+{
+"camp": "GlouGlou Art",
+"location": "Center Camp Plaza @ 4:00"
+},
+{
+"camp": "GlowMeUp",
+"location": "D & 4:15"
+},
+{
+"camp": "Glowskull Asylum Int'l",
+"location": "3:00 Portal & A"
+},
+{
+"camp": "Gnometopia",
+"location": "6:00 & C"
+},
+{
+"camp": "Golden Gate Project",
+"location": "10:00 & H"
+},
+{
+"camp": "Good Question",
+"location": "E & 4:15"
+},
+{
+"camp": "Grateful Burners",
+"location": "3:30 & B"
+},
+{
+"camp": "Gravity",
+"location": "3:30 & F"
+},
+{
+"camp": "Great Vibrations",
+"location": "9:00 G Plaza @ 9:30"
+},
+{
+"camp": "Gritty Garden",
+"location": "B & 5:15"
+},
+{
+"camp": "Groove Oasis",
+"location": "C & 8:15"
+},
+{
+"camp": "Groundhaus",
+"location": "5:00 & E"
+},
+{
+"camp": "Guano Loco Lounge",
+"location": "B & 2:15"
+},
+{
+"camp": "Gypsy Monkey Carnival",
+"location": "3:00 & F"
+},
+{
+"camp": "GYST",
+"location": "7:00 & A"
+},
+{
+"camp": "Habitat for Insanity",
+"location": "5:00 & D"
+},
+{
+"camp": "Hack-a-Cola",
+"location": "Center Camp Plaza @ 3:00"
+},
+{
+"camp": "Hair of the Dog (HOTD)",
+"location": "5:30 & A"
+},
+{
+"camp": "Hakuna Matata",
+"location": "9:45 & G"
+},
+{
+"camp": "Half Baked",
+"location": "A & 4:45"
+},
+{
+"camp": "Halloween Camp",
+"location": "C & 9:15"
+},
+{
+"camp": "Halloween Town BRC",
+"location": "H & 2:15"
+},
+{
+"camp": "Hammered and Sickled",
+"location": "E & 9:15"
+},
+{
+"camp": "Hang-Out, the",
+"location": "6:00 & C"
+},
+{
+"camp": "HAPPINESS AND JOY TOUR MASSAGE",
+"location": "4:30 & C"
+},
+{
+"camp": "Happy Hair Salon",
+"location": "10:00 & A"
+},
+{
+"camp": "Happy Hanuman",
+"location": "F & 7:15"
+},
+{
+"camp": "Happy Hour",
+"location": "3:30 & A"
+},
+{
+"camp": "Happy Seats",
+"location": "E & 3:45"
+},
+{
+"camp": "Hard as a Rock",
+"location": "C & 6:15"
+},
+{
+"camp": "HARDLY",
+"location": "Esplanade & 2:45"
+},
+{
+"camp": "Harmonic Convergence Camp",
+"location": "G & 4:15"
+},
+{
+"camp": "Harmonic Drift",
+"location": "D & 6:15"
+},
+{
+"camp": "HAVANA NIGHTS",
+"location": "B & 9:15"
+},
+{
+"camp": "HealAF",
+"location": "E & 6:15"
+},
+{
+"camp": "Healing Foot Wash Life Truth Love",
+"location": "5:00 & G"
+},
+{
+"camp": "Heart Fusion",
+"location": "A & 4:45"
+},
+{
+"camp": "Heart of Parkness",
+"location": "A & 7:45"
+},
+{
+"camp": "HeeBeeGeeBee Healers",
+"location": "F & 8:15"
+},
+{
+"camp": "Hel's Diner",
+"location": "F & 6:45"
+},
+{
+"camp": "Helios Hideout",
+"location": "F & 9:15"
+},
+{
+"camp": "Helioz",
+"location": "3:00 G Plaza @ 7:00"
+},
+{
+"camp": "Hello Mom!",
+"location": "E & 3:15"
+},
+{
+"camp": "Hello, Brooklyn",
+"location": "C & 4:15"
+},
+{
+"camp": "Here",
+"location": "C & 9:15"
+},
+{
+"camp": "Hibernaculum",
+"location": "B & 3:45"
+},
+{
+"camp": "Hiburnia",
+"location": "8:45 & J"
+},
+{
+"camp": "High Maintenance Entertainment",
+"location": "9:15 & H"
+},
+{
+"camp": "HIGHKU",
+"location": "C & 5:45"
+},
+{
+"camp": "Hippocampus",
+"location": "5:00 & F"
+},
+{
+"camp": "Hobo Camp",
+"location": "Center Camp Plaza @ 9:15"
+},
+{
+"camp": "Hodge Podge",
+"location": "C & 8:45"
+},
+{
+"camp": "Holy Babel",
+"location": "C & 5:15"
+},
+{
+"camp": "Homebrew 4A Homebrew",
+"location": "Center Camp Plaza @ 6:30"
+},
+{
+"camp": "Homeslice",
+"location": "F & 4:15"
+},
+{
+"camp": "Honey Pot Tea House",
+"location": "4:30 G Plaza @ 11:00"
+},
+{
+"camp": "Honey Puddle",
+"location": "Center Camp Plaza @ 1:15"
+},
+{
+"camp": "Honkers Harbor",
+"location": "D & 8:15"
+},
+{
+"camp": "Hookahdome",
+"location": "Esplanade & 4:15"
+},
+{
+"camp": "Hookers & Peggers Naughty Cafe",
+"location": "C & 5:15"
+},
+{
+"camp": "Hooter Tooterville",
+"location": "G & 4:15"
+},
+{
+"camp": "HORIZON",
+"location": "Esplanade & 8:45"
+},
+{
+"camp": "Horny Camp",
+"location": "8:30 & B"
+},
+{
+"camp": "Hot Noodz",
+"location": "8:30 & B"
+},
+{
+"camp": "HOT SHOTS",
+"location": "A & 8:15"
+},
+{
+"camp": "Hot Stuff",
+"location": "2:00 & F"
+},
+{
+"camp": "Hotel Lobby",
+"location": "9:00 & E"
+},
+{
+"camp": "Hotline Camp",
+"location": "A & 8:15"
+},
+{
+"camp": "House of Sammich",
+"location": "D & 7:15"
+},
+{
+"camp": "House Of Skin",
+"location": "C & 9:45"
+},
+{
+"camp": "HOVerlandia",
+"location": "6:15 & I"
+},
+{
+"camp": "Hug cabana camp",
+"location": "C & 4:45"
+},
+{
+"camp": "Humble Be Art cars",
+"location": "A & 9:45"
+},
+{
+"camp": "Hungry Games",
+"location": "B & 6:45"
+},
+{
+"camp": "Hush Hush Pony Barn",
+"location": "C & 3:45"
+},
+{
+"camp": "Hushville",
+"location": "F & 4:45"
+},
+{
+"camp": "Huǒ Fèng MV Support Camp",
+"location": ""
+},
+{
+"camp": "Hydration Station",
+"location": "4:30 & D"
+},
+{
+"camp": "HYPERSPACE",
+"location": "B & 7:15"
+},
+{
+"camp": "I Love Elephants",
+"location": "Esplanade & 3:00 Portal"
+},
+{
+"camp": "I Taste Purple",
+"location": "E & 7:15"
+},
+{
+"camp": "Icarus Camp",
+"location": "G & 9:45"
+},
+{
+"camp": "ICU: Impromptu Crafters Union",
+"location": "B & 5:45"
+},
+{
+"camp": "IcyHands Chillzone",
+"location": "3:30 & B"
+},
+{
+"camp": "IGNITED STATES",
+"location": "E & 4:15"
+},
+{
+"camp": "IHOTT: After Dark",
+"location": "B & 8:45"
+},
+{
+"camp": "Illumination Village",
+"location": "Esplanade & 4:30 Portal"
+},
+{
+"camp": "Illuminaughty",
+"location": "9:00 G Plaza @ 11:00"
+},
+{
+"camp": "ImagiMorphia",
+"location": "G & 4:45"
+},
+{
+"camp": "Imagine Nation Art Lounge",
+"location": "2:00 B Plaza"
+},
+{
+"camp": "Impromptu Tomato",
+"location": "C & 5:15"
+},
+{
+"camp": "IN DUST WE TRUST",
+"location": "D & 3:15"
+},
+{
+"camp": "Inappropirates",
+"location": "7:30 B Plaza @ 11:00"
+},
+{
+"camp": "Indigo's Speakeasy",
+"location": "C & 3:45"
+},
+{
+"camp": "InfiniTea",
+"location": "F & 6:45"
+},
+{
+"camp": "Inflatable Wildlife",
+"location": "7:30 Portal"
+},
+{
+"camp": "ING",
+"location": "8:30 & D"
+},
+{
+"camp": "Insomnophilia",
+"location": "C & 8:45"
+},
+{
+"camp": "Interaction Café",
+"location": "3:30 & B"
+},
+{
+"camp": "Intergalactic",
+"location": "2:15 & F"
+},
+{
+"camp": "Interzone",
+"location": "6:30 & B"
+},
+{
+"camp": "Iron Monkeys",
+"location": "C & 5:15"
+},
+{
+"camp": "Irrelephant Bird Camp",
+"location": "6:30 & D"
+},
+{
+"camp": "It's Only Natural",
+"location": "C & 7:15"
+},
+{
+"camp": "Jail of Hedone",
+"location": "6:30 & E"
+},
+{
+"camp": "Janky Barge",
+"location": "D & 4:15"
+},
+{
+"camp": "Jelly Dance",
+"location": "4:30 & E"
+},
+{
+"camp": "Jitters & Bitters",
+"location": "E & 2:45"
+},
+{
+"camp": "Joey Glowey Bar",
+"location": "B & 7:15"
+},
+{
+"camp": "Johnny Tacomas at The Last Resort",
+"location": "2:30 & K"
+},
+{
+"camp": "Joie de Vivre",
+"location": "D & 3:45"
+},
+{
+"camp": "Joyism",
+"location": "E & 4:15"
+},
+{
+"camp": "Joyism MVSC",
+"location": "E & 4:15"
+},
+{
+"camp": "Juicy Rootz",
+"location": "D & 7:45"
+},
+{
+"camp": "Jungle Oddity",
+"location": "7:30 & D"
+},
+{
+"camp": "Just Dandy",
+"location": "C & 9:45"
+},
+{
+"camp": "KAIF",
+"location": "C & 9:45"
+},
+{
+"camp": "Kaleidoscope",
+"location": "9:00 B Plaza @ 7:00"
+},
+{
+"camp": "Kaleidoscope Collective",
+"location": "4:00 & B"
+},
+{
+"camp": "Kalos Scopeo",
+"location": ""
+},
+{
+"camp": "Kamp Kaos",
+"location": "4:00 & A"
+},
+{
+"camp": "Kamp Kit",
+"location": "3:30 & B"
+},
+{
+"camp": "Karma Love Camp",
+"location": "8:00 & D"
+},
+{
+"camp": "KashyyyK",
+"location": "D & 8:15"
+},
+{
+"camp": "Kaya",
+"location": "A & 9:45"
+},
+{
+"camp": "Kentucky Fried Camp",
+"location": "6:00 & C"
+},
+{
+"camp": "Khaleeya",
+"location": "E & 9:15"
+},
+{
+"camp": "Kids Kamp",
+"location": "F & 6:15"
+},
+{
+"camp": "Kidsville",
+"location": "5:00 & E"
+},
+{
+"camp": "Kinky Pizza",
+"location": "2:30 & D"
+},
+{
+"camp": "Kinsey Walhberg Field Lab",
+"location": "D & 9:15"
+},
+{
+"camp": "Knot Sure",
+"location": "6:00 & D"
+},
+{
+"camp": "Knotty Peckers",
+"location": "C & 4:45"
+},
+{
+"camp": "Kombuchachacha",
+"location": "D & 2:45"
+},
+{
+"camp": "KonaZona Coffee & Tiki Bar",
+"location": "E & 6:15"
+},
+{
+"camp": "Kosmic Korner",
+"location": "2:30 & A"
+},
+{
+"camp": "Kosmik Dust",
+"location": "6:00 Portal"
+},
+{
+"camp": "Kuker Camp",
+"location": "G & 6:15"
+},
+{
+"camp": "Kumaya",
+"location": "F & 4:15"
+},
+{
+"camp": "Kurenivka",
+"location": "9:45 & F"
+},
+{
+"camp": "Kwalq Camp",
+"location": "3:30 & A"
+},
+{
+"camp": "La Calaca Village",
+"location": "4:00 & F"
+},
+{
+"camp": "LAF Lazy-Ass Fuckers",
+"location": "6:30 & B"
+},
+{
+"camp": "Lakes on the Playa Village",
+"location": "Esplanade & 3:30"
+},
+{
+"camp": "Lamplighters",
+"location": "Esplanade & 6:45"
+},
+{
+"camp": "Lands Beyond",
+"location": "F & 8:45"
+},
+{
+"camp": "Last Camp Sitting",
+"location": "A & 9:15"
+},
+{
+"camp": "Latica",
+"location": "C & 3:45"
+},
+{
+"camp": "LEGENDARY Playground of the Gods",
+"location": "4:30 & E"
+},
+{
+"camp": "Legends of the Hidden Playa",
+"location": "4:30 B Plaza @ 2:15"
+},
+{
+"camp": "Leopard Martini Lounge",
+"location": "5:30 & A"
+},
+{
+"camp": "Lightning Bug Lounge",
+"location": "D & 4:15"
+},
+{
+"camp": "Lily Pad Lounge",
+"location": "F & 4:15"
+},
+{
+"camp": "Liquid Spankuary",
+"location": "F & 5:45"
+},
+{
+"camp": "Lit AF",
+"location": "A & 2:45"
+},
+{
+"camp": "Lituanica Birds",
+"location": "4:30 G Plaza @ 5:15"
+},
+{
+"camp": "Live Laugh Love Lounge",
+"location": "K & 2:15"
+},
+{
+"camp": "LIZARD",
+"location": "A & 3:15"
+},
+{
+"camp": "Loadie Camp",
+"location": "A & 2:15"
+},
+{
+"camp": "LOBE",
+"location": "B & 4:15"
+},
+{
+"camp": "Lollypopolus",
+"location": "F & 6:15"
+},
+{
+"camp": "Long Feng Camp",
+"location": "10:00 & K"
+},
+{
+"camp": "Lookout! The Camp",
+"location": "D & 2:45"
+},
+{
+"camp": "Lost + Found",
+"location": "9:30 & D"
+},
+{
+"camp": "Lost and Sound",
+"location": "F & 2:45"
+},
+{
+"camp": "Lost Art",
+"location": "A & 8:45"
+},
+{
+"camp": "Lotus Dome & Café",
+"location": "4:30 & E"
+},
+{
+"camp": "Lovana",
+"location": "E & 6:15"
+},
+{
+"camp": "Love Tripping",
+"location": "F & 8:45"
+},
+{
+"camp": "Lovin' Oven",
+"location": "3:00 B Plaza @ 5:00"
+},
+{
+"camp": "Lucid Dream Hideout",
+"location": "8:45 & G"
+},
+{
+"camp": "Luminary Camp",
+"location": "E & 9:45"
+},
+{
+"camp": "Luminos",
+"location": "C & 3:45"
+},
+{
+"camp": "Lunar Disco",
+"location": "F & 8:15"
+},
+{
+"camp": "Lunars Camp",
+"location": "Esplanade & 3:30"
+},
+{
+"camp": "Lusty Chanterelle Kombucha Bar",
+"location": "Center Camp Plaza @ 10:45"
+},
+{
+"camp": "M*A*S*H 4207th",
+"location": "B & 3:15"
+},
+{
+"camp": "MacGyvers' Union",
+"location": "B & 7:15"
+},
+{
+"camp": "machinedom - the experience",
+"location": "H & 5:45"
+},
+{
+"camp": "Mad Tea(se) Party",
+"location": "Esplanade & 7:15"
+},
+{
+"camp": "Magic Lantern Society",
+"location": "Center Camp Plaza @ 11:30"
+},
+{
+"camp": "Magic Paradise",
+"location": "5:00 & B"
+},
+{
+"camp": "Maison Phi",
+"location": "10:00 B Plaza"
+},
+{
+"camp": "Mansonian Institute 4 Urban Study",
+"location": "6:30 & B"
+},
+{
+"camp": "MARA",
+"location": "9:30 & F"
+},
+{
+"camp": "Martha Love",
+"location": "D & 2:45"
+},
+{
+"camp": "Mary E's Lavender Hand Wash",
+"location": "E & 5:15"
+},
+{
+"camp": "Matcha Mama",
+"location": "2:30 & E"
+},
+{
+"camp": "Math Camp @ Group W",
+"location": "E & 3:15"
+},
+{
+"camp": "MAXA",
+"location": "8:30 & J"
+},
+{
+"camp": "Maybe You Should Talk To Someone",
+"location": "D & 4:45"
+},
+{
+"camp": "Mechanical Garden",
+"location": "F & 4:45"
+},
+{
+"camp": "Media Mecca",
+"location": "Esplanade & 6:15"
+},
+{
+"camp": "Mellow Mountain",
+"location": "8:30 & C"
+},
+{
+"camp": "Memento Mori",
+"location": "G & 4:45"
+},
+{
+"camp": "MESA",
+"location": "Esplanade & 9:30"
+},
+{
+"camp": "Metal Detected",
+"location": "5:30 & C"
+},
+{
+"camp": "METAL MIMI Camp",
+"location": "2:30 & A"
+},
+{
+"camp": "Metal-Morphosis",
+"location": "C & 5:15"
+},
+{
+"camp": "Metamorphosis Energy Lab",
+"location": "E & 7:45"
+},
+{
+"camp": "MIDAS TEAR COLLECTIVE",
+"location": "E & 6:15"
+},
+{
+"camp": "MidNight Caff Cove",
+"location": "G & 5:45"
+},
+{
+"camp": "Midnight Roast",
+"location": "2:00 & C"
+},
+{
+"camp": "Mighty Misfits",
+"location": "2:30 & D"
+},
+{
+"camp": "Miki Beach",
+"location": "10:00 & F"
+},
+{
+"camp": "Mimosa",
+"location": "B & 3:45"
+},
+{
+"camp": "Mindseye Bonsai",
+"location": "E & 6:15"
+},
+{
+"camp": "MindShark",
+"location": "Esplanade & 3:00 Portal"
+},
+{
+"camp": "Mindwerk",
+"location": "D & 4:15"
+},
+{
+"camp": "Misfits Menagerie",
+"location": "6:30 & E"
+},
+{
+"camp": "Mission Country Club",
+"location": "7:00 & D"
+},
+{
+"camp": "Mist Connections",
+"location": "B & 3:45"
+},
+{
+"camp": "Misters & Sisters",
+"location": "E & 2:45"
+},
+{
+"camp": "Mo's Mini Martini + Erotica Camp",
+"location": "9:00 Portal & A"
+},
+{
+"camp": "Mobility Camp",
+"location": "6:30 & A"
+},
+{
+"camp": "Molotov Cocktail",
+"location": "3:00 B Plaza @ 11:00"
+},
+{
+"camp": "Mona Camp",
+"location": "6:15 & G"
+},
+{
+"camp": "Monkey King Camp",
+"location": "H & 2:15"
+},
+{
+"camp": "Moon Cheese",
+"location": "8:30 & A"
+},
+{
+"camp": "Moon Landing",
+"location": "A & 7:45"
+},
+{
+"camp": "Moonlight Collective",
+"location": "E & 2:45"
+},
+{
+"camp": "Moonraker",
+"location": "C & 4:45"
+},
+{
+"camp": "MOOP MAP HQ",
+"location": "Esplanade & 5:30"
+},
+{
+"camp": "More Is More",
+"location": "F & 8:45"
+},
+{
+"camp": "Mos Eisley Village",
+"location": "E & 6:45"
+},
+{
+"camp": "Mostly in Tune",
+"location": "7:30 & F"
+},
+{
+"camp": "Mountain Mayhem",
+"location": "C & 8:45"
+},
+{
+"camp": "Mouse House",
+"location": "C & 7:15"
+},
+{
+"camp": "Mouse Trap",
+"location": "5:45 & F"
+},
+{
+"camp": "Mudskippers",
+"location": "C & 6:45"
+},
+{
+"camp": "Mural Maze Support Camp",
+"location": "B & 7:15"
+},
+{
+"camp": "MUSE (Maenad University)",
+"location": "E & 4:15"
+},
+{
+"camp": "MUSE Café",
+"location": "E & 8:15"
+},
+{
+"camp": "Mutant Ninja Burners",
+"location": "C & 3:45"
+},
+{
+"camp": "My Favorite Things",
+"location": "C & 9:15"
+},
+{
+"camp": "Mystic",
+"location": "2:00 & F"
+},
+{
+"camp": "Mystikal Misfits",
+"location": "Esplanade & 8:30"
+},
+{
+"camp": "Mystopia",
+"location": "6:30 & E"
+},
+{
+"camp": "NAACB",
+"location": "D & 3:45"
+},
+{
+"camp": "Naked Heart",
+"location": "6:00 & F"
+},
+{
+"camp": "Native Tongues",
+"location": "6:00 & D"
+},
+{
+"camp": "Navigate to YES",
+"location": "I & 2:15"
+},
+{
+"camp": "Neodebauchery",
+"location": "F & 3:15"
+},
+{
+"camp": "NetsaH",
+"location": "F & 7:45"
+},
+{
+"camp": "Never Sleep Again",
+"location": "8:30 & F"
+},
+{
+"camp": "New Desert Outpost",
+"location": "F & 4:15"
+},
+{
+"camp": "Next Year on Luna",
+"location": "7:30 & D"
+},
+{
+"camp": "Nipple Crime",
+"location": "8:00 & F"
+},
+{
+"camp": "Nipple Pie",
+"location": "3:00 & E"
+},
+{
+"camp": "No Adults Detected",
+"location": "F & 9:15"
+},
+{
+"camp": "No Drama Camp",
+"location": "D & 4:15"
+},
+{
+"camp": "No Holes Barred Comedy Club",
+"location": "7:30 G Plaza @ 1:30"
+},
+{
+"camp": "NO STAIRWAY TO HEAVEN",
+"location": "E & 9:15"
+},
+{
+"camp": "Nobo House",
+"location": "D & 4:45"
+},
+{
+"camp": "Nocino's",
+"location": "B & 9:15"
+},
+{
+"camp": "Node",
+"location": "9:00 G Plaza @ 1:00"
+},
+{
+"camp": "Nom De Plume",
+"location": "10:00 & 10:00 B Plaza"
+},
+{
+"camp": "noMADart",
+"location": "C & 8:15"
+},
+{
+"camp": "Nordic Paradise",
+"location": "7:30 Portal & A"
+},
+{
+"camp": "Norms Garage",
+"location": "F & 5:15"
+},
+{
+"camp": "NORSE CODE",
+"location": "E & 8:45"
+},
+{
+"camp": "Northwest Mist",
+"location": "Esplanade & 8:15"
+},
+{
+"camp": "Nose Fish",
+"location": "D & 6:15"
+},
+{
+"camp": "Nova Heaven",
+"location": "C & 9:45"
+},
+{
+"camp": "Now and Then Artist Collective",
+"location": "A & 9:15"
+},
+{
+"camp": "Nudibranch",
+"location": "E & 7:15"
+},
+{
+"camp": "NumbSkulls",
+"location": "J & 8:45"
+},
+{
+"camp": "NYC Community Container",
+"location": "F & 5:15"
+},
+{
+"camp": "NYC Deli",
+"location": "D & 8:45"
+},
+{
+"camp": "Ocean Beach",
+"location": "4:00 & A"
+},
+{
+"camp": "Oceyolotl Sanctuary",
+"location": "D & 4:45"
+},
+{
+"camp": "Off the Dome",
+"location": "Esplanade & 7:15"
+},
+{
+"camp": "Ofosho",
+"location": "5:00 & D"
+},
+{
+"camp": "Oh mi Gato Rat Cafe!",
+"location": "D & 7:15"
+},
+{
+"camp": "Oh No You Didn't!",
+"location": "9:30 & B"
+},
+{
+"camp": "OHF- One Human Family",
+"location": "C & 7:15"
+},
+{
+"camp": "OHM HOME",
+"location": "9:30 & I"
+},
+{
+"camp": "OLYMPVS",
+"location": "4:00 & E"
+},
+{
+"camp": "Om Skillet",
+"location": "F & 4:15"
+},
+{
+"camp": "Only mEmbers",
+"location": "G & 6:15"
+},
+{
+"camp": "Opulent Temple",
+"location": "Esplanade & 10:00"
+},
+{
+"camp": "Oral Fixation",
+"location": "2:15 & I"
+},
+{
+"camp": "Organic Fruit & Veggie Camp",
+"location": "3:00 & J"
+},
+{
+"camp": "Orgy Bus Camp",
+"location": "7:30 & H"
+},
+{
+"camp": "Orphan Asylum",
+"location": "10:00 & 10:00 B Plaza"
+},
+{
+"camp": "Orphan Endorphin",
+"location": "E & 7:45"
+},
+{
+"camp": "Our Own Devices",
+"location": "A & 4:15"
+},
+{
+"camp": "Owl and the Pussycat",
+"location": "F & 4:45"
+},
+{
+"camp": "Pacific",
+"location": "A & 3:45"
+},
+{
+"camp": "PALINKA LOUNGE",
+"location": "Center Camp Plaza @ 3:30"
+},
+{
+"camp": "pandemonium",
+"location": "3:00 & F"
+},
+{
+"camp": "Pandora's Lounge & Fix-it Shoppe",
+"location": "Center Camp Plaza @ 9:45"
+},
+{
+"camp": "Paper Cranes",
+"location": "B & 8:15"
+},
+{
+"camp": "Paralunatics",
+"location": "C & 7:15"
+},
+{
+"camp": "Parley",
+"location": "E & 3:45"
+},
+{
+"camp": "Parliament Art Crew",
+"location": "B & 6:45"
+},
+{
+"camp": "Partner Dance Adventures",
+"location": "Center Camp Plaza @ 5:15"
+},
+{
+"camp": "Patsy's Hangout",
+"location": "7:30 & D"
+},
+{
+"camp": "Penny Smashing Point",
+"location": "G & 5:45"
+},
+{
+"camp": "People of Color Camp",
+"location": "4:30 G Plaza @ 7:15"
+},
+{
+"camp": "People's Art Congress",
+"location": "6:00 G Plaza @ 7:30"
+},
+{
+"camp": "Pepperland",
+"location": "6:15 & G"
+},
+{
+"camp": "Petaled Portal",
+"location": "D & 9:15"
+},
+{
+"camp": "Phantasmagoria Camp",
+"location": "Esplanade & 4:00"
+},
+{
+"camp": "PhoCureBurn",
+"location": "C & 4:45"
+},
+{
+"camp": "Phonic Bloom",
+"location": "D & 3:45"
+},
+{
+"camp": "Pickle Joint",
+"location": "6:00 & E"
+},
+{
+"camp": "PickleBack Mountain",
+"location": "D & 8:45"
+},
+{
+"camp": "Pickleback Oasis",
+"location": "B & 6:15"
+},
+{
+"camp": "Pilov's House",
+"location": "2:30 & D"
+},
+{
+"camp": "Pinhole Project",
+"location": "3:00 B Plaza @ 3:45"
+},
+{
+"camp": "Pink Heart",
+"location": "Esplanade & 9:00 Portal"
+},
+{
+"camp": "Pink Lightning",
+"location": "D & 7:45"
+},
+{
+"camp": "Pink Mammoth",
+"location": "9:00 G Plaza @ 7:30"
+},
+{
+"camp": "Pink Ponies",
+"location": "7:00 & F"
+},
+{
+"camp": "Pink Squirrel",
+"location": "F & 4:45"
+},
+{
+"camp": "Pinky Swears",
+"location": "C & 4:15"
+},
+{
+"camp": "Pirate Camp",
+"location": "D & 5:15"
+},
+{
+"camp": "Placement HQ",
+"location": "Esplanade & 5:45"
+},
+{
+"camp": "planet wood collective",
+"location": "A & 4:15"
+},
+{
+"camp": "Planned Playahood",
+"location": "7:00 & E"
+},
+{
+"camp": "PLAYA 54",
+"location": "C & 8:15"
+},
+{
+"camp": "Playa Agora",
+"location": "F & 8:45"
+},
+{
+"camp": "Playa Alterations",
+"location": "B & 8:45"
+},
+{
+"camp": "Playa Art Park Support",
+"location": "6:30 & D"
+},
+{
+"camp": "Playa Choir",
+"location": "6:00 & D"
+},
+{
+"camp": "Playa Circuit Boogie",
+"location": "C & 4:45"
+},
+{
+"camp": "Playa Delicacies Cooking School",
+"location": "C & 7:15"
+},
+{
+"camp": "Playa Glass",
+"location": "C & 8:45"
+},
+{
+"camp": "Playa Info/VRT",
+"location": "Esplanade & 5:45"
+},
+{
+"camp": "Playa Jazz Cafe",
+"location": "Center Camp Plaza @ 7:15"
+},
+{
+"camp": "Playa Peace Project",
+"location": "F & 9:15"
+},
+{
+"camp": "Playa Pete's Plaza",
+"location": "9:30 & H"
+},
+{
+"camp": "Playa Piano Bar and Lounge",
+"location": "7:30 B Plaza @ 2:30"
+},
+{
+"camp": "Playa Pinups and Fine Art Fatales",
+"location": "E & 3:45"
+},
+{
+"camp": "Playacuda",
+"location": "F & 9:15"
+},
+{
+"camp": "PlayaDough",
+"location": "G & 5:45"
+},
+{
+"camp": "PlayAground",
+"location": "2:30 & A"
+},
+{
+"camp": "PLAYGROUND",
+"location": "2:00 & C"
+},
+{
+"camp": "Pleasant Camp",
+"location": "G & 4:45"
+},
+{
+"camp": "plop!",
+"location": "B & 9:45"
+},
+{
+"camp": "PlovKraft",
+"location": "Esplanade & 7:30 Portal"
+},
+{
+"camp": "PLUR Pups",
+"location": "B & 7:45"
+},
+{
+"camp": "PO9",
+"location": "8:30 & A"
+},
+{
+"camp": "PolyParadise",
+"location": "8:30 & F"
+},
+{
+"camp": "Pookah Lounge/SNAFUBAR",
+"location": "E & 7:15"
+},
+{
+"camp": "PopoVille",
+"location": "4:30 G Plaza @ 1:00"
+},
+{
+"camp": "Pops and Drops",
+"location": "C & 3:45"
+},
+{
+"camp": "Popsicle Bahrrr",
+"location": "2:00 B Plaza"
+},
+{
+"camp": "Potty Project",
+"location": "B & 3:15"
+},
+{
+"camp": "Powder Palace",
+"location": "B & 8:15"
+},
+{
+"camp": "POWERHOUSE",
+"location": "F & 5:15"
+},
+{
+"camp": "Practice Camp",
+"location": "7:30 & H"
+},
+{
+"camp": "Prairie Kids",
+"location": "B & 6:45"
+},
+{
+"camp": "Pranksters in the Pines",
+"location": "9:30 & A"
+},
+{
+"camp": "Preservation Society",
+"location": "3:30 & A"
+},
+{
+"camp": "Pretty Pickle",
+"location": "7:30 Portal & A"
+},
+{
+"camp": "Prismaticamp",
+"location": "G & 4:45"
+},
+{
+"camp": "Pussy Avalanche",
+"location": "4:00 & G"
+},
+{
+"camp": "Pussy Day Spa",
+"location": "8:30 & A"
+},
+{
+"camp": "Putt Putt Palace",
+"location": "E & 8:45"
+},
+{
+"camp": "Quarks and Recreation",
+"location": "B & 7:15"
+},
+{
+"camp": "Queertirement",
+"location": "7:00 & F"
+},
+{
+"camp": "Rabbit Hole",
+"location": "9:00 B Plaza @ 9:45"
+},
+{
+"camp": "Raccoons",
+"location": "6:00 & F"
+},
+{
+"camp": "Raditude",
+"location": "6:00 Portal"
+},
+{
+"camp": "Ragnarokk",
+"location": "J & 9:15"
+},
+{
+"camp": "Ranger Headquarters",
+"location": "Esplanade & 6:30"
+},
+{
+"camp": "Ranger Outpost Berlin",
+"location": "3:00 & C"
+},
+{
+"camp": "Ranger Outpost Tokyo",
+"location": "9:00 & C"
+},
+{
+"camp": "Ray's Fix It",
+"location": "D & 6:15"
+},
+{
+"camp": "Ready Playa One",
+"location": "I & 9:45"
+},
+{
+"camp": "Rebel Camp",
+"location": "F & 5:15"
+},
+{
+"camp": "Recycle Camp",
+"location": "Esplanade & 5:45"
+},
+{
+"camp": "Red Nose District",
+"location": "Esplanade & 5:00"
+},
+{
+"camp": "Red Rooster Ranch",
+"location": "F & 3:45"
+},
+{
+"camp": "Redhanded",
+"location": "B & 8:45"
+},
+{
+"camp": "RedNeck Regal Theatre",
+"location": "G & 4:15"
+},
+{
+"camp": "ReEntry Station",
+"location": "G & 4:45"
+},
+{
+"camp": "Religious As Fuck",
+"location": "B & 3:15"
+},
+{
+"camp": "Renewables For Artists RAT HQ",
+"location": "F & 2:45"
+},
+{
+"camp": "Reno Housewives",
+"location": "C & 7:15"
+},
+{
+"camp": "Resonance",
+"location": "2:45 & F"
+},
+{
+"camp": "Retrofrolic",
+"location": "7:30 & E"
+},
+{
+"camp": "Reverbia",
+"location": "Esplanade & 7:45"
+},
+{
+"camp": "rEVOLUTION",
+"location": "B & 3:15"
+},
+{
+"camp": "RhythmWave",
+"location": "6:00 & E"
+},
+{
+"camp": "RIPPERS ROW",
+"location": "3:00 Portal & A"
+},
+{
+"camp": "RIPPLE",
+"location": "B & 5:15"
+},
+{
+"camp": "Roadside Distraction",
+"location": "B & 7:15"
+},
+{
+"camp": "Roasted Breauxs & Coffee Heauxs",
+"location": "A & 4:15"
+},
+{
+"camp": "ROCA",
+"location": "D & 3:45"
+},
+{
+"camp": "Rocket 'n Roll",
+"location": "E & 6:15"
+},
+{
+"camp": "Rogue Nation (SEAWeed)",
+"location": "E & 6:15"
+},
+{
+"camp": "Rooftop Frose",
+"location": "F & 4:45"
+},
+{
+"camp": "Rootist Lounge",
+"location": "C & 3:15"
+},
+{
+"camp": "Rootpile",
+"location": "D & 8:15"
+},
+{
+"camp": "Royal Honey",
+"location": "B & 8:15"
+},
+{
+"camp": "Rubber Armstrong",
+"location": "9:30 & E"
+},
+{
+"camp": "Rum Amok",
+"location": "C & 7:45"
+},
+{
+"camp": "Rumi's Tea House",
+"location": "8:00 & C"
+},
+{
+"camp": "Rumpus",
+"location": "3:00 & C"
+},
+{
+"camp": "Rustic WerQ Ranch",
+"location": "D & 6:45"
+},
+{
+"camp": "SAHARAA CAMP",
+"location": "J & 9:15"
+},
+{
+"camp": "Saints and Sinners",
+"location": "D & 4:15"
+},
+{
+"camp": "Sake To Me",
+"location": "4:30 & F"
+},
+{
+"camp": "Sakenoma",
+"location": "Esplanade & 4:45"
+},
+{
+"camp": "Salty Jacks",
+"location": "9:00 & F"
+},
+{
+"camp": "San Marco Square",
+"location": "F & 9:15"
+},
+{
+"camp": "Scorpion Walks",
+"location": "E & 2:45"
+},
+{
+"camp": "Scotch & Hop",
+"location": "E & 8:45"
+},
+{
+"camp": "Seashell Cartel",
+"location": "F & 9:15"
+},
+{
+"camp": "Second Rodeo",
+"location": "8:30 & E"
+},
+{
+"camp": "Second Wind Pirate Cafe",
+"location": "6:00 G Plaza @ 11:15"
+},
+{
+"camp": "Secret Passage",
+"location": "C & 5:45"
+},
+{
+"camp": "Send Noods",
+"location": "C & 4:45"
+},
+{
+"camp": "Serenity Now",
+"location": "5:30 & B"
+},
+{
+"camp": "Servants of the Secret Fire",
+"location": "8:45 & F"
+},
+{
+"camp": "Sha La La",
+"location": "9:30 & G"
+},
+{
+"camp": "Shake, Shake, Shake",
+"location": "Center Camp Plaza @ 10:00"
+},
+{
+"camp": "Shamandome",
+"location": "F & 6:45"
+},
+{
+"camp": "Shangri-Lounge",
+"location": "A & 6:45"
+},
+{
+"camp": "SHANTI TOWN SOUND MOVEMENT",
+"location": "2:30 & E"
+},
+{
+"camp": "Shanty Town",
+"location": "D & 5:45"
+},
+{
+"camp": "Sharkey's Bar and Lounge",
+"location": "7:00 & A"
+},
+{
+"camp": "Shenanigans",
+"location": "E & 4:15"
+},
+{
+"camp": "Shift the atmosphere",
+"location": "F & 4:45"
+},
+{
+"camp": "Shitty Glitter",
+"location": "8:30 & D"
+},
+{
+"camp": "Shitty Wood",
+"location": "A & 7:15"
+},
+{
+"camp": "Short Bus Coffee Camp",
+"location": "8:00 & A"
+},
+{
+"camp": "Shoturanga",
+"location": "D & 7:45"
+},
+{
+"camp": "Shuttlecocks",
+"location": "D & 8:15"
+},
+{
+"camp": "Sian Kamp",
+"location": "A & 3:45"
+},
+{
+"camp": "Side Boob",
+"location": "F & 4:15"
+},
+{
+"camp": "Sidequest Sideshow",
+"location": "D & 6:45"
+},
+{
+"camp": "Signing Wanderers",
+"location": "D & 6:15"
+},
+{
+"camp": "Silver City",
+"location": "4:30 & F"
+},
+{
+"camp": "Simian Akademy",
+"location": "D & 7:45"
+},
+{
+"camp": "Siren's Cove",
+"location": "C & 3:15"
+},
+{
+"camp": "SIZE DOESN'T MATTER",
+"location": "E & 3:15"
+},
+{
+"camp": "Skinny Kitty Teahouse",
+"location": "3:00 & E"
+},
+{
+"camp": "Skrambles**!*",
+"location": "9:00 G Plaza @ 2:15"
+},
+{
+"camp": "Skyhorse Carousel",
+"location": "Center Camp Plaza @ 2:15"
+},
+{
+"camp": "SKYTING HQ",
+"location": "E & 3:45"
+},
+{
+"camp": "SLAYER!",
+"location": "6:00 & C"
+},
+{
+"camp": "Slow the Fuck Down",
+"location": "D & 6:45"
+},
+{
+"camp": "Slutplatz",
+"location": "C & 7:45"
+},
+{
+"camp": "Slutt Putt",
+"location": "4:30 & C"
+},
+{
+"camp": "Slutty Microphone",
+"location": "8:30 & A"
+},
+{
+"camp": "SlöMóth",
+"location": "9:00 G Plaza @ 3:45"
+},
+{
+"camp": "Snack Shack",
+"location": "B & 2:45"
+},
+{
+"camp": "Snacklandia",
+"location": "B & 5:45"
+},
+{
+"camp": "Snark Bar",
+"location": "9:00 B Plaza @ 1:15"
+},
+{
+"camp": "Snarket",
+"location": "3:00 B Plaza @ 9:45"
+},
+{
+"camp": "Snarky Marquee",
+"location": "5:30 & F"
+},
+{
+"camp": "Snow Chance",
+"location": "8:30 & B"
+},
+{
+"camp": "Snow Cone Zone",
+"location": "C & 6:15"
+},
+{
+"camp": "SnowKoanSolar",
+"location": "9:00 & E"
+},
+{
+"camp": "Snuggles",
+"location": "G & 9:15"
+},
+{
+"camp": "So Far So Good",
+"location": "4:00 & A"
+},
+{
+"camp": "Sobremesa",
+"location": "3:30 & C"
+},
+{
+"camp": "Society for Temporal Preservation",
+"location": "6:00 & F"
+},
+{
+"camp": "Soft Landing",
+"location": "6:30 & F"
+},
+{
+"camp": "Sol Family",
+"location": "2:30 & B"
+},
+{
+"camp": "SOLARIS",
+"location": "2:15 & K"
+},
+{
+"camp": "SolarPlus",
+"location": "8:00 & F"
+},
+{
+"camp": "SOLARPUNKS",
+"location": "2:00 & K"
+},
+{
+"camp": "Solid City",
+"location": "D & 6:15"
+},
+{
+"camp": "Some Camp!",
+"location": "6:30 & A"
+},
+{
+"camp": "SomeDay Isle ...",
+"location": "8:00 & B"
+},
+{
+"camp": "Someplace Cozy",
+"location": "D & 6:15"
+},
+{
+"camp": "SonicBoom Saloon",
+"location": "3:00 Portal"
+},
+{
+"camp": "Soon to be Infamous",
+"location": "C & 8:15"
+},
+{
+"camp": "SophistaPirate Cove",
+"location": "Esplanade & 3:15"
+},
+{
+"camp": "Soul Forge",
+"location": "C & 5:45"
+},
+{
+"camp": "Soulshakers",
+"location": "2:30 & B"
+},
+{
+"camp": "SoulSound",
+"location": "C & 2:15"
+},
+{
+"camp": "Sound Cabin",
+"location": "G & 9:45"
+},
+{
+"camp": "SoundCloud",
+"location": "9:30 & D"
+},
+{
+"camp": "Sozo Experience",
+"location": "C & 5:45"
+},
+{
+"camp": "SP Station",
+"location": ""
+},
+{
+"camp": "Space Bar",
+"location": "C & 5:15"
+},
+{
+"camp": "Space Cowboys",
+"location": "D & 2:45"
+},
+{
+"camp": "Spaced Out",
+"location": "D & 9:45"
+},
+{
+"camp": "Spanky's Wine Bar",
+"location": "7:30 & E"
+},
+{
+"camp": "Sparkle Camels Costume Bazaar",
+"location": "8:30 & A"
+},
+{
+"camp": "Sparkle Love",
+"location": "C & 7:45"
+},
+{
+"camp": "Spec-Taters",
+"location": "B & 8:45"
+},
+{
+"camp": "Sphere Vision",
+"location": "E & 3:15"
+},
+{
+"camp": "Spoonful of Friends",
+"location": "C & 7:15"
+},
+{
+"camp": "Square One",
+"location": "4:00 & D"
+},
+{
+"camp": "Squeeze the Day",
+"location": "B & 3:45"
+},
+{
+"camp": "Stag Camp",
+"location": "C & 9:15"
+},
+{
+"camp": "Stampede!",
+"location": "E & 2:45"
+},
+{
+"camp": "Star Buds",
+"location": "B & 3:45"
+},
+{
+"camp": "Star Jelly",
+"location": "6:15 & F"
+},
+{
+"camp": "Stardust Lounge",
+"location": "8:30 & B"
+},
+{
+"camp": "StarFist",
+"location": "3:30 & C"
+},
+{
+"camp": "StarPups",
+"location": "F & 4:15"
+},
+{
+"camp": "Stars And Bikes",
+"location": "2:30 & C"
+},
+{
+"camp": "Steam Bath Project",
+"location": "9:00 & F"
+},
+{
+"camp": "STEEP?",
+"location": "B & 8:15"
+},
+{
+"camp": "Stimulation Station",
+"location": "B & 2:45"
+},
+{
+"camp": "Stoop",
+"location": "4:30 & E"
+},
+{
+"camp": "Stoop City",
+"location": "4:30 & D"
+},
+{
+"camp": "Storytime Friends",
+"location": "2:30 & C"
+},
+{
+"camp": "STRANGELOVE",
+"location": "B & 4:15"
+},
+{
+"camp": "Struggletown Station",
+"location": "E & 2:45"
+},
+{
+"camp": "Studio and Spa",
+"location": "C & 3:45"
+},
+{
+"camp": "Suburbia",
+"location": "Esplanade & 8:30"
+},
+{
+"camp": "Sundowners",
+"location": "B & 7:45"
+},
+{
+"camp": "sunny side up",
+"location": "C & 8:15"
+},
+{
+"camp": "Sunrise Tavern",
+"location": "2:30 & E"
+},
+{
+"camp": "Sunset Lounge",
+"location": "9:30 & C"
+},
+{
+"camp": "Suspended Animation",
+"location": "7:00 & B"
+},
+{
+"camp": "Swan Forest",
+"location": "2:30 & F"
+},
+{
+"camp": "Swing City",
+"location": "9:00 & D"
+},
+{
+"camp": "Swirl Support",
+"location": "C & 4:15"
+},
+{
+"camp": "SYMBIO",
+"location": "2:30 & F"
+},
+{
+"camp": "Synaesthesia",
+"location": "8:00 & D"
+},
+{
+"camp": "Synapse Conduit",
+"location": "B & 5:15"
+},
+{
+"camp": "T.B.C.",
+"location": "F & 2:15"
+},
+{
+"camp": "T33M0",
+"location": "10:00 B Plaza"
+},
+{
+"camp": "ta-keel-ya or ta-heal-ya",
+"location": "C & 8:15"
+},
+{
+"camp": "Tabernacle",
+"location": "10:00 & E"
+},
+{
+"camp": "Tac-O-Cat",
+"location": "3:00 & D"
+},
+{
+"camp": "Tailgate",
+"location": "C & 7:45"
+},
+{
+"camp": "Tarwater",
+"location": "5:30 & B"
+},
+{
+"camp": "Tazii",
+"location": "3:00 & D"
+},
+{
+"camp": "TBA",
+"location": "2:30 & I"
+},
+{
+"camp": "Team Human Base Camp",
+"location": "D & 9:45"
+},
+{
+"camp": "Teddies",
+"location": "4:30 B Plaza @ 8:15"
+},
+{
+"camp": "Temple Camp",
+"location": "E & 2:45"
+},
+{
+"camp": "Temple Guardians",
+"location": "Esplanade & 5:45"
+},
+{
+"camp": "Temple O'Flying Spaghetti Monster",
+"location": "3:30 & C"
+},
+{
+"camp": "Temple Oasis",
+"location": "A & 5:15"
+},
+{
+"camp": "Tengri Camp",
+"location": "E & 3:45"
+},
+{
+"camp": "Tequila Bees",
+"location": "G & 4:45"
+},
+{
+"camp": "Terrapin Station",
+"location": "9:45 & G"
+},
+{
+"camp": "Terrible Turtle",
+"location": "E & 6:15"
+},
+{
+"camp": "Tetrix Stargazer",
+"location": "9:30 & F"
+},
+{
+"camp": "The Airship",
+"location": "4:30 & D"
+},
+{
+"camp": "The Alphabet Cookout",
+"location": "D & 6:15"
+},
+{
+"camp": "The Astral Social Club",
+"location": "B & 6:45"
+},
+{
+"camp": "The Back Hole",
+"location": "F & 5:45"
+},
+{
+"camp": "the black hole",
+"location": "E & 5:45"
+},
+{
+"camp": "The Carrot Club",
+"location": "7:00 & C"
+},
+{
+"camp": "The Cave",
+"location": "4:30 & C"
+},
+{
+"camp": "The Club",
+"location": "D & 3:45"
+},
+{
+"camp": "The Crusty Swan",
+"location": "6:00 & F"
+},
+{
+"camp": "The Den",
+"location": "C & 8:45"
+},
+{
+"camp": "The Dusty Nuts Tavern",
+"location": "2:30 & A"
+},
+{
+"camp": "The Enclave",
+"location": "6:30 & D"
+},
+{
+"camp": "The Fluffy Cloud",
+"location": "10:00 & H"
+},
+{
+"camp": "The Fountain (of youth)",
+"location": "E & 6:15"
+},
+{
+"camp": "The G Spot",
+"location": "H & 2:15"
+},
+{
+"camp": "The G-Spot & Sloth Sinema",
+"location": "D & 6:45"
+},
+{
+"camp": "the Garage",
+"location": "D & 8:45"
+},
+{
+"camp": "The GASS Co.",
+"location": "D & 9:15"
+},
+{
+"camp": "The Glorious Wet Spot",
+"location": "F & 3:15"
+},
+{
+"camp": "The Gutter",
+"location": "C & 5:15"
+},
+{
+"camp": "The Hand Lovers Lounge",
+"location": "6:30 & E"
+},
+{
+"camp": "The Hash House",
+"location": "C & 8:45"
+},
+{
+"camp": "The Institute",
+"location": "4:30 & E"
+},
+{
+"camp": "The Island",
+"location": "C & 7:45"
+},
+{
+"camp": "The Key Camp",
+"location": "D & 3:15"
+},
+{
+"camp": "The Last Starfighters",
+"location": "D & 3:15"
+},
+{
+"camp": "The Lavender Lounge",
+"location": "E & 6:15"
+},
+{
+"camp": "The Lost Penguins",
+"location": "Esplanade & 8:00"
+},
+{
+"camp": "The Makers Space",
+"location": "D & 2:45"
+},
+{
+"camp": "The Market",
+"location": "3:00 & F"
+},
+{
+"camp": "The Melon Motel",
+"location": "2:00 & I"
+},
+{
+"camp": "The Mystical Grill",
+"location": "F & 5:15"
+},
+{
+"camp": "The New Barbarians",
+"location": "D & 7:15"
+},
+{
+"camp": "The OG Pit",
+"location": "C & 6:15"
+},
+{
+"camp": "The Organization",
+"location": "A & 8:15"
+},
+{
+"camp": "The Parlour Room",
+"location": "B & 9:45"
+},
+{
+"camp": "The Pearly Gate",
+"location": "8:00 & B"
+},
+{
+"camp": "The Pink Hole",
+"location": "C & 6:15"
+},
+{
+"camp": "The Pink Spot",
+"location": "E & 3:45"
+},
+{
+"camp": "The Pleasure Dairy",
+"location": "F & 4:15"
+},
+{
+"camp": "The Shittest Camp",
+"location": "F & 5:15"
+},
+{
+"camp": "The Shrimp Ranch",
+"location": "F & 4:15"
+},
+{
+"camp": "The Shuttle Home",
+"location": "F & 9:15"
+},
+{
+"camp": "The Society of Supreme Excellence",
+"location": "2:30 & C"
+},
+{
+"camp": "The Sound Garden",
+"location": "2:00 & E"
+},
+{
+"camp": "The Sultry Lodge",
+"location": "B & 4:45"
+},
+{
+"camp": "The Surge",
+"location": "3:00 G Plaza @ 2:15"
+},
+{
+"camp": "THE VEIL",
+"location": "7:00 & C"
+},
+{
+"camp": "The Wastelanders",
+"location": "6:00 Portal"
+},
+{
+"camp": "THICC VIBEZ",
+"location": "D & 9:45"
+},
+{
+"camp": "This Is It",
+"location": "A & 6:45"
+},
+{
+"camp": "Three of Cups",
+"location": "B & 7:45"
+},
+{
+"camp": "Through the Looking Gl.ass",
+"location": "7:00 & E"
+},
+{
+"camp": "tiny camp",
+"location": "J & 9:15"
+},
+{
+"camp": "Titanic",
+"location": "E & 9:45"
+},
+{
+"camp": "Titicaca",
+"location": "3:00 G Plaza @ 1:00"
+},
+{
+"camp": "Tossed and Sauced",
+"location": "B & 7:15"
+},
+{
+"camp": "TOT",
+"location": "9:00 B Plaza @ 2:15"
+},
+{
+"camp": "Totally 80s Disco Aerobic Inferno",
+"location": "C & 7:45"
+},
+{
+"camp": "Touch Glass",
+"location": "D & 7:15"
+},
+{
+"camp": "Tour de Chance",
+"location": "4:00 & C"
+},
+{
+"camp": "TOWER69",
+"location": "9:45 & G"
+},
+{
+"camp": "Toxic Disco Clam",
+"location": "F & 4:15"
+},
+{
+"camp": "TRANSCEND",
+"location": "C & 9:45"
+},
+{
+"camp": "Treble Makers",
+"location": "Esplanade & 2:30"
+},
+{
+"camp": "Tree of Love",
+"location": "8:00 & E"
+},
+{
+"camp": "Turbaza Chayka",
+"location": "C & 6:45"
+},
+{
+"camp": "Twats Your Gender?",
+"location": "C & 9:45"
+},
+{
+"camp": "Twilight language",
+"location": "10:00 & I"
+},
+{
+"camp": "Twisted",
+"location": "5:00 & C"
+},
+{
+"camp": "Twisted Swan Celtic pub",
+"location": "8:30 & E"
+},
+{
+"camp": "Two Lanterns",
+"location": "A & 2:45"
+},
+{
+"camp": "U.F.O.",
+"location": "E & 7:45"
+},
+{
+"camp": "Udder Nonsense",
+"location": "3:00 B Plaza @ 1:30"
+},
+{
+"camp": "Uli Baba & the Horny Thieves",
+"location": "A & 4:15"
+},
+{
+"camp": "Uncle Larry's Misguided Burners",
+"location": "4:00 & F"
+},
+{
+"camp": "Under the Big Top",
+"location": "3:00 & I"
+},
+{
+"camp": "Unicorner",
+"location": "3:30 & B"
+},
+{
+"camp": "Unitopia",
+"location": "9:30 & C"
+},
+{
+"camp": "UniverseCity",
+"location": "A & 7:15"
+},
+{
+"camp": "Unnecessarily High Five",
+"location": "4:00 & B"
+},
+{
+"camp": "UnStable",
+"location": "D & 6:45"
+},
+{
+"camp": "Vagabonds & Tagalongs",
+"location": "D & 6:45"
+},
+{
+"camp": "Vamp Camp",
+"location": "C & 9:45"
+},
+{
+"camp": "Vault 21+",
+"location": "9:00 B Plaza @ 11:00"
+},
+{
+"camp": "VCamp - Vibrations in the Desert",
+"location": "2:00 B Plaza"
+},
+{
+"camp": "Venice Red Light",
+"location": "2:00 & 2:00 B Plaza"
+},
+{
+"camp": "Very Inappropriate People",
+"location": "Esplanade & 4:45"
+},
+{
+"camp": "Vibe Check",
+"location": "D & 3:45"
+},
+{
+"camp": "Videogasm",
+"location": "Esplanade & 6:45"
+},
+{
+"camp": "Vietnamese Iced Coffee Experience",
+"location": "7:00 & E"
+},
+{
+"camp": "Vin Et Gare",
+"location": "D & 7:15"
+},
+{
+"camp": "Vines Without Borders",
+"location": "4:30 Portal"
+},
+{
+"camp": "Vitruvian",
+"location": "Center Camp Plaza @ 1:45"
+},
+{
+"camp": "Vivarium",
+"location": "D & 6:15"
+},
+{
+"camp": "Vomiting Sparrows",
+"location": "8:30 & B"
+},
+{
+"camp": "VorteXXX",
+"location": "6:00 G Plaza @ 5:15"
+},
+{
+"camp": "VW Bus Camp",
+"location": "3:30 & D"
+},
+{
+"camp": "Waffles & House",
+"location": "8:30 & C"
+},
+{
+"camp": "Wally's Cowboy Kitchen",
+"location": "A & 6:15"
+},
+{
+"camp": "Wanderlust",
+"location": "B & 4:45"
+},
+{
+"camp": "Wasted Sunshine",
+"location": "E & 8:15"
+},
+{
+"camp": "Water Suckers",
+"location": "C & 4:15"
+},
+{
+"camp": "Water Temple",
+"location": "7:30 & F"
+},
+{
+"camp": "Waterworks",
+"location": "Esplanade & 5:15"
+},
+{
+"camp": "Way Way SuperGood",
+"location": "4:30 B Plaza @ 1:00"
+},
+{
+"camp": "We < 3 CamPINK!",
+"location": "E & 3:15"
+},
+{
+"camp": "Weird Steel",
+"location": "9:00 Portal"
+},
+{
+"camp": "Westlandia",
+"location": "9:15 & F"
+},
+{
+"camp": "Wetspot",
+"location": "4:30 B Plaza @ 9:45"
+},
+{
+"camp": "What Would You Do For A Pickle?",
+"location": "F & 5:15"
+},
+{
+"camp": "Whiskey and Dust",
+"location": "E & 7:45"
+},
+{
+"camp": "White Elephant Exchange",
+"location": "D & 3:45"
+},
+{
+"camp": "WHOMP WAGON",
+"location": "9:45 & I"
+},
+{
+"camp": "Whynauts",
+"location": "4:30 & F"
+},
+{
+"camp": "Wild Child",
+"location": "Center Camp Plaza @ 12:45"
+},
+{
+"camp": "Wild Free Spirit",
+"location": "A & 8:45"
+},
+{
+"camp": "Wild Horses support camp",
+"location": "F & 4:45"
+},
+{
+"camp": "Wild Tribe",
+"location": "G & 9:15"
+},
+{
+"camp": "Witches Brew",
+"location": "2:30 & A"
+},
+{
+"camp": "Wok Paper Scissors",
+"location": "10:00 & I"
+},
+{
+"camp": "Wonder Camp",
+"location": "4:30 G Plaza @ 9:45"
+},
+{
+"camp": "Word Play Cafe",
+"location": "6:00 G Plaza @ 12:45"
+},
+{
+"camp": "Worst Bar",
+"location": "B & 8:45"
+},
+{
+"camp": "WrongoWrongo",
+"location": "G & 4:15"
+},
+{
+"camp": "Wrongtown",
+"location": "E & 6:45"
+},
+{
+"camp": "X marks the spot",
+"location": "4:30 & H"
+},
+{
+"camp": "XOXO",
+"location": "9:00 B Plaza @ 3:45"
+},
+{
+"camp": "Xpat Alien",
+"location": "6:30 & C"
+},
+{
+"camp": "XXX-MAS",
+"location": "9:00 & D"
+},
+{
+"camp": "Y Knot Saloon",
+"location": "3:30 & E"
+},
+{
+"camp": "Yaass Daddy!",
+"location": "B & 7:45"
+},
+{
+"camp": "Yabba Dabba Do Me",
+"location": "B & 3:15"
+},
+{
+"camp": "Yellow Balloon",
+"location": "7:00 & A"
+},
+{
+"camp": "Yellow Bike Project",
+"location": "5:30 & D"
+},
+{
+"camp": "Yes Please",
+"location": "7:00 & F"
+},
+{
+"camp": "You Light Up My Ride",
+"location": "E & 8:15"
+},
+{
+"camp": "You Look Amazing",
+"location": "C & 7:15"
+},
+{
+"camp": "YOUniversal Teahouse",
+"location": "D & 4:45"
+},
+{
+"camp": "Your New Friend",
+"location": "A & 2:45"
+},
+{
+"camp": "Yummm",
+"location": "A & 4:45"
+},
+{
+"camp": "Yummy RUMInations",
+"location": "4:30 G Plaza @ 3:45"
+},
+{
+"camp": "Zazen",
+"location": "4:00 & E"
+},
+{
+"camp": "Zeniza",
+"location": "9:00 & D"
+},
+{
+"camp": "Zero Fucks",
+"location": "9:30 & B"
+},
+{
+"camp": "Zeta zone",
+"location": "D & 7:45"
+}
+]

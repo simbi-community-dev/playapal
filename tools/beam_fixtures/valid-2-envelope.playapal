@@ -1,0 +1,72 @@
+{
+ "kind": "playapal-camp-board",
+ "format": 2,
+ "camp_id": "0b7868f0",
+ "envelopes": [
+  {
+   "format": 2,
+   "camp_id": "0b7868f0",
+   "writer_id": "aaaa1111",
+   "author_name": "Maria",
+   "key_id": "85a39429",
+   "seq": 3,
+   "payload_hash": "1b7cd59a66285de2ccd7896ba47f7d5c7c8e57a4f7f277c8b106cf4b1c6b1c45",
+   "posts": [
+    {
+     "id": "p-mt2jsdyd-bb25",
+     "writer_id": "aaaa1111",
+     "author_name": "Maria",
+     "type": "offer",
+     "text": "3 spare bike tubes",
+     "ref_id": null,
+     "created_at": "2026-08-21T06:07:47.365Z",
+     "done": false
+    }
+   ],
+   "notes": [
+    {
+     "id": "aaaa1111:n-mt2jsdyg-31fb",
+     "writer_id": "aaaa1111",
+     "author_name": "Maria",
+     "kind": "resource",
+     "title": "Spare parts",
+     "when_date": "",
+     "time_start": "",
+     "time_end": "",
+     "where_addr": "",
+     "text": "spare bike chain in the bin by camp",
+     "subject_type": "",
+     "subject_key": "",
+     "year": "",
+     "supersedes": "",
+     "created_at": "2026-08-21T06:07:47.368Z",
+     "revised_at": ""
+    }
+   ],
+   "tag": "73578037ab844c9bd312f83cdb83c3d79ecd94d422681f61b6447caa31d6d79c"
+  },
+  {
+   "format": 2,
+   "camp_id": "0b7868f0",
+   "writer_id": "bbbb2222",
+   "author_name": "Ben",
+   "key_id": "85a39429",
+   "seq": 2,
+   "payload_hash": "32d1614bc1ad92f760a004fd2c8a5d26f757624fa60b62883979ddc2c1d0c654",
+   "posts": [
+    {
+     "id": "p-mt2jsdyg-6d63",
+     "writer_id": "bbbb2222",
+     "author_name": "Ben",
+     "type": "need",
+     "text": "ride to Reno Tuesday",
+     "ref_id": null,
+     "created_at": "2026-08-21T06:07:47.368Z",
+     "done": false
+    }
+   ],
+   "notes": [],
+   "tag": "9cabe254b87932a7e5990955b55d228e9538606813977b19efda196ae6926c06"
+  }
+ ]
+}
